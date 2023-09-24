@@ -7,7 +7,9 @@
     <meta name="description" content="Personal Blog">
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
     <link rel="stylesheet" href="style.css">
-    <title>Personal Blog</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap">
+    <title>Shintaro Hashimoto Personal Blog</title>
 </head>
 
 <body>
@@ -19,12 +21,10 @@
         <nav>
             <ul>
                 <li>
-                    <a href="about">About</a>
-                    <a href="works">Works</a>
-                    <a href="news">News</a>
-                    <a href="contact">contact</a>
-                    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferer"><img
-                            src="./img/twitter.png" alt="Twitter" class="icon"></a>
+                    <a href="#about">About</a>
+                    <a href="https://github.com/Shintaro060776/page">Works</a>
+                    <a href="#news">News</a>
+                    <a href="#contact">contact</a>
                 </li>
             </ul>
         </nav>
@@ -32,70 +32,45 @@
 
     <!-- Main -->
     <div id="main">
-        <picture>
-            <source media="(max-width: 600px)" srcset="./img/main-sp.jpg" />
-            <img src="./img/main-pc.jpg" alt="">
-        </picture>
+        <video width="100%" autoplay loop muted playsinline>
+            <source src="./img/particle.mp4" type="video/mp4">
+        </video>
     </div>
 
     <!-- about -->
     <section id="about" class="wrapper">
         <h2 class="sec-title">About</h2>
         <ul>
-            <li>Personal Blog</li>
-            <li>Personal Blog</li>
-            <li>Personal Blog</li>
+            <li>経歴</li>
         </ul>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem inventore saepe sequi id totam harum
-            animi, nisi incidunt corporis nulla, praesentium nam expedita dicta vitae, eligendi deserunt at excepturi
-            iusto.</p>
-    </section>
-
-    <!-- works -->
-    <section id="works" class="wrapper">
-        <h2 class="sec-title">Works</h2>
-        <ul>
-            <li><img src="./img/works1.jpg" alt=""></li>
-            <li><img src="./img/works2.jpg" alt=""></li>
-            <li><img src="./img/works3.jpg" alt=""></li>
-            <li><img src="./img/works4.jpg" alt=""></li>
-            <li><img src="./img/works5.jpg" alt=""></li>
-            <li><img src="./img/works6.jpg" alt=""></li>
-            <li><img src="./img/works3.jpg" alt=""></li>
-            <li><img src="./img/works4.jpg" alt=""></li>
-            <li><img src="./img/works2.jpg" alt=""></li>
-        </ul>
+        <p>10年にわたるネットワークエンジニアリングのキャリアの中で、最先端のテクノロジーとツールを用いて、ビジネスの成長と効率化をサポートしてきました。私の専門領域には、IaCツールであるTerraformとCloudFormationを使用したインフラの設計と実装、AWSを中心としたクラウドサービスの適用、そして構成管理ツールであるAnsibleとChefを用いた自動化が含まれます。シェルスクリプトとPythonを使用したカスタムスクリプトの作成も得意としており、Dockerを活用したコンテナ環境の構築と管理にも熟練しています。また、Github
+            Actionsを使用したCI/CDパイプラインの実装経験も豊富に持っています。フロントエンドとバックエンドの開発に関しても、PHPとJavaScriptを用いた実装経験があります。これらのスキルを活かし、チームと連携して、効果的かつ効率的なソリューションを提供することを常に目指しています。
+        </p>
     </section>
 
     <section id="news" class="wrapper">
         <h2 class="sec-title">News</h2>
         <dl>
-            <dt>2022/10/29</dt>
-            <dd>本サイトをリリースしました</dd>
-            <dt>2022/10/29</dt>
-            <dd>本サイトをリリースしました</dd>
-            <dt>2022/10/29</dt>
-            <dd>本サイトをリリースしました</dd>
-            <dt>2022/10/29</dt>
-            <dd>本サイトをリリースしました</dd>
+            <dt>2023/09/24</dt>
+            <dd>本ブログをリリースしました</dd>
         </dl>
     </section>
 
     <section id="contact" class="wrapper">
         <h2 class="sec-title">contact</h2>
-        <p>お問い合わせ</p>
-        <form action="#" method="post"></form>
-        <dl>
-            <dt><label for="name">お名前</label></dt>
-            <dd><input type="text" id="name"></dd>
-            <dt><label for="email">メールアドレス</label></dt>
-            <dd><input type="email" id="email"></dd>
-            <dt><label for="content">お名前</label></dt>
-            <dd><textarea name="" id="content" cols="30" rows="10"></textarea></dd>
-        </dl>
-        <div class="button"><input type="submit" value="送信"></div>
+        <form action="sendmail.php" method="post">
+            <dl>
+                <dt><label for="name">お名前</label></dt>
+                <dd><input type="text" id="name"></dd>
+                <dt><label for="email">メールアドレス</label></dt>
+                <dd><input type="email" id="email"></dd>
+                <dt><label for="content">お問い合わせ内容</label></dt>
+                <dd><textarea name="" id="content" cols="30" rows="10"></textarea></dd>
+            </dl>
+            <div class="button"><input type="submit" value="送信"></div>
         </form>
     </section>
+
 </body>
 
 </html>

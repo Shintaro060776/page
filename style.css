@@ -1,15 +1,33 @@
 html {
     font-size: 100%;
+    background-color: black;
+    scroll-behavior: smooth;
+}
+
+.wf-kokoro {
+    font-family: "Kokoro";
 }
 
 body {
-    color: #24292e;
+    /* color: #24292e; */
     /* font-family: ; */
     font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+    /* font-family: 'Noto Sans JP', sans-serif; */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: hotpink;
 }
 
 a {
     text-decoration: none;
+    color: hotpink;
+}
+
+#header li a:hover {
+    color: white;
+}
+
+a:hover {
+    color: white;
 }
 
 p {
@@ -39,7 +57,7 @@ li {
 }
 
 .site-title a {
-    color: #24292e;
+    color: white;
     display: block;
 }
 
@@ -57,17 +75,38 @@ li {
     margin: 0 auto;
     padding: 0 4%;
     height: 170px;
+    color: hotpink;
+}
+
+#header h1 a {
+    color: hotpink;
+    font-size: 3rem;
+    transition: all 1s;
+}
+
+#header h1 a:hover {
+    color: white;
+}
+
+#header h1 nav ul li a {
+    transition: all 1.5s;
+}
+
+#header h1 nav ul li a:hover {
+    color: white;
 }
 
 #header li {
     font-size: 0.9rem;
     margin-left: 30px;
+    color: hotpink;
 }
 
 #header ul {
     display: flex;
     padding: 10px 0;
     align-items: center;
+    color: hotpink;
 }
 
 #header li:first-child {
@@ -77,18 +116,25 @@ li {
 #header li {
     font-size: 0.9rem;
     margin-left: 60px;
+    color: hotpink;
 }
 
 #header li a {
-    color: #24292e;
-    transition: all 0.3s;
+    color: hotpink;
+    transition: all 1s;
+    margin-right: 20px;
+    font-size: 1.3rem;
 }
 
-#header li a:hover {
-    opacity: 0.5;
+#header li a:last-child {
+    margin-right: 0;
 }
 
-#header li img.icon {
+/* #header li a:hover {
+    /* opacity: 0.5; */
+/* } */
+
+*/ #header li img.icon {
     width: 30px;
 }
 
@@ -179,28 +225,30 @@ li {
 #contact dd textarea {
     width: 100%;
     border: 1px solid #c8c8c8;
+    color: white;
 }
 
 #contact dd textarea {
     height: 10rem;
+    color: white;
 }
 
 #contact .button {
     text-align: center;
+    color: white;
 }
 
 #contact .button input {
-    border: 1px solid #24292e;
     width: 200px;
-    background-color: #24292e;
     padding: 15px 0;
     color: #fff;
-    transition: all 0.3s;
+    transition: all 1.5s;
 }
 
 #contact .button input:hover {
-    background-color: #fff;
-    color: #24292e;
+    background-color: hotpink;
+    color: black;
+    border-radius: 20px;
 }
 
 @media screen and (max-width: 600px) {
@@ -213,6 +261,7 @@ li {
         height: auto;
         line-height: 40px;
         margin-top: 20px;
+        color: white;
     }
 
     #header li {
