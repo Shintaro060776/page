@@ -42,7 +42,7 @@ jobs:
 
     - name: Terraform Plan
       run: terraform plan -var="DEPLOY_PUBLIC_KEY=${{ env.SSH_PUBLIC_KEY }}"
-
+    
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -var="DEPLOY_PUBLIC_KEY=${{ env.SSH_PUBLIC_KEY }}"

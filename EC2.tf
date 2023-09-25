@@ -1,6 +1,6 @@
 resource "aws_key_pair" "ec2_key" {
-  key_name   = "new_ssh_key_name"
-  public_key = file("~/.ssh/new_ssh_key.pub")
+  key_name   = "ec2-key"
+  public_key = var.DEPLOY_PUBLIC_KEY
 }
 
 resource "aws_instance" "example" {
