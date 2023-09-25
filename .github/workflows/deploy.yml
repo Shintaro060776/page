@@ -1,4 +1,4 @@
-name: CI/CD Deploy to EC2 13
+name: CI/CD Deploy to EC2 7
 
 on:
   push:
@@ -12,16 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Debug SSH to EC2
-        env:
-            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            SERVER_IP: ${{ secrets.SERVER_IP }}
-        run: |
-            echo "$PRIVATE_KEY" > deploy_key
-            chmod 600 deploy_key
-            ssh -vvv -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@$SERVER_IP 'echo "SSH Succeeded!"'
-            rm -f deploy_key
 
       - name: Deploy to EC2
         env:
