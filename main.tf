@@ -65,12 +65,12 @@ resource "aws_security_group" "ec2" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
-  public_key = var.ssh_public_key
+  public_key = env.SSH_PUBLIC_KEY
 }
 
 resource "aws_eip" "example" {
   instance = aws_instance.web.id
-  vpc      = true
+  domain   = "vpc"
 }
 
 resource "aws_instance" "web" {
