@@ -65,7 +65,7 @@ resource "aws_security_group" "ec2" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
-  public_key = env.SSH_PUBLIC_KEY
+  public_key = env.DEPLOY_PUBLIC_KEY
 }
 
 resource "aws_eip" "example" {
