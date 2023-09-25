@@ -18,7 +18,7 @@ jobs:
       #   env:
           # SERVER_IP: 
       #   run: |
-      #     ping -c 4 $SERVER_IP 11
+      #     ping -c 4 $SERVER_IP 111
 
       - name: Deploy to EC2
         env:
