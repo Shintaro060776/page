@@ -1,4 +1,4 @@
-variable "ssh_public_key" {
-  description = "The SSH public key"
+variable "DEPLOY_PUBLIC_KEY" {
+  description = "The SSH public key for deployment"
   default     = ""
 }
