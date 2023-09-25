@@ -1,4 +1,4 @@
-name: CI/CD Deploy to EC2 7
+name: CI/CD Deploy to EC2
 
 on:
   push:
@@ -13,13 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 追加: EC2へのPingテスト
-      # - name: Ping Test to EC2
-      #   env:
-          # SERVER_IP: 
-      #   run: |
-      #     ping -c 4 $SERVER_IP 1111111111
-
       - name: Deploy to EC2
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -28,7 +21,9 @@ jobs:
           echo "$PRIVATE_KEY" > deploy_key
           chmod 600 deploy_key
           ssh -vvv -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
-          scp -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r /home/runner/work/page/page/* ec2-user@$SERVER_IP:/usr/share/nginx/html/
-          scp -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${{ github.workspace }} ec2-user@$SERVER_IP:/usr/share/nginx/html
+          
+          # Using rsync for efficient data transfer and excluding unnecessary files/directories
+          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --exclude '.git/' ${{ github.workspace }}/ ec2-user@$SERVER_IP:/usr/share/nginx/html/
+          
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           rm -f deploy_key
