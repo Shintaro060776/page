@@ -1,0 +1,25 @@
+name: CI/CD Deploy to EC2 7
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.DEPLOY_PUBLIC_KEY }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: |
+          echo "$PRIVATE_KEY" > deploy_key
+          chmod 600 deploy_key
+          scp -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${{ github.workspace }} ec2-user@$SERVER_IP:/usr/share/nginx/html
+          ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
+          rm -f deploy_key
