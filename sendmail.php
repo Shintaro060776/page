@@ -19,7 +19,7 @@ $SesClient = new SesClient([
 ]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Check if POST data is set and not empty
+    // Check if POST data is set and not empty 1
     $name = !empty($_POST['name']) ? $_POST['name'] : 'No Name';
     $email = !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : 'default_sender@example.com';
     $content = !empty($_POST['content']) ? $_POST['content'] : 'No Content';
