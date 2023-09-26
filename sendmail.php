@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-phpinfo();
+
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
 
