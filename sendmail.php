@@ -10,46 +10,65 @@ $SesClient = new SesClient([
     'region'  => 'ap-northeast-1'
 ]);
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Check if POST data is set and not empty 1111
-    $name = !empty($_POST['name']) ? $_POST['name'] : 'No Name';
-    $email = !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : 'default_sender@example.com';
-    $content = !empty($_POST['content']) ? $_POST['content'] : 'No Content';
+    // Check if POST data is set and not empty
+    $name = !empty($_POST['name']) ? $_POST['name'] : null;
+    $email = !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : null;
+    $content = !empty($_POST['content']) ? $_POST['content'] : null;
 
-    $subject = "お問い合わせ from " . $name;
-    $plaintext_body = $content;
-    $html_body = "<p>{$content}</p>";
-    $char_set = 'UTF-8';
+    // Validation
+    if (!$name) {
+        $errors[] = "名前を入力してください。";
+    }
+    if (!$email) {
+        $errors[] = "有効なメールアドレスを入力してください。";
+    }
+    if (!$content) {
+        $errors[] = "お問い合わせ内容を入力してください。";
+    }
 
-    try {
-        $result = $SesClient->sendEmail([
-            'Destination' => [
-                'ToAddresses' => ['shintaro060776@gmail.com'],
-            ],
-            'ReplyToAddresses' => [$email],
-            'Source' => 'shintaro060776@gmail.com',
-            'Message' => [
-                'Body' => [
-                    'Html' => [
-                        'Charset' => $char_set,
-                        'Data' => $html_body,
+    if (empty($errors)) {
+        $subject = "お問い合わせ from " . $name;
+        $plaintext_body = $content;
+        $html_body = "<p>{$content}</p>";
+        $char_set = 'UTF-8';
+
+        try {
+            $result = $SesClient->sendEmail([
+                'Destination' => [
+                    'ToAddresses' => ['shintaro060776@gmail.com'],
+                ],
+                'ReplyToAddresses' => [$email],
+                'Source' => 'shintaro060776@gmail.com',
+                'Message' => [
+                    'Body' => [
+                        'Html' => [
+                            'Charset' => $char_set,
+                            'Data' => $html_body,
+                        ],
+                        'Text' => [
+                            'Charset' => $char_set,
+                            'Data' => $plaintext_body,
+                        ],
                     ],
-                    'Text' => [
+                    'Subject' => [
                         'Charset' => $char_set,
-                        'Data' => $plaintext_body,
+                        'Data' => $subject,
                     ],
                 ],
-                'Subject' => [
-                    'Charset' => $char_set,
-                    'Data' => $subject,
-                ],
-            ],
-        ]);
+            ]);
 
-        header('Location: ./thankyou/thankyou.html');
-    } catch (AwsException $e) {
-        echo $e->getMessage();
-        echo("The email was not sent. Error message: ".$e->getAwsErrorMessage()."\n");
+            header('Location: ./thankyou/thankyou.html');
+        } catch (AwsException $e) {
+            echo $e->getMessage();
+            echo("The email was not sent. Error message: ".$e->getAwsErrorMessage()."\n");
+        }
+    } else {
+        foreach ($errors as $error) {
+            echo $error . "<br>";
+        }
     }
 }
 ?>
