@@ -3,18 +3,17 @@ require 'vendor/autoload.php';
 
 use Aws\Ses\SesClient;
 
+$credentials = require 'credentials.php';
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $content = $_POST["content"];
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $content = isset($_POST['content']) ? $_POST['content'] : '';
 
     $client = SesClient::factory(array(
         'version'=> 'latest',
         'region' => 'ap-northeast-1',
-        'credentials' => [
-            'key' => 'AKIA2NG4APPN2B5XFV3R',
-            'secret' => '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',
-        ]
+        'credentials' => $credentials
     ));
 
     $result = $client->sendEmail([
