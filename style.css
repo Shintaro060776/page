@@ -99,11 +99,11 @@ li {
     color: white;
 }
 
-#header li {
+/* #header li {
     font-size: 0.9rem;
     margin-left: 30px;
     color: hotpink;
-}
+} */
 
 #header ul {
     display: flex;
@@ -353,75 +353,70 @@ h5 {
 
     .box {
         flex-direction: column;
-
-        .site-title {
-            margin-top: 20px;
-        }
-
-        #header {
-            flex-direction: column;
-            height: auto;
-            line-height: 40px;
-            margin-top: 20px;
-            color: white;
-        }
-
-        #header li {
-            font-size: 0.5rem;
-            margin-left: 20px;
-        }
-
-        #header li img.icon {
-            width: 20px;
-            margin-top: 15px;
-        }
-
-        #works ul {
-            flex-direction: column;
-        }
-
-        #news dl {
-            flex-direction: column;
-        }
-
-        #news dt {
-            width: 100%;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        #news dt {
-            width: 100%;
-            border-bottom: none;
-            padding: 10px 0;
-        }
-
-        #news dd {
-            width: 100%;
-            padding: 10px 0;
-        }
-
-        #contact dl {
-            flex-direction: column;
-        }
-
-        #contact dt {
-            width: 100px;
-            margin-bottom: 5px;
-        }
-
-        #contact dd {
-            width: 100px;
-        }
-
-        p {
-            font-size: 0.8rem;
-        }
-
-        #contact input[type="text"],
-        #contact input[type="email"],
-        #contact textarea {
-            width: 100%;
-            box-sizing: border-box;
-        }
     }
+
+    .box .site-title {
+        margin-top: 20px;
+    }
+
+    .box #header {
+        flex-direction: column;
+        height: auto;
+        line-height: 40px;
+        margin-top: 20px;
+        color: white;
+    }
+
+    .box #header li {
+        font-size: 0.5rem;
+        margin-left: 20px;
+    }
+
+    .box #header li img.icon {
+        width: 20px;
+        margin-top: 15px;
+    }
+
+    .box #works ul {
+        flex-direction: column;
+    }
+
+    .box #news dl {
+        flex-direction: column;
+    }
+
+    .box #news dt {
+        width: 100%;
+        border-bottom: none;
+        padding: 10px 0;
+    }
+
+    .box #news dd {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .box #contact dl {
+        flex-direction: column;
+    }
+
+    .box #contact dt {
+        width: 100px;
+        margin-bottom: 5px;
+    }
+
+    .box #contact dd {
+        width: 100px;
+    }
+
+    .box p {
+        font-size: 0.8rem;
+    }
+
+    .box #contact input[type="text"],
+    .box #contact input[type="email"],
+    .box #contact textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
