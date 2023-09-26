@@ -5,18 +5,24 @@ require 'vendor/autoload.php';
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
 
-$credentials = require 'credentials.php';
+// 環境変数からキーを取得
+$accessKey = getenv('AWS_ACCESS_KEY_ID');
+$secretKey = getenv('AWS_SECRET_ACCESS_KEY');
 
 $SesClient = new SesClient([
     'version' => 'latest',
     'region'  => 'ap-northeast-1',
-    'credentials' => $credentials
+    'credentials' => [
+        'key' => $accessKey,
+        'secret' => $secretKey,
+    ],
 ]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $name = isset($_POST['name']) && !empty($_POST['name']) ? $_POST['name'] : 'No Name';
-    $email = isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : 'default_sender@example.com';
-    $content = isset($_POST['content']) && !empty($_POST['content']) ? $_POST['content'] : 'No Content';
+    // Check if POST data is set and not empty
+    $name = !empty($_POST['name']) ? $_POST['name'] : 'No Name';
+    $email = !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : 'default_sender@example.com';
+    $content = !empty($_POST['content']) ? $_POST['content'] : 'No Content';
 
     $subject = "お問い合わせ from " . $name;
     $plaintext_body = $content;
