@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
 
-// 環境変数からキーを取得11
+// 環境変数からキーを取得
 $accessKey = getenv('AWS_ACCESS_KEY_ID');
 $secretKey = getenv('AWS_SECRET_ACCESS_KEY');
 
