@@ -47,7 +47,8 @@ li {
     max-width: 960px;
     margin: 0 auto 130px auto;
     font-size: 0.9rem;
-    padding: 0 4%;
+    /* padding: 0 4%; */
+    padding: 20px;
 }
 
 .site-title {
@@ -62,9 +63,11 @@ li {
 }
 
 .sec-title {
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
     text-align: center;
-    margin-bottom: 65px;
+    /* margin-bottom: 65px; */
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 #header {
@@ -180,6 +183,10 @@ li {
 #works ul li img:hover {
     transform: scale(1.2, 1.2);
     opacity: 0.7;
+}
+
+dl {
+    font-size: 16px;
 }
 
 /* #works {
