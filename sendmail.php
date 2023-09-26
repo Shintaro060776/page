@@ -5,17 +5,10 @@ require 'vendor/autoload.php';
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
 
-// 環境変数からキーを取得
-$accessKey = getenv('AWS_ACCESS_KEY_ID');
-$secretKey = getenv('AWS_SECRET_ACCESS_KEY');
-
+// この部分で、自動的に ~/.aws/credentials と ~/.aws/config を参照します。
 $SesClient = new SesClient([
     'version' => 'latest',
     'region'  => 'ap-northeast-1',
-    'credentials' => [
-        'key' => $accessKey,
-        'secret' => $secretKey,
-    ],
 ]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
