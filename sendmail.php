@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 'ToAddresses' => ['shintaro060776@gmail.com'],
             ],
             'ReplyToAddresses' => [$email],
-            'Source' => 'default_sender@example.com',
+            'Source' => 'shintaro060776@gmail.com',
             'Message' => [
                 'Body' => [
                     'Html' => [
