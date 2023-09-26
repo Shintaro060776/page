@@ -343,6 +343,10 @@ h5 {
         width: 100%;
     }
 
+    #news dt {
+        border-bottom: none;
+    }
+
     .card {
         width: 90%;
         margin: 10px;
