@@ -20,11 +20,13 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > deploy_key
           chmod 600 deploy_key
-          sudo chown -R ec2-user:ec2-user /usr/share/nginx/html/
-          sudo chmod 755 /usr/share/nginx/html/
-          sudo find /usr/share/nginx/html/ -type d -exec chmod 755 {} \;
-          sudo find /usr/share/nginx/html/ -type f -exec chmod 644 {} \;
-          ssh -vvv -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
+          
+          # Execute permission-related commands on the EC2 instance
+          ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo chown -R ec2-user:ec2-user /usr/share/nginx/html/'
+          ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo chmod 755 /usr/share/nginx/html/'
+          ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo find /usr/share/nginx/html/ -type d -exec chmod 755 {} \;'
+          ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo find /usr/share/nginx/html/ -type f -exec chmod 644 {} \;'
+          ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           
           # Using rsync for efficient data transfer and excluding unnecessary files/directories
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" --exclude '.git/' ${{ github.workspace }}/ ec2-user@$SERVER_IP:/usr/share/nginx/html/
