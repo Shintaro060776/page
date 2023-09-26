@@ -323,64 +323,78 @@ h5 {
     cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
-    .site-title {
-        margin-top: 20px;
-    }
+@media screen and (max-width: 375px) {
 
-    #header {
-        flex-direction: column;
-        height: auto;
-        line-height: 40px;
-        margin-top: 20px;
-        color: white;
-    }
-
-    #header li {
-        font-size: 0.5rem;
-        margin-left: 20px;
-    }
-
-    #header li img.icon {
-        width: 20px;
-        margin-top: 15px;
-    }
-
-    #works ul {
-        flex-direction: column;
-    }
-
-    #news dl {
-        flex-direction: column;
-    }
-
-    #news dt {
-        width: 100%;
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-
-    #contact dl {
-        flex-direction: column;
-    }
-
-    #contact dt {
-        width: 100px;
-        margin-bottom: 5px;
-    }
-
-    #contact dd {
-        width: 100px;
-    }
-
-    p {
+    #contact dd input,
+    #contact dd textarea {
         font-size: 0.8rem;
     }
 
-    #contact input[type="text"],
-    #contact input[type="email"],
-    #contact textarea {
-        width: 100%;
-        box-sizing: border-box;
+    .card {
+        width: 90%;
+        margin: 10px;
     }
-}
+
+    .box {
+        flex-direction: column;
+
+        .site-title {
+            margin-top: 20px;
+        }
+
+        #header {
+            flex-direction: column;
+            height: auto;
+            line-height: 40px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        #header li {
+            font-size: 0.5rem;
+            margin-left: 20px;
+        }
+
+        #header li img.icon {
+            width: 20px;
+            margin-top: 15px;
+        }
+
+        #works ul {
+            flex-direction: column;
+        }
+
+        #news dl {
+            flex-direction: column;
+        }
+
+        #news dt {
+            width: 100%;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        #contact dl {
+            flex-direction: column;
+        }
+
+        #contact dt {
+            width: 100px;
+            margin-bottom: 5px;
+        }
+
+        #contact dd {
+            width: 100px;
+        }
+
+        p {
+            font-size: 0.8rem;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
