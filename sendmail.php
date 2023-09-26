@@ -14,9 +14,9 @@ $SesClient = new SesClient([
 ]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $name = isset($_POST['name']) ? $_POST['name'] : '';
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
-    $content = isset($_POST['content']) ? $_POST['content'] : '';
+    $name = isset($_POST['name']) && !empty($_POST['name']) ? $_POST['name'] : 'No Name';
+    $email = isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : 'default_sender@example.com';
+    $content = isset($_POST['content']) && !empty($_POST['content']) ? $_POST['content'] : 'No Content';
 
     $subject = "お問い合わせ from " . $name;
     $plaintext_body = $content;
