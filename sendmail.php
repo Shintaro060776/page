@@ -9,6 +9,7 @@ use Aws\Exception\AwsException;
 $SesClient = new SesClient([
     'version' => 'latest',
     'region'  => 'ap-northeast-1',
+    'profile' => 'default',
 ]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
