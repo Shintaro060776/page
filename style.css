@@ -429,4 +429,8 @@ h5 {
         width: 100%;
         box-sizing: border-box;
     }
+
+    #about p {
+        font-size: 0.6rem;
+    }
 }
