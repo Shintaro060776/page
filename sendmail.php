@@ -5,13 +5,9 @@ require 'vendor/autoload.php';
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
 
-$provider = \Aws\Credentials\CredentialProvider::ini('default', '/home/ec2-user/.aws/credentials');
-$credentials = \Aws\Credentials\CredentialProvider::memoize($provider);
-
 $SesClient = new SesClient([
     'version' => 'latest',
-    'region'  => 'ap-northeast-1',
-    'credentials' => $credentials,
+    'region'  => 'ap-northeast-1'
 ]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
