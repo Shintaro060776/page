@@ -5,11 +5,13 @@ require 'vendor/autoload.php';
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
 
-// この部分で、自動的に ~/.aws/credentials と ~/.aws/config を参照します。
+$provider = \Aws\Credentials\CredentialProvider::ini('default', '/home/ec2-user/.aws/credentials');
+$credentials = \Aws\Credentials\CredentialProvider::memoize($provider);
+
 $SesClient = new SesClient([
     'version' => 'latest',
     'region'  => 'ap-northeast-1',
-    'profile' => 'default',
+    'credentials' => $credentials,
 ]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
