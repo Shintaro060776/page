@@ -1,6 +1,6 @@
 resource "aws_key_pair" "ec2_key" {
   key_name   = "ec2-key"
-  public_key = var.DEPLOY_PUBLIC_KEY
+  public_key = file("${path.module}/github_actions_key.pub")
 }
 
 resource "aws_instance" "example" {
@@ -9,7 +9,7 @@ resource "aws_instance" "example" {
   key_name      = aws_key_pair.ec2_key.key_name
   subnet_id     = aws_subnet.public_1a.id
 
-  vpc_security_group_ids = [aws_security_group.allow.id]
+  vpc_security_group_ids = [aws_security_group.allow_specific.id]
 
   tags = {
     Name = "EC2_Test11"

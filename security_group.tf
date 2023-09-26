@@ -1,17 +1,34 @@
-resource "aws_security_group" "allow" {
-  name        = "allow"
-  description = "Allow all traffic updated"
+resource "aws_security_group" "allow_specific" {
+  name        = "allow_specific"
+  description = "Allow only HTTP, HTTPS, and SSH traffic"
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description = "All traffic"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["133.155.108.159/32"]
+  }
+
   egress {
-    description = "All traffic"
+    description = "All outgoing traffic"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -19,6 +36,6 @@ resource "aws_security_group" "allow" {
   }
 
   tags = {
-    Name = "allow all"
+    Name = "allow_specific"
   }
 }
