@@ -20,7 +20,10 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > deploy_key
           chmod 600 deploy_key
+          sudo chown -R ec2-user:ec2-user /usr/share/nginx/html/
           sudo chmod 755 /usr/share/nginx/html/
+          sudo find /usr/share/nginx/html/ -type d -exec chmod 755 {} \;
+          sudo find /usr/share/nginx/html/ -type f -exec chmod 644 {} \;
           ssh -vvv -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           
           # Using rsync for efficient data transfer and excluding unnecessary files/directories
