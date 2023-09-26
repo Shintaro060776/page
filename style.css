@@ -337,6 +337,12 @@ h5 {
         font-size: 0.8rem;
     }
 
+    #news dt,
+    #news dd {
+        display: block;
+        width: 100%;
+    }
+
     .card {
         width: 90%;
         margin: 10px;
