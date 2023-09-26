@@ -390,6 +390,17 @@ h5 {
             padding-bottom: 0;
         }
 
+        #news dt {
+            width: 100%;
+            border-bottom: none;
+            padding: 10px 0;
+        }
+
+        #news dd {
+            width: 100%;
+            padding: 10px 0;
+        }
+
         #contact dl {
             flex-direction: column;
         }
