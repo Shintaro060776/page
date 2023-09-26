@@ -335,6 +335,15 @@ h5 {
         margin: 10px;
     }
 
+    .sec-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    dl {
+        font-size: 14px;
+    }
+
     .box {
         flex-direction: column;
 
