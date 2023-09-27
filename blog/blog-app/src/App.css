@@ -101,8 +101,8 @@ form textarea {
 
 form button {
   display: block;
-  background-color: #007BFF;
-  color: white;
+  background-color: #ec370a;
+  color: rgb(12, 1, 1);
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -112,5 +112,36 @@ form button {
 }
 
 form button:hover {
-  background-color: #0056b3;
+  background-color: #eb0894;
+}
+
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+@media only screen and (max-width: 375px) {
+
+  textarea,
+  input {
+    width: 90%;
+    font-size: 0.8rem;
+  }
 }
