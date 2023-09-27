@@ -4,7 +4,7 @@ resource "aws_lambda_function" "blog_lambda" {
   runtime       = "nodejs14.x"
 
   s3_bucket = "vhrthrtyergtcere"
-  #   s3_key    = "path_to_your_lambda.zip"
+  s3_key    = "function.zip"
 
   role = aws_iam_role.lambda_exec.arn
 
