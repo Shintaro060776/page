@@ -18,14 +18,17 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
       - name: Install dependencies
         run: |
-          cd blog-app
+          cd page/blog/blog-app
           npm install
-        
+      
       - name: Build the React app
         run: |
-          cd blog-app
+          cd page/blog/blog-app
           npm run build
 
       - name: Deploy to EC2
