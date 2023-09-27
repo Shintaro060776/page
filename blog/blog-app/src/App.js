@@ -9,7 +9,7 @@ function App() {
     <div>
       <div className="video-background">
         <video playsInline="playsinline" autoPlay="autoplay" muted="muted" loop="loop">
-          <source src="/background-video.mp4" type="video/mp4" />
+          <source src="./01__289_29.mp4" type="video/mp4" />
         </video>
       </div>
 
