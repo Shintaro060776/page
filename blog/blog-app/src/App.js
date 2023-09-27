@@ -4,7 +4,6 @@ import Home from './components/Home';
 import PostDetail from './components/PostDetail';
 import AddPost from './components/AddPost';
 import './App.css';
-import AddPost from './components/AddPost';
 
 function App() {
   return (
