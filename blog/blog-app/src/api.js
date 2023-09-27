@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_ENDPOINT = 'https://your-api-gateway-url/posts';
 
-export const getPosts = async () => {
+export const getAllPosts = async () => {
     try {
         const response = await axios.get(API_ENDPOINT);
         return response.data;
