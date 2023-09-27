@@ -1,7 +1,7 @@
 import React from 'react';
 import AddPost from './AddPost';
-import PostsList from './PostsList';
-import { getAllPosts, deletePost } from '../api';
+// import PostsList from './PostsList';
+// import { getAllPosts, deletePost } from '../api';
 
 function Home() {
 
