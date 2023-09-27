@@ -4,6 +4,7 @@ function AddPost() {
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [content, setContent] = useState("");
+    const [person, setPerson] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
