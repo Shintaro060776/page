@@ -13,6 +13,16 @@ function AddPost() {
     return (
         <form onSubmit={handleSubmit}>
             <div>
+                <label htmlFor="person">投稿者:</label>
+                <input
+                    type="text"
+                    id="person"
+                    value={person}
+                    onChange={(e) => setPerson(e.target.value)}
+                    required
+                />
+            </div>
+            <div>
                 <label htmlFor="title">タイトル:</label>
                 <input
                     type="text"

@@ -13,6 +13,7 @@ function Home() {
 
             {posts.map(post => (
                 <div key={post.id} className="card">
+                    <h2>{post.person}</h2>
                     <h2>{post.title}</h2>
                     <p>{post.content}</p>
                 </div>
