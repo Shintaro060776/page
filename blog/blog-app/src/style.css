@@ -1,0 +1,436 @@
+html {
+    font-size: 100%;
+    background-color: black;
+    scroll-behavior: smooth;
+}
+
+.wf-kokoro {
+    font-family: "Kokoro";
+}
+
+body {
+    /* color: #24292e; */
+    /* font-family: ; */
+    font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+    /* font-family: 'Noto Sans JP', sans-serif; */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: hotpink;
+}
+
+a {
+    text-decoration: none;
+    color: hotpink;
+}
+
+#header li a:hover {
+    color: white;
+}
+
+a:hover {
+    color: white;
+}
+
+p {
+    font-size: 1rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+li {
+    list-style: none;
+    font-size: 1.2rem;
+}
+
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto 130px auto;
+    font-size: 0.9rem;
+    /* padding: 0 4%; */
+    padding: 20px;
+}
+
+.site-title {
+    line-height: 1px;
+    font-weight: 600px;
+    font-size: 2.4rem;
+}
+
+.site-title a {
+    color: white;
+    display: block;
+}
+
+.sec-title {
+    /* font-size: 1.5rem; */
+    text-align: center;
+    /* margin-bottom: 65px; */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#header {
+    max-width: 960px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 4%;
+    height: 170px;
+    color: hotpink;
+}
+
+#header h1 a {
+    color: hotpink;
+    font-size: 1.5rem;
+    transition: all 1s;
+}
+
+#header h1 a:hover {
+    color: white;
+}
+
+#header h1 nav ul li a {
+    transition: all 1.5s;
+}
+
+#header h1 nav ul li a:hover {
+    color: white;
+}
+
+/* #header li {
+    font-size: 0.9rem;
+    margin-left: 30px;
+    color: hotpink;
+} */
+
+#header ul {
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    color: hotpink;
+}
+
+#header li:first-child {
+    margin-left: 0;
+}
+
+#header li {
+    font-size: 0.8rem;
+    margin-left: 60px;
+    color: hotpink;
+}
+
+#header li a {
+    color: hotpink;
+    transition: all 1s;
+    margin-right: 20px;
+    font-size: 1rem;
+}
+
+#header li a:last-child {
+    margin-right: 0;
+}
+
+/* #header li a:hover {
+    /* opacity: 0.5; */
+/* } */
+
+*/ #header li img.icon {
+    width: 30px;
+}
+
+#main {
+    margin-bottom: 20px;
+}
+
+#main img {
+    width: 100%;
+    max-width: 1920px;
+    height: 400px;
+    object-fit: cover;
+}
+
+#about ul {
+    margin-bottom: 30px;
+}
+
+#about ul li:first-child {
+    margin-bottom: 30px;
+}
+
+#works ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+#works ul li {
+    width: 31%;
+    margin-bottom: 23px;
+}
+
+#works ul li img {
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 640px;
+    max-height: 417px;
+    transition: all 0.3s;
+}
+
+#works ul li img:hover {
+    transform: scale(1.2, 1.2);
+    opacity: 0.7;
+}
+
+dl {
+    font-size: 16px;
+}
+
+/* #works {
+    margin-bottom: 100px; test
+} */
+
+#news dl {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #c8c8c8;
+    margin-bottom: 20px;
+}
+
+#news dt {
+    width: 20%;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 15px;
+}
+
+#news dd {
+    width: 80%;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 15px;
+}
+
+#contact p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contact dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#contact dd {
+    width: 85%;
+    margin-bottom: 10px;
+}
+
+#contact dt {
+    width: 15%;
+    margin-bottom: 10px;
+}
+
+#contact dd input,
+#contact dd textarea {
+    width: 100%;
+    border: 1px solid #c8c8c8;
+    color: white;
+}
+
+#contact dd textarea {
+    height: 10rem;
+    color: white;
+}
+
+#contact .button {
+    text-align: center;
+    color: white;
+}
+
+#contact .button input {
+    width: 200px;
+    padding: 15px 0;
+    color: #fff;
+    transition: all 1.5s;
+}
+
+#contact .button input:hover {
+    background-color: hotpink;
+    color: black;
+    border-radius: 20px;
+}
+
+.portofolio {
+    width: 100%;
+    padding: 100px 0;
+}
+
+.title h2 {
+    color: hotpink;
+    font-size: 75px;
+    margin: 30px auto;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    margin-bottom: 20px;
+}
+
+.card {
+    height: 390px;
+    width: 365px;
+    background-color: #191919;
+    padding: 20px 35px;
+    margin: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1rem;
+    color: hotpink;
+}
+
+.card i {
+    color: lightseagreen;
+    font-size: 50px;
+    margin: 25px 0;
+}
+
+h5 {
+    color: hotpink;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.paragraph p {
+    color: hotpink;
+    font-size: 1rem;
+    line-height: 25px;
+    margin-bottom: 30px;
+}
+
+.card .button {
+    background-color: lightseagreen;
+    padding: 13px 30px;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+
+.card .button:hover {
+    background-color: transparent;
+    border: 2px solid green;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+
+    #contact dd input,
+    #contact dd textarea {
+        font-size: 0.8rem;
+    }
+
+    #news dt,
+    #news dd {
+        display: block;
+        width: 100%;
+    }
+
+    #news dt {
+        border-bottom: none;
+    }
+
+    .card {
+        width: 90%;
+        margin: 10px;
+    }
+
+    .sec-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    dl {
+        font-size: 14px;
+    }
+
+    .box {
+        flex-direction: column;
+    }
+
+    .box .site-title {
+        margin-top: 20px;
+    }
+
+    .box #header {
+        flex-direction: column;
+        height: auto;
+        line-height: 40px;
+        margin-top: 20px;
+        color: white;
+    }
+
+    .box #header li {
+        font-size: 0.5rem;
+        margin-left: 20px;
+    }
+
+    .box #header li img.icon {
+        width: 20px;
+        margin-top: 15px;
+    }
+
+    .box #works ul {
+        flex-direction: column;
+    }
+
+    .box #news dl {
+        flex-direction: column;
+    }
+
+    .box #news dt {
+        width: 100%;
+        border-bottom: none;
+        padding: 10px 0;
+    }
+
+    .box #news dd {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .box #contact dl {
+        flex-direction: column;
+    }
+
+    .box #contact dt {
+        width: 100px;
+        margin-bottom: 5px;
+    }
+
+    .box #contact dd {
+        width: 100px;
+    }
+
+    .box p {
+        font-size: 0.8rem;
+    }
+
+    .box #contact input[type="text"],
+    .box #contact input[type="email"],
+    .box #contact textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #about p {
+        font-size: 0.8rem;
+    }
+}
