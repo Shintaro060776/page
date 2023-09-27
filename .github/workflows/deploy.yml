@@ -12,6 +12,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build the React app
+        run: npm run build
 
       - name: Deploy to EC2
         env:
@@ -28,8 +39,8 @@ jobs:
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo find /usr/share/nginx/html/ -type f -exec chmod 644 {} \;'
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           
-          # Using rsync for efficient data transfer and excluding unnecessary files/directories
-          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" --exclude '.git/' ${{ github.workspace }}/ ec2-user@$SERVER_IP:/usr/share/nginx/html/
+          # Deploying the built files to the EC2 server using rsync
+          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" --exclude '.git/' ${{ github.workspace }}/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/
           
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           rm -f deploy_key
