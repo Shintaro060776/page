@@ -1,4 +1,5 @@
 import React from 'react';
+import AddPost from './AddPost';
 
 function Home() {
 
@@ -9,12 +10,15 @@ function Home() {
     return (
         <div className="wrapper">
             <h2 className="sec-title">Blog Posts</h2>
+
             {posts.map(post => (
                 <div key={post.id} className="card">
                     <h2>{post.title}</h2>
                     <p>{post.content}</p>
                 </div>
             ))}
+
+            <AddPost />
         </div>
     );
 }
