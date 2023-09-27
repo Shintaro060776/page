@@ -6,11 +6,11 @@ import AddPost from './components/AddPost';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/blog">
       <Routes>
-        <Route exact path="/blog" component={Home} />
-        <Route path="/blog/post/:id" component={PostDetail} />
-        <Route path="/blog/add" component={AddPost} />
+        <Route path="/" element={<Home />} />
+        <Route path="/post/:id" element={<PostDetail />} />
+        <Route path="/add" element={<AddPost />} />
       </Routes>
     </Router>
   );

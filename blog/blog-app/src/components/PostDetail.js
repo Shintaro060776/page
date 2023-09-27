@@ -1,9 +1,11 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
-function PostDetail({ match }) {
+function PostDetail() {
+    const { id } = useParams();
 
     const post = {
-        id: match.params.id,
+        id: id,
         title: "First post",
         content: "This is the first post in detail."
     };
