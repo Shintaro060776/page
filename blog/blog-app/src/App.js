@@ -1,18 +1,18 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import PostDetail from './components/PostDetail';
+import AddPost from './components/AddPost';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>My Blog Test Again</h1>
-      </header>
-      <main>
-        <h2>Blog Post Title</h2>
-        <p>This is the content of the blog post.</p>
-        {/* 他のブログポストもここに追加できます */}
-      </main>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/blog" component={Home} />
+        <Route path="/blog/post/:id" component={PostDetail} />
+        <Route path="/blog/add" component={AddPost} />
+      </Switch>
+    </Router>
   );
 }
 
