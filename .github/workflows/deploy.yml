@@ -19,10 +19,14 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm install
-      
+        run: |
+          cd blog-app
+          npm install
+        
       - name: Build the React app
-        run: npm run build
+        run: |
+          cd blog-app
+          npm run build
 
       - name: Deploy to EC2
         env:
