@@ -430,4 +430,8 @@ h5 {
     #about p {
         font-size: 0.8rem;
     }
+
+    section.wrapper table {
+        font-size: 0.7rem;
+    }
 }
