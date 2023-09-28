@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_ENDPOINT = 'https://ctzaefd9l7.execute-api.ap-northeast-1.amazonaws.com';
+const BASE_URL = 'https://ctzaefd9l7.execute-api.ap-northeast-1.amazonaws.com';
+const API_ENDPOINT = `${BASE_URL}/posts`;
 
 export const getAllPosts = async () => {
     try {
@@ -15,6 +16,7 @@ export const getAllPosts = async () => {
 export const createPost = async (post) => {
     try {
         const response = await axios.post(API_ENDPOINT, post);
+        console.log("API Response:", response);
         return response.data;
     } catch (error) {
         console.error("Error creating post:", error);

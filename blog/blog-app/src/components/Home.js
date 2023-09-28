@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AddPost from './AddPost';
-// import PostsList from './PostsList';
-// import { getAllPosts, deletePost } from '../api';
+import { getAllPosts } from '../api';
 
 function Home() {
+    const [posts, setPosts] = useState([]);
 
-    const posts = [
-        { id: 1, title: "First post", content: "This is the first post." },
-    ];
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const allPosts = await getAllPosts();
+            setPosts(allPosts);
+        };
+
+        fetchPosts();
+    }, []);
+
+    const handlePostAdded = async () => {
+        const allPosts = await getAllPosts();
+        setPosts(allPosts);
+    };
 
     return (
         <div className="wrapper">
@@ -15,13 +25,12 @@ function Home() {
 
             {posts.map(post => (
                 <div key={post.id} className="card">
-                    <h2>{post.person}</h2>
                     <h2>{post.title}</h2>
                     <p>{post.content}</p>
                 </div>
             ))}
 
-            <AddPost />
+            <AddPost onPostAdded={handlePostAdded} />
         </div>
     );
 }

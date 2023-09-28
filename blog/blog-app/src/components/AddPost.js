@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import { createPost } from '../api';
 
-function AddPost() {
+function AddPost({ onPostAdded }) {
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [content, setContent] = useState("");
     const [person, setPerson] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({ title, date, content });
+        const newPost = { title, date, content, person };  // personフィールドも追加
+
+        try {
+            await createPost(newPost);
+            if (onPostAdded) {
+                onPostAdded();  // 新しい投稿が成功した場合、コールバックを呼び出す
+            }
+        } catch (error) {
+            console.error("Failed to add the post:", error);
+        }
     };
 
     return (
