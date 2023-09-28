@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://ctzaefd9l7.execute-api.ap-northeast-1.amazonaws.com';
+const BASE_URL = 'https://kdouh13vsc.execute-api.ap-northeast-1.amazonaws.com';
 const API_ENDPOINT = `${BASE_URL}/posts`;
 
 export const getAllPosts = async () => {
