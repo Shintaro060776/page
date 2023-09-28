@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_ENDPOINT = 'https://your-api-gateway-url/posts';
+const API_ENDPOINT = 'https://ctzaefd9l7.execute-api.ap-northeast-1.amazonaws.com';
 
 export const getAllPosts = async () => {
     try {
