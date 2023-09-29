@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createPost } from '../api';
+import { toast } from 'react-hot-toast';
 
 function AddPost({ onPostAdded }) {
     const [title, setTitle] = useState("");
@@ -9,15 +10,17 @@ function AddPost({ onPostAdded }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newPost = { title, date, content, person };  // personフィールドも追加
+        const newPost = { title, date, content, person };
 
         try {
             await createPost(newPost);
             if (onPostAdded) {
-                onPostAdded();  // 新しい投稿が成功した場合、コールバックを呼び出す
+                onPostAdded();
             }
+            toast.success('投稿が成功しました!');
         } catch (error) {
             console.error("Failed to add the post:", error);
+            toast.error('投稿に失敗しました。');
         }
     };
 
