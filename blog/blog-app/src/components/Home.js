@@ -23,6 +23,8 @@ function Home() {
         <div className="wrapper">
             <h2 className="sec-title">Blog Posts</h2>
 
+            <AddPost onPostAdded={handlePostAdded} />
+
             {posts.map(post => (
                 <div key={post.id} className="card">
                     <h2>{post.title}</h2>
@@ -30,7 +32,6 @@ function Home() {
                 </div>
             ))}
 
-            <AddPost onPostAdded={handlePostAdded} />
         </div>
     );
 }
