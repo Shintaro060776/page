@@ -184,6 +184,11 @@ h5,
 h5 a {
   color: white;
   text-decoration: none;
+  transition: all 1s;
+}
+
+h5 a:hover {
+  color: hotpink;
 }
 
 @media only screen and (max-width: 375px) {
