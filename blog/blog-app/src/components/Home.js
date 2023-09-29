@@ -37,7 +37,7 @@ function Home() {
 
     return (
         <div className="wrapper">
-            <h2 className="sec-title">Blog Posts</h2>
+            <h2 className="sec-title">Blog Posts <a href='#'>トップページに戻る</a></h2>
 
             <AddPost onPostAdded={handlePostAdded} />
 
