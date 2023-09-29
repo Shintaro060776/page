@@ -152,7 +152,8 @@ form button:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 10px;/ transition: background-color 0.8s;
+  margin-right: 10px;
+  transition: background-color 0.8s;
 }
 
 .edit-button:hover {
