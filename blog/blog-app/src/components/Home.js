@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import AddPost from './AddPost';
-import { getAllPosts } from '../api';
 import { useNavigate } from 'react-router-dom';
 import { getAllPosts, deletePost } from '../api';
 
