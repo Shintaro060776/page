@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import PostDetail from './components/PostDetail';
 import './App.css';
+import EditPost from './components/EditPost';
 
 function App() {
   return (

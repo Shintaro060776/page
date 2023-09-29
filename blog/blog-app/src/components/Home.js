@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AddPost from './AddPost';
 import { getAllPosts } from '../api';
 import { useNavigate } from 'react-router-dom';
+import { getAllPosts, deletePost } from '../api';
 
 function Home() {
     const [posts, setPosts] = useState([]);
@@ -17,7 +18,7 @@ function Home() {
     }, []);
 
     const handleEdit = (id) => {
-        navigate('/edit/${id}');
+        navigate(`/edit/${id}`);
     }
 
     const handleDelete = async (id) => {
