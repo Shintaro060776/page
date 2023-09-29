@@ -7,10 +7,13 @@ function AddPost({ onPostAdded }) {
     const [date, setDate] = useState("");
     const [content, setContent] = useState("");
     const [person, setPerson] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);  // 新しく追加
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = { title, date, content, person };
+
+        setIsSubmitting(true);  // 送信開始前にtrueに設定
 
         try {
             await createPost(newPost);
@@ -21,6 +24,8 @@ function AddPost({ onPostAdded }) {
         } catch (error) {
             console.error("Failed to add the post:", error);
             toast.error('投稿に失敗しました。');
+        } finally {
+            setIsSubmitting(false);  // 送信後にfalseに設定
         }
     };
 
@@ -65,7 +70,9 @@ function AddPost({ onPostAdded }) {
                     required
                 />
             </div>
-            <button type="submit">投稿</button>
+            <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? '送信中・・・・' : '投稿'}
+            </button>
         </form>
     );
 };
