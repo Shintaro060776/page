@@ -145,6 +145,35 @@ form button:hover {
   min-height: 100%;
 }
 
+.edit-button {
+  background-color: darkred;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;/ transition: background-color 0.8s;
+}
+
+.edit-button:hover {
+  background-color: red;
+}
+
+/* 削除ボタンのスタイル */
+.delete-button {
+  background-color: lightseagreen;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.8s;
+}
+
+.delete-button:hover {
+  background-color: #2E8B57;
+}
+
 @media only screen and (max-width: 375px) {
 
   textarea,

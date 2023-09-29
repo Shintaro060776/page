@@ -45,8 +45,8 @@ function Home() {
                 <div key={post.id} className="card">
                     <h2>{post.title}</h2>
                     <p>{post.content}</p>
-                    <button onClick={() => handleEdit(post.id)}>編集</button>
-                    <button onClick={() => handleDelete(post.id)}>削除</button>
+                    <button className="edit-button" onClick={() => handleEdit(post.id)}>編集</button>
+                    <button className="delete-button" onClick={() => handleDelete(post.id)}>削除</button>
                 </div>
             ))}
 
