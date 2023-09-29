@@ -175,6 +175,11 @@ form button:hover {
   background-color: #2E8B57;
 }
 
+h5 {
+  color: white;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 375px) {
 
   textarea,
