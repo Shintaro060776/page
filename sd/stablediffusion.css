@@ -105,6 +105,9 @@ button:hover {
 h5 a {
     color: white;
     text-decoration: none;
+    transition: all 1s;
+    font-size: 0.7rem;
+    margin-top: 1px;
 }
 
 h5 a:hover {
