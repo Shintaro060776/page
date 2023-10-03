@@ -102,8 +102,13 @@ button:hover {
     border-radius: 15px;
 }
 
-h3 a {
+h5 a {
     color: white;
+    text-decoration: none;
+}
+
+h5 a:hover {
+    color: hotpink;
 }
 
 @keyframes animate {
