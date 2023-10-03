@@ -23,6 +23,7 @@ body {
     justify-content: center;
     position: relative;
     flex-direction: column;
+    padding: 60px;
 }
 
 .loader h2 {
@@ -34,6 +35,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin: 0;
 }
 
 .loader span {
@@ -45,6 +47,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: calc(100% - 120px);
+    height: calc(100% - 120px);
 }
 
 .loader span:nth-child(1) {
