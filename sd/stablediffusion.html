@@ -40,6 +40,24 @@
         };
     </script>
 
+    <script>
+        document.getElementById("generateImage").addEventListener("click", function () {
+            let input_text = document.querySelector("textarea").value;
+            fetch('/generate-image', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input_text: input_text })
+            })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
 </body>
 
 </html>

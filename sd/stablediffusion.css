@@ -22,16 +22,14 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    flex-direction: column;
 }
 
 .loader h2 {
     color: white;
     font-size: 1.3rem;
     font-weight: 700;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 .loader span {
