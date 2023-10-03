@@ -75,14 +75,14 @@ body {
 }
 
 textarea {
-    padding: 10px;
+    padding: 30px;
     border-radius: 5px;
     border: 1px solid #f3f706;
     background-color: #444;
     color: white;
     resize: vertical;
-    width: 80%;
-    max-width: 500px;
+    width: 240%;
+    max-width: 1500px;
 }
 
 button {
@@ -97,6 +97,7 @@ button {
 
 button:hover {
     background-color: #e4e002;
+    border-radius: 15px;
 }
 
 @keyframes animate {
