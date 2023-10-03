@@ -2,11 +2,12 @@ import base64
 import os
 import requests
 from datetime import datetime
+from config import STABILITY_API_KEY
 
 def generate_image_from_text(input_text):
     engine_id = "stable-diffusion-xl-1024-v1-0"
     api_host = os.getenv('API_HOST', 'https://api.stability.ai')
-    api_key = os.getenv("STABILITY_API_KEY")
+    api_key = STABILITY_API_KEY
 
     if api_key is None:
         raise Exception("Missing Stability API key.")
