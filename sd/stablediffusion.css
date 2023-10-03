@@ -16,8 +16,8 @@ body {
 }
 
 .loader {
-    width: 300px;
-    height: 300px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,6 +68,10 @@ body {
 }
 
 .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     visibility: hidden;
     color: white;
     font-size: 1.5rem;
@@ -76,7 +80,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 80%;
+    max-width: 1000px;
     justify-content: center;
     padding: 20px 0;
 }
