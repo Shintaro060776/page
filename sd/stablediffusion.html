@@ -9,7 +9,28 @@
 </head>
 
 <body>
-    <h1>Implementing...</h1>
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <h2>Now Loading...</h2>
+    </div>
+
+    <div>
+        <h1>Implementing...</h1>
+    </div>
+
+    <script>
+        window.onload = function () {
+            setTimeout(() => {
+                const loader = document.querySelector(".loader");
+                loader.classList.add("loaded");
+
+                const content = document.querySelector(".content");
+                content.style.visibility = "visible";
+            }, 1300);
+        };
+    </script>
 </body>
 
 </html>
