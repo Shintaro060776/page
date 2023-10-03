@@ -22,6 +22,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    flex-direction: column;
 }
 
 .loader h2 {
