@@ -25,7 +25,7 @@ body {
 }
 
 .loader h2 {
-    color: white;
+    color: rgb(3, 82, 51);
     font-size: 1.3rem;
     font-weight: 700;
 }
@@ -55,7 +55,7 @@ body {
 .loaded {
     opacity: 0;
     visibility: hidden;
-    transition: all 1s;
+    transition: all 5s;
 }
 
 .content {
@@ -63,8 +63,8 @@ body {
     position: absolute;
     color: white;
     font-size: 1.5rem;
-    transition: all 1s;
-    transition-delay: 1s;
+    transition: all 5s;
+    transition-delay: 3s;
 }
 
 @keyframes animate {
