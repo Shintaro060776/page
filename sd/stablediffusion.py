@@ -3,6 +3,7 @@ import os
 import requests
 from datetime import datetime
 
+
 def generate_image_from_text(input_text):
     engine_id = "stable-diffusion-xl-1024-v1-0"
     api_host = os.getenv('API_HOST', 'https://api.stability.ai')
@@ -41,7 +42,7 @@ def generate_image_from_text(input_text):
     formatted_time = current_time.strftime('%Y%m%d_%H_%M')
     file_names = []
     for i, image in enumerate(data["artifacts"]):
-        file_name = f"./out/{formatted_time}_{i}.png"
+        file_name = f"/tmp/{formatted_time}_{i}.png"
         with open(file_name, "wb") as f:
             f.write(base64.b64decode(image["base64"]))
         file_names.append(file_name)
