@@ -2,12 +2,11 @@ import base64
 import os
 import requests
 from datetime import datetime
-from config import STABILITY_API_KEY
 
 def generate_image_from_text(input_text):
     engine_id = "stable-diffusion-xl-1024-v1-0"
     api_host = os.getenv('API_HOST', 'https://api.stability.ai')
-    api_key = STABILITY_API_KEY
+    api_key = os.getenv('STABILITY_API_KEY')
 
     if api_key is None:
         raise Exception("Missing Stability API key.")
@@ -40,6 +39,11 @@ def generate_image_from_text(input_text):
 
     current_time = datetime.now()
     formatted_time = current_time.strftime('%Y%m%d_%H_%M')
+    file_names = []
     for i, image in enumerate(data["artifacts"]):
-        with open(f"./out/{formatted_time}_{i}.png", "wb") as f:
+        file_name = f"./out/{formatted_time}_{i}.png"
+        with open(file_name, "wb") as f:
             f.write(base64.b64decode(image["base64"]))
+        file_names.append(file_name)
+
+    return file_names
