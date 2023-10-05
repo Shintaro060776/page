@@ -6,7 +6,6 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    /* Updated this line to center items vertically */
     justify-content: center;
     flex-direction: column;
     overflow: auto;
