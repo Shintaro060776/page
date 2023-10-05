@@ -206,6 +206,7 @@ h5 a:hover {
 
 #generating-message h2 {
     animation: fadeInOut 1.5s infinite;
+    color: rgb(2, 61, 58);
 }
 
 @keyframes fadeInOut {
