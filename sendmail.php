@@ -14,8 +14,13 @@ $errors = [];
 $logFile = '/var/log/php-fpm/aws_errors.log';
 
 function logError($message) {
+    echo "Logging error...";  // この行を追加
     global $logFile;
     file_put_contents($logFile, date('Y-m-d H:i:s') . " - " . $message . "\n", FILE_APPEND);
+
+    if (file_put_contents($logFile, date('Y-m-d H:i:s') . " - " . $message . "\n", FILE_APPEND) === false) {
+        echo "Failed to write to log file.";
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
