@@ -28,6 +28,7 @@
 
     <script>
         window.onload = function () {
+            // Existing loader logic
             setTimeout(() => {
                 const loader = document.querySelector(".loader");
                 loader.classList.add("loaded");
@@ -35,10 +36,26 @@
                 const content = document.querySelector(".content");
                 content.style.visibility = "visible";
             }, 1300);
-        };
-    </script>
 
-    <script>
+            // Fetch old images
+            fetch('https://ef6r8jl39c.execute-api.ap-northeast-1.amazonaws.com/get-old-images')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.imagePaths && data.imagePaths.length > 0) {
+                        const imagesContainer = document.querySelector(".generated-images-container");
+                        data.imagePaths.forEach(path => {
+                            const img = document.createElement('img');
+                            img.src = path;
+                            img.alt = "Generated Image";
+                            imagesContainer.appendChild(img);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching old images:', error);
+                });
+        };
+
         document.getElementById("generateImage").addEventListener("click", function () {
             let input_text = document.querySelector("textarea").value;
             fetch('https://bh55utc84a.execute-api.ap-northeast-1.amazonaws.com/generate-image', {
@@ -53,9 +70,6 @@
                     alert(data.message);
                     if (data.imagePaths && data.imagePaths.length > 0) {
                         const imagesContainer = document.querySelector(".generated-images-container");
-                        // Clear previous images
-                        imagesContainer.innerHTML = '';
-
                         // Loop over each imagePath and create an image tag
                         data.imagePaths.forEach(path => {
                             const img = document.createElement('img');
@@ -70,7 +84,6 @@
                 });
         });
     </script>
-
 </body>
 
 </html>
