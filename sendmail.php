@@ -11,7 +11,7 @@ $SesClient = new SesClient([
 ]);
 
 $errors = [];
-$logFile = '/var/log/php-fpm/error.log'; // あなたのカスタムログファイルへのパスを設定してください
+$logFile = '/var/log/php-fpm/aws_errors.log';
 
 function logError($message) {
     global $logFile;
