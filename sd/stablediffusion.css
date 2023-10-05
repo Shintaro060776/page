@@ -114,7 +114,8 @@ textarea {
     background-color: #444;
     color: white;
     resize: vertical;
-    width: 240%;
+    width: 100%;
+    /* 240%から100%に変更 */
     max-width: 1500px;
 }
 
@@ -147,18 +148,14 @@ h5 a:hover {
 }
 
 .generated-images-container {
-    /* クラス名が間違っていたので修正 */
     display: flex;
-    flex-wrap: wrap;
-    /* 画像が多い場合に折り返すように変更 */
-    justify-content: center;
-    /* 画像を中央揃えに変更 */
+    flex-direction: column;
+    /* 画像を縦に並べる */
     align-items: center;
     width: 100%;
     gap: 20px;
     padding: 20px 0;
     margin-top: 20px;
-    /* 適切に調整 */
 }
 
 .generated-images-container img {
