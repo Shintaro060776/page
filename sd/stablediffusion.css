@@ -68,10 +68,9 @@ body {
 }
 
 .content {
-    position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     visibility: hidden;
     color: white;
     font-size: 1.5rem;
@@ -134,14 +133,14 @@ h5 a:hover {
 
 .generated-image-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    height: auto;
-    padding: 20px 0;
+    width: 100%;
+    gap: 20px;
 }
 
 .generated-image-container img {
-    max-width: 80%;
+    max-width: 250px;
     height: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
