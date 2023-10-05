@@ -68,9 +68,11 @@ body {
 }
 
 .content {
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
     visibility: hidden;
     color: white;
     font-size: 1.5rem;
@@ -83,6 +85,7 @@ body {
     max-width: 1000px;
     justify-content: center;
     padding: 20px 0;
+    margin: auto;
 }
 
 .image-generation-form {
@@ -133,16 +136,21 @@ h5 a:hover {
 
 .generated-image-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    /* 追加 */
+    align-items: center;
+    /* 追加 */
     width: 100%;
     gap: 20px;
+    padding: 20px 0;
 }
 
 .generated-image-container img {
-    max-width: 250px;
+    max-width: 100%;
     height: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    /* 追加 */
 }
 
 @keyframes animate {
