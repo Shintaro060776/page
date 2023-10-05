@@ -22,9 +22,7 @@
             <br>
             <button id="generateImage">Ask Stable Diffusion</button>
             <h5><a href="../index.html">トップページに戻る</a></h5>
-            <div class="generated-image-container">
-                <img src="./out/v1_txt2img_0.png" alt="Generated Image">
-            </div>
+            <div class="generated-images-container"></div>
         </div>
     </div>
 
@@ -54,7 +52,17 @@
                 .then(data => {
                     alert(data.message);
                     if (data.imagePaths && data.imagePaths.length > 0) {
-                        document.querySelector(".generated-image-container img").src = data.imagePaths[0];
+                        const imagesContainer = document.querySelector(".generated-images-container");
+                        // Clear previous images
+                        imagesContainer.innerHTML = '';
+
+                        // Loop over each imagePath and create an image tag
+                        data.imagePaths.forEach(path => {
+                            const img = document.createElement('img');
+                            img.src = path;
+                            img.alt = "Generated Image";
+                            imagesContainer.appendChild(img);
+                        });
                     }
                 })
                 .catch((error) => {
