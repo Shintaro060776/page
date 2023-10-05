@@ -8,6 +8,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    overflow: auto;
 }
 
 * {
@@ -92,6 +93,11 @@ body {
     justify-content: center;
     padding: 20px 0;
     margin: auto;
+    position: absolute;
+    /* 追加: contentを絶対配置 */
+    top: 50%;
+    /* 追加: 画面の中央に配置 */
+    transform: translateY(-50%);
 }
 
 .image-generation-form {
@@ -99,6 +105,10 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    z-index: 20;
+    /* 追加: 他の要素の上に表示 */
+    position: relative;
+    /* 追加: z-indexを適用するため */
 }
 
 textarea {
@@ -149,6 +159,7 @@ h5 a:hover {
     width: 100%;
     gap: 20px;
     padding: 20px 0;
+    margin-top: 50px;
 }
 
 .generated-image-container img {
