@@ -68,11 +68,6 @@ body {
 }
 
 .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    visibility: hidden;
     color: white;
     font-size: 1.5rem;
     transition: all 5s;
@@ -84,6 +79,7 @@ body {
     max-width: 1000px;
     justify-content: center;
     padding: 20px 0;
+    margin-top: 5%;
 }
 
 .image-generation-form {
@@ -91,6 +87,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 textarea {
@@ -133,18 +130,17 @@ h5 a:hover {
 }
 
 .generated-image-container {
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: auto;
     padding: 20px 0;
 }
 
 .generated-image-container img {
-    max-width: 80%;
-    max-height: 400px;
+    width: calc(50% - 20px);
     margin: 10px;
-    display: block;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
