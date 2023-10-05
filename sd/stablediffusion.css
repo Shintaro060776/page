@@ -5,11 +5,14 @@ body {
     height: 100vh;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    /* centerから変更 */
     justify-content: center;
     flex-direction: column;
     overflow: auto;
     position: relative;
+    padding-top: 5%;
+    /* 上部の空間を作るために追加 */
 }
 
 * {
@@ -89,21 +92,19 @@ body {
     max-width: 1000px;
     padding: 20px 0;
     position: relative;
-    /* positionをrelativeに変更 */
     z-index: 10;
-    margin-top: 50px;
-    /* 上部のマージンを追加 */
 }
 
-.image-generation-form {
+.image-generate-form {
+    /* ここがクラス名が間違っていたので修正 */
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     z-index: 20;
-    /* 追加: 他の要素の上に表示 */
     position: relative;
-    /* 追加: z-indexを適用するため */
+    margin-bottom: 50px;
+    /* 画像との間にスペースを追加 */
 }
 
 textarea {
@@ -145,15 +146,19 @@ h5 a:hover {
     color: hotpink;
 }
 
-.generated-image-container {
+.generated-images-container {
+    /* クラス名が間違っていたので修正 */
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    /* 画像が多い場合に折り返すように変更 */
+    justify-content: center;
+    /* 画像を中央揃えに変更 */
     align-items: center;
     width: 100%;
     gap: 20px;
     padding: 20px 0;
-    margin-top: 50px;
-    /* ここも適切に調整が必要 */
+    margin-top: 20px;
+    /* 適切に調整 */
 }
 
 .generated-image-container img {
