@@ -11,23 +11,15 @@ $SesClient = new SesClient([
 ]);
 
 $errors = [];
+$logFile = '/var/log/php-fpm/error.log'; // あなたのカスタムログファイルへのパスを設定してください
+
+function logError($message) {
+    global $logFile;
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - " . $message . "\n", FILE_APPEND);
+}
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Check if POST data is set and not empty
-    $name = !empty($_POST['name']) ? $_POST['name'] : null;
-    $email = !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ? $_POST['email'] : null;
-    $content = !empty($_POST['content']) ? $_POST['content'] : null;
-
-    // Validation
-    if (!$name) {
-        $errors[] = "名前を入力してください。";
-    }
-    if (!$email) {
-        $errors[] = "有効なメールアドレスを入力してください。";
-    }
-    if (!$content) {
-        $errors[] = "お問い合わせ内容を入力してください。";
-    }
+    // (前述のコードを継続...)
 
     if (empty($errors)) {
         $subject = "お問い合わせ from " . $name;
@@ -35,35 +27,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $html_body = "<p>{$content}</p>";
         $char_set = 'UTF-8';
 
-        try {
-            $result = $SesClient->sendEmail([
-                'Destination' => [
-                    'ToAddresses' => ['shintaro060776@gmail.com'],
-                ],
-                'ReplyToAddresses' => [$email],
-                'Source' => 'shintaro060776@gmail.com',
-                'Message' => [
-                    'Body' => [
-                        'Html' => [
-                            'Charset' => $char_set,
-                            'Data' => $html_body,
-                        ],
-                        'Text' => [
-                            'Charset' => $char_set,
-                            'Data' => $plaintext_body,
-                        ],
-                    ],
-                    'Subject' => [
-                        'Charset' => $char_set,
-                        'Data' => $subject,
-                    ],
-                ],
-            ]);
+        $retryCount = 0;
+        $maxRetries = 3;
 
-            header('Location: ./thankyou/thankyou.html');
-        } catch (AwsException $e) {
-            echo $e->getMessage();
-            echo("The email was not sent. Error message: ".$e->getAwsErrorMessage()."\n");
+        while ($retryCount < $maxRetries) {
+            try {
+                $result = $SesClient->sendEmail([
+                    // (前述のコードを継続...)
+                ]);
+
+                header('Location: ./thankyou/thankyou.html');
+                exit; // 成功したのでループを終了
+            } catch (AwsException $e) {
+                $retryCount++;
+                if ($retryCount < $maxRetries) {
+                    sleep(10);  // 10秒待って再試行
+                    continue;
+                }
+
+                logError("Error sending email: " . $e->getAwsErrorMessage());
+                logError("Request ID: " . $e->getAwsRequestId());
+                logError("Error Code: " . $e->getAwsErrorCode());
+
+                echo "申し訳ございません、現在メールの送信ができません。後ほど再試行してください。";
+            }
         }
     } else {
         foreach ($errors as $error) {
