@@ -88,16 +88,11 @@ body {
     width: 80%;
     max-width: 1000px;
     padding: 20px 0;
-    position: absolute;
-    /* 絶対配置 */
-    top: 50%;
-    /* 上から50%の位置に配置 */
-    left: 50%;
-    /* 左から50%の位置に配置 */
-    transform: translate(-50%, -50%);
-    /* 中央に持ってくる */
+    position: relative;
+    /* positionをrelativeに変更 */
     z-index: 10;
-    /* 他の要素の上に表示 */
+    margin-top: 50px;
+    /* 上部のマージンを追加 */
 }
 
 .image-generation-form {
@@ -158,14 +153,7 @@ h5 a:hover {
     gap: 20px;
     padding: 20px 0;
     margin-top: 50px;
-    position: absolute;
-    /* 追加 */
-    top: 100%;
-    /* 追加: .contentの直下に配置 */
-    left: 50%;
-    /* 追加 */
-    transform: translateX(-50%);
-    /* 追加 */
+    /* ここも適切に調整が必要 */
 }
 
 .generated-image-container img {
