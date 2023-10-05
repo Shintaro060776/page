@@ -26,6 +26,9 @@
             <br>
             <button id="generateImage">Ask Stable Diffusion</button>
             <h5><a href="../index.html">トップページに戻る</a></h5>
+            <div id="generating-message" class="hidden">
+                <h2>画像生成中・・・</h2>
+            </div>
             <div class="generated-images-container"></div>
         </div>
     </div>
@@ -62,6 +65,10 @@
 
         document.getElementById("generateImage").addEventListener("click", function () {
             let input_text = document.querySelector("textarea").value;
+
+            const generatingMessage = document.getElementById("generating-message");
+            generatingMessage.classList.remove("hidden");
+
             fetch('https://bh55utc84a.execute-api.ap-northeast-1.amazonaws.com/generate-image', {
                 method: 'POST',
                 headers: {
@@ -71,6 +78,7 @@
             })
                 .then(response => response.json())
                 .then(data => {
+                    generatingMessage.classList.add("hidden");
                     alert(data.message);
                     if (data.imagePaths && data.imagePaths.length > 0) {
                         const imagesContainer = document.querySelector(".generated-images-container");
@@ -84,6 +92,7 @@
                     }
                 })
                 .catch((error) => {
+                    generatingMessage.classList.add("hidden");
                     console.error('Error:', error);
                 });
         });
