@@ -9,6 +9,7 @@ body {
     justify-content: center;
     flex-direction: column;
     overflow: auto;
+    position: relative;
 }
 
 * {
@@ -76,10 +77,6 @@ body {
 }
 
 .content {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     visibility: hidden;
     color: white;
     font-size: 1.5rem;
@@ -90,14 +87,17 @@ body {
     align-items: center;
     width: 80%;
     max-width: 1000px;
-    justify-content: center;
     padding: 20px 0;
-    margin: auto;
     position: absolute;
-    /* 追加: contentを絶対配置 */
+    /* 絶対配置 */
     top: 50%;
-    /* 追加: 画面の中央に配置 */
-    transform: translateY(-50%);
+    /* 上から50%の位置に配置 */
+    left: 50%;
+    /* 左から50%の位置に配置 */
+    transform: translate(-50%, -50%);
+    /* 中央に持ってくる */
+    z-index: 10;
+    /* 他の要素の上に表示 */
 }
 
 .image-generation-form {
@@ -153,13 +153,19 @@ h5 a:hover {
 .generated-image-container {
     display: flex;
     flex-direction: column;
-    /* 追加 */
     align-items: center;
-    /* 追加 */
     width: 100%;
     gap: 20px;
     padding: 20px 0;
     margin-top: 50px;
+    position: absolute;
+    /* 追加 */
+    top: 100%;
+    /* 追加: .contentの直下に配置 */
+    left: 50%;
+    /* 追加 */
+    transform: translateX(-50%);
+    /* 追加 */
 }
 
 .generated-image-container img {
