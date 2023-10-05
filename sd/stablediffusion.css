@@ -94,8 +94,11 @@ body {
     width: 80%;
     max-width: 1000px;
     padding: 20px 0;
-    position: relative;
+    position: absolute;
     z-index: 10;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .image-generate-form {
