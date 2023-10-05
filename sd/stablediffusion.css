@@ -21,13 +21,11 @@ body {
     height: 300px;
     position: relative;
     display: flex;
-    /* 追加 */
     align-items: center;
-    /* 追加 */
+    /* 中央に配置 */
     justify-content: center;
-    /* 追加 */
-    margin: 0 auto;
-    /* 追加 */
+    /* 中央に配置 */
+    margin: auto;
 }
 
 .loader h2 {
