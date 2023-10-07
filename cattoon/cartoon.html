@@ -14,23 +14,27 @@
 </head>
 
 <body>
-    <div id="leftSide">
-        <h3>Uploadする画像</h3>
-        <img id="uploadedImage" src="" alt="Uploaded Image">
+    <div id="container">
+        <div id="leftSide">
+            <h3>Uploadする画像</h3>
+            <img id="uploadedImage" src="" alt="Uploaded Image">
+        </div>
+
+        <div id="rightSide">
+            <h3>Animation画像</h3>
+            <img id="animatedImage" src="" alt="Animated Image">
+        </div>
     </div>
 
-    <div id="rightSide">
-        <h3>Animation画像</h3>
-        <img id="animatedImage" src="" alt="Animated Image">
-    </div>
+    <div class="centered-elements">
+        <div style="margin-top: 20px;">
+            <input type="file" id="fileInput" class="file-input">
+            <button onclick="convertToAnimation()" class="action-button">Animationに変換</button>
+        </div>
 
-    <div style="margin-top: 20px;">
-        <input type="file" id="fileInput">
-        <button onclick="convertToAnimation()">Animationに変換</button>
-    </div>
-
-    <div style="margin-top: 20px;">
-        <a href="../index.html">トップページに戻る</a>
+        <div style="margin-top: 20px;">
+            <a href="../index.html">トップページに戻る</a>
+        </div>
     </div>
 
     <script>

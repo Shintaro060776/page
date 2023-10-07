@@ -10,13 +10,16 @@ body h1 {
     font-family: 'Poppins', sans-serif;
 }
 
+#container {
+    display: flex;
+    justify-content: space-between;
+}
+
 #leftSide,
 #rightSide {
-    display: inline-block;
     width: 48%;
     height: 400px;
     border: 1px solid #ddd;
-    vertical-align: top;
     text-align: center;
     padding: 20px;
 }
@@ -24,4 +27,43 @@ body h1 {
 img {
     max-width: 100%;
     max-height: 100%;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+button {
+    color: orangered;
+    transition: all 2s;
+    border-radius: 30px;
+}
+
+button:hover {
+    color: lightseagreen;
+}
+
+div[style*="margin-top: 20px;"]:nth-child(3) {
+    clear: both;
+}
+
+.centered-elements {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.file-input {
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.action-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: orangered;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
 }
