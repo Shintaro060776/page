@@ -14,7 +14,44 @@
 </head>
 
 <body>
-    <h1>Implementing...</h1>
+    <div id="leftSide">
+        <h3>Uploadする画像</h3>
+        <img id="uploadedImage" src="" alt="Uploaded Image">
+    </div>
+
+    <div id="rightSide">
+        <h3>Animation画像</h3>
+        <img id="animatedImage" src="" alt="Animated Image">
+    </div>
+
+    <div style="margin-top: 20px;">
+        <input type="file" id="fileInput">
+        <button onclick="convertToAnimation()">Animationに変換</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <a href="../index.html">トップページに戻る</a>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const uploadedImage = document.getElementById('uploadedImage');
+
+        fileInput.addEventListener('change', function () {
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = function () {
+                uploadedImage.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                uploadedImage.src = "";
+            }
+        });
+    </script>
 </body>
 
 </html>

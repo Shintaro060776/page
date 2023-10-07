@@ -1,10 +1,4 @@
 html {
-    font-family: 'Inconsolata', monospace;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Raleway', sans-serif;
-    font-family: 'Roboto', sans-serif;
-    font-family: 'Roboto Condensed', sans-serif;
     font-family: 'Roboto Mono', monospace;
     background-color: black;
     color: white;
@@ -13,4 +7,21 @@ html {
 body h1 {
     align-items: center;
     justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+#leftSide,
+#rightSide {
+    display: inline-block;
+    width: 48%;
+    height: 400px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    text-align: center;
+    padding: 20px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
