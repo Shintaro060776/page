@@ -6,10 +6,9 @@
     font-family: 'Roboto', sans-serif;
     font-family: 'Roboto Condensed', sans-serif;
     font-family: 'Roboto Mono', monospace;
-
 }
 
-body {
+body h1 {
     background-color: black;
     color: white;
     align-items: center;
