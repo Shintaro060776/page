@@ -24,6 +24,14 @@ body h1 {
     padding: 20px;
 }
 
+#ledtSide img,
+#rightSide img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+}
+
 img {
     max-width: 100%;
     max-height: 100%;
@@ -32,6 +40,11 @@ img {
 a {
     color: white;
     text-decoration: none;
+    transition: all 1.5s;
+}
+
+a:hover {
+    color: hotpink;
 }
 
 button {
@@ -41,7 +54,7 @@ button {
 }
 
 button:hover {
-    color: lightseagreen;
+    background-color: lightseagreen;
 }
 
 div[style*="margin-top: 20px;"]:nth-child(3) {
