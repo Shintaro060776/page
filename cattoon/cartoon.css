@@ -26,17 +26,15 @@ body h1 {
 #leftSide,
 #rightSide {
     width: 48%;
-    max-height: 400px;
     border: 1px solid #ddd;
     text-align: center;
     padding: 20px;
-    overflow: hidden;
 }
 
 #leftSide img,
 #rightSide img {
-    width: auto;
-    max-height: 100%;
+    max-width: 100%;
+    height: auto;
     display: block;
     margin: auto;
     object-fit: contain;
