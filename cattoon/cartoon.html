@@ -60,6 +60,30 @@
                 uploadedImage.src = "";
             }
         });
+
+        function convertToAnimation() {
+            const animatedImage = document.getElementById('animatedImage');
+            const file = fileInput.files[0]
+            const formData = new FormData();
+
+            formData.append('file', file);
+
+            fetch('https://lzeeniah1j.execute-api.ap-northeast-1.amazonaws.com', {
+                method: 'POST',
+                headers: {
+                    'APIKEY': '3db2614196984c1b84d78a608808cb28'
+                },
+                body: formData
+            })
+                .then(Response => response.blob())
+                .then(data => {
+                    const objectURL = URL.createObjectURL(data);
+                    animatedImage.src = objectURL;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     </script>
 </body>
 
