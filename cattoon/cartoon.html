@@ -31,6 +31,10 @@
         </div>
     </div>
 
+    <div id="processingMessage" class="centered-elements" style="display: none;">
+        <h4>Processing...</h4>
+    </div>
+
     <div class="centered-elements">
         <div style="margin-top: 20px;">
             <input type="file" id="fileInput" class="file-input">
@@ -63,7 +67,10 @@
 
         function convertToAnimation() {
             const animatedImage = document.getElementById('animatedImage');
+            const processingMessage = document.getElementById('processingMessage');
             const file = fileInput.files[0]
+
+            processingMessage.style.display = 'block';
 
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -91,11 +98,15 @@
                     })
                     .then(data => {
                         animatedImage.src = "data:image/png;base64," + data.base64Image;
+
+                        processingMessage.style.display = 'none';
                     })
                     .catch(error => {
                         console.error('Error:', error);
                         // エラーメッセージをalertで表示
                         alert('エラーが発生しました: ' + error.message);
+
+                        processingMessage.style.display = 'none';
                     });
             }
         }
