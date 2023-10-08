@@ -318,7 +318,7 @@ h5 {
     color: white;
     font-weight: bold;
     border-radius: 30px;
-    transition: all 1, 5s;
+    transition: all 1.5s;
 }
 
 .card .button:hover {
