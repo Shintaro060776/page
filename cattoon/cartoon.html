@@ -75,7 +75,7 @@
                 },
                 body: formData
             })
-                .then(Response => response.blob())
+                .then(response => response.blob())
                 .then(data => {
                     const objectURL = URL.createObjectURL(data);
                     animatedImage.src = objectURL;
