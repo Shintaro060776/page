@@ -363,18 +363,15 @@ h5 {
 }
 
 .hamburger-menu.active .bar:nth-child(1) {
-    transform: rotate(45deg) translate(0, 2px);
-    transition: all 0.3s;
+    transform: rotate(-45deg) translate(-5px, 6px);
 }
 
 .hamburger-menu.active .bar:nth-child(2) {
     opacity: 0;
-    transition: all 0.1s;
 }
 
 .hamburger-menu.active .bar:nth-child(3) {
-    transform: rotate(-45deg) translate(0, -2px);
-    transition: all 0.3s;
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .nav-menu {
