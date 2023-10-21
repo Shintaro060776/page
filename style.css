@@ -333,7 +333,7 @@ h5 {
     cursor: pointer;
 }
 
-.hamburger-menu div {
+.hamburger-menu .bar {
     height: 3px;
     width: 30px;
     background-color: white;
@@ -369,7 +369,6 @@ h5 {
 }
 
 .nav-menu {
-    display: none;
     position: fixed;
     top: 0;
     right: -100%;
@@ -394,7 +393,6 @@ h5 {
 
 .nav-menu.active {
     right: 0;
-    display: flex;
 }
 
 .nav-menu.active ul {
