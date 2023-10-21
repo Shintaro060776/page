@@ -71,7 +71,7 @@ li {
     max-width: 960px;
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     margin: 0 auto;
     padding: 0 4%;
     height: 170px;
@@ -107,6 +107,7 @@ li {
     padding: 10px 0;
     align-items: center;
     color: hotpink;
+    justify-content: flex-start;
 }
 
 #header li:first-child {
@@ -115,7 +116,7 @@ li {
 
 #header li {
     font-size: 0.8rem;
-    margin-left: 60px;
+    margin-left: 0;
     color: hotpink;
 }
 

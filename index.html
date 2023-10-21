@@ -186,20 +186,20 @@
                 hamburgerMenuButton.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
-        });
 
-        window.addEventListener('scroll', function () {
-            if (window.pageYOffset > 200) {
-                scrollTopButton.style.display = 'block';
-            } else {
-                scrollTopButton.style.display = 'none';
-            }
-        });
+            window.addEventListener('scroll', function () {
+                if (window.pageYOffset > 200) {
+                    scrollTopButton.style.display = 'block';
+                } else {
+                    scrollTopButton.style.display = 'none';
+                }
+            });
 
-        scrollTopButton.addEventListener('click', function () {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            scrollTopButton.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
