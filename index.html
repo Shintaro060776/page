@@ -179,9 +179,17 @@
         document.addEventListener('DOMContentLoaded', function () {
             const hamburgerMenuButton = document.querySelector('.hamburger-menu');
             const navMenu = document.querySelector('.nav-menu');
+
             hamburgerMenuButton.addEventListener('click', function () {
-                hamburgerMenuButton.classList.toggle('active');
-                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.style.transition = 'right 0.3s ease-out';
+                    hamburgerMenuButton.classList.remove('active');
+                    navMenu.classList.remove('active');
+                } else {
+                    navMenu.style.transition = 'right 0.3s ease-in';
+                    hamburgerMenuButton.classList.add('active');
+                    navMenu.classList.add('active');
+                }
             });
         });
     </script>

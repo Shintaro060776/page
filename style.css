@@ -356,6 +356,18 @@ h5 {
     transition: all 0.3s;
 }
 
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 .nav-menu {
     display: none;
     position: fixed;
@@ -383,6 +395,10 @@ h5 {
 .nav-menu.active {
     right: 0;
     display: flex;
+}
+
+.nav-menu.active ul {
+    flex-direction: column;
 }
 
 .nav-menu a {
