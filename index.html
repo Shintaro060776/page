@@ -40,6 +40,7 @@
                 <li><a href="#works">Works</a></li>
                 <li><a href="#news">News</a></li>
                 <li><a href="#contact">contact</a></li>
+                <li><a href="#technical">このWebページの技術スタック</a></li>
                 <li><a href="/blog/">Bulletin Board</a></li>
                 <li><a href="./sd/stablediffusion.html">Generate Image(Stable Diffusion)</a></li>
                 <li><a href="./cattoon/cartoon.html">Animation Style Conversion(実装中)</a></li>
@@ -146,7 +147,7 @@
         </form>
     </section>
 
-    <section class="wrapper">
+    <section id="technical" class="wrapper">
         <h2 class="sec-title">このWebページの技術スタック</h2>
         <table>
             <tr>
@@ -207,7 +208,7 @@
                 menuItem.addEventListener('click', function () {
                     hamburgerMenuButton.classList.remove('active');
                     navMenu.classList.remove('active');
-                })
+                });
             }
         });
     </script>
