@@ -331,6 +331,7 @@ h5 {
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    z-index: 10;
 }
 
 .hamburger-menu .bar {
@@ -380,7 +381,7 @@ h5 {
     justify-content: center;
     padding-top: 60px;
     transition: all 0.3s;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .nav-menu ul {
