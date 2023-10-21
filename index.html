@@ -29,17 +29,20 @@
         <h1 class="site-title">
             <a href="#">Ineia</a>
         </h1>
+        <button class="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
         <nav>
             <ul>
-                <li>
-                    <a href="#about">About</a>
-                    <a href="#works">Works</a>
-                    <a href="#news">News</a>
-                    <a href="#contact">contact</a>
-                    <a href="/blog/">Bulletin Board</a>
-                    <a href="./sd/stablediffusion.html">Generate Image(Stable Diffusion)</a>
-                    <a href="./cattoon/cartoon.html">Animation Style Conversion(実装中)</a>
-                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">contact</a></li>
+                <li><a href="/blog/">Bulletin Board</a></li>
+                <li><a href="./sd/stablediffusion.html">Generate Image(Stable Diffusion)</a></li>
+                <li><a href="./cattoon/cartoon.html">Animation Style Conversion(実装中)</a></li>
             </ul>
         </nav>
     </header>
@@ -171,6 +174,16 @@
         <img src="system2.png" alt="システムの画像">
         <img src="system3.png" alt="システムの画像">
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburgerMenuButton = document.querySelector('.hamburger-menu');
+            const navMenu = document.querySelector('nav');
+            hamburgerMenuButton.addEventListener('click', function () {
+                navMenu.classList.toggle('is-active');
+            });
+        });
+    </script>
 
 </body>
 
