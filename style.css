@@ -386,7 +386,7 @@ h5 {
     align-items: center;
     justify-content: center;
     padding-top: 60px;
-    transition: all 1s;
+    transition: all 2s;
     z-index: 1;
     display: flex;
 }
@@ -405,6 +405,7 @@ h5 {
 
 .nav-menu.active {
     right: 0;
+    transform: translateX(0);
 }
 
 .nav-menu.active ul {
