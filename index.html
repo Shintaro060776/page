@@ -178,9 +178,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const hamburgerMenuButton = document.querySelector('.hamburger-menu');
-            const navMenu = document.querySelector('nav');
+            const navMenu = document.querySelector('.nav-menu');
             hamburgerMenuButton.addEventListener('click', function () {
-                navMenu.classList.toggle('is-active');
+                hamburgerMenuButton.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
         });
     </script>

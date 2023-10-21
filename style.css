@@ -513,7 +513,7 @@ nav.is-active {
     }
 
     .nav-menu {
-        display: none;
+        display: flex;
     }
 
     .nav-menu.active {
