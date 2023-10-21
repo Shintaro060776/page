@@ -27,7 +27,7 @@
     <!-- Header -->
     <header id="header">
         <h1 class="site-title">
-            <a href="#">Ineia</a>
+            <a href="#">Neila</a>
         </h1>
         <button class="hamburger-menu">
             <span class="bar"></span>
@@ -179,6 +179,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const hamburgerMenuButton = document.querySelector('.hamburger-menu');
             const navMenu = document.querySelector('.nav-menu');
+            const scrollTopButton = document.getElementById('scrollTopButton');
 
             hamburgerMenuButton.addEventListener('click', function () {
                 navMenu.style.transition = 'right 0.3s ease-out';
@@ -186,7 +187,24 @@
                 navMenu.classList.toggle('active');
             });
         });
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 200) {
+                scrollTopButton.style.display = 'block';
+            } else {
+                scrollTopButton.style.display = 'none';
+            }
+        });
+
+        scrollTopButton.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
+
+    <div id="scrollTopButton" class="scroll-top-button">&#8593;</div>
 
 </body>
 
