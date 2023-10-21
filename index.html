@@ -201,6 +201,14 @@
                     behavior: 'smooth'
                 });
             });
+
+            const menuItems = document.querySelectorAll('.nav-menu ul li a');
+            for (let menuItem of menuItems) {
+                menuItem.addEventListener('click', function () {
+                    hamburgerMenuButton.classList.remove('active');
+                    navMenu.classList.remove('active');
+                })
+            }
         });
     </script>
 
