@@ -357,18 +357,27 @@ h5 {
 }
 
 .nav-menu {
-    display: flex;
+    display: none;
     position: fixed;
     top: 0;
     right: -100%;
-    height: 100%;
-    width: 250px;
+    height: 100vh;
+    width: 100vw;
     background-color: #333;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     padding-top: 60px;
-    transition: all 1.5s;
-    padding-left: 20px;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.nav-menu ul {
+    padding: 0;
+}
+
+.nav-menu li {
+    margin-bottom: 10px;
 }
 
 .nav-menu.active {
@@ -516,6 +525,7 @@ nav.is-active {
 
     .nav-menu {
         display: none;
+        width: 100%;
     }
 
     .nav-menu.active {
