@@ -328,7 +328,7 @@ h5 {
 }
 
 .hamburger-menu {
-    display: none;
+    display: flex;
     flex-direction: column;
     cursor: pointer;
 }
@@ -354,13 +354,13 @@ h5 {
 }
 
 .nav-menu {
+    display: none;
     position: fixed;
     top: 0;
     right: -100%;
     height: 100%;
     width: 250px;
     background-color: #333;
-    display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 60px;
@@ -369,6 +369,7 @@ h5 {
 
 .nav-menu.active {
     right: 0;
+    display: flex;
 }
 
 .nav-menu a {
@@ -381,21 +382,6 @@ h5 {
 
 .nav-menu a:hover {
     color: hotpink;
-}
-
-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100%;
-    width: 250px;
-    background-color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 60px;
-    transition: all 1.5s;
 }
 
 nav.is-active {
@@ -524,7 +510,7 @@ nav.is-active {
     }
 
     .nav-menu {
-        display: flex;
+        display: none;
     }
 
     .nav-menu.active {
