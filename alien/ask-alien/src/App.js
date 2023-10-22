@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const { userInput, setUserInput } = useState('');
+  const [userInput, setUserInput] = useState('');
   const [alienResponse, setAlienResponse] = useState('');
 
   const handleInputChange = (event) => {
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className='App'>
       <div className='video-container'>
-        <video src='/alien_video_720p.mp4' autoPlay loop />
+        <video src='alien_video_720p.mp4' autoPlay loop />
       </div>
       <div className='interaction-container'>
         <input
