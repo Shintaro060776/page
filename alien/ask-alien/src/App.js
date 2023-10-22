@@ -16,7 +16,7 @@ function App() {
   return (
     <div className='App'>
       <div className='video-container'>
-        <video src='video/138116_720p.mp4' autoPlay loop />
+        <video src='/alien_video_720p.mp4' autoPlay loop />
       </div>
       <div className='interaction-container'>
         <input
