@@ -7,6 +7,10 @@ function App() {
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
+
+    const target = event.target;
+    target.style.height = 'auto';
+    target.style.height = target.scrollHeight + 'px';
   };
 
   const handleSubmit = () => {
@@ -19,11 +23,11 @@ function App() {
         <video src='alien_video_720p.mp4' autoPlay loop />
       </div>
       <div className='interaction-container'>
-        <input
-          type='text'
+        <textarea
           value={userInput}
           onChange={handleInputChange}
           placeholder='質問を入力'
+          className='user-input'
         />
         <button onClick={handleSubmit}>Ask Alien</button>
       </div>
