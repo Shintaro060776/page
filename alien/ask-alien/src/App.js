@@ -34,6 +34,10 @@ function App() {
       <div className='response-container'>
         <p>{alienResponse}</p>
       </div>
+      <div className='service-configuration'>
+        <h2 style={{ color: 'hotpink' }}>このサービスの構成</h2>
+        <img src='/system4.png' alt='システムの構成画像' />
+      </div>
     </div>
   );
 }
