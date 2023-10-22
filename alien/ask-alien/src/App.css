@@ -3,27 +3,22 @@
     border-color: hsl(240, 100%, 50%);
   }
 
-  /* 青 */
   25% {
     border-color: hsl(300, 100%, 50%);
   }
 
-  /* マゼンタ */
   50% {
     border-color: hsl(0, 100%, 50%);
   }
 
-  /* 赤 */
   75% {
     border-color: hsl(60, 100%, 50%);
   }
 
-  /* 黄色 */
   100% {
     border-color: hsl(120, 100%, 50%);
   }
 
-  /* 緑 */
 }
 
 .App {
