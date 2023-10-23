@@ -21,7 +21,7 @@ function App() {
   return (
     <div className='App'>
       <div className="video-bg">
-        <video src="/par.mp4" muted loop autoPlay></video>
+        <video src="par.mp4" muted loop autoPlay></video>
       </div>
       <div className='interaction-container'>
         <textarea
