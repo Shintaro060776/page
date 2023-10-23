@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import alienIcon from './alien-icon.png';
 
 function App() {
   const [userInput, setUserInput] = useState('');
@@ -29,13 +30,16 @@ function App() {
           placeholder='質問を入力'
           className='user-input'
         />
-        <button onClick={handleSubmit}>Ask Alien</button>
+        <button className="alien-button" onClick={handleSubmit}>
+          Ask Alien
+          <img src={alienIcon} alt="Alien Icon" className="alien-icon" />
+        </button>
       </div>
       <div className='response-container'>
         <p>{alienResponse}</p>
       </div>
       <div className='service-configuration'>
-        <h2 style={{ color: 'hotpink' }}>このサービスの構成</h2>
+        <h2 style={{ color: 'hotpink' }}>このサービスの技術スタック</h2>
         <img src='/system4.png' alt='システムの構成画像' />
       </div>
     </div>
