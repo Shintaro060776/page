@@ -180,3 +180,25 @@ h5 a {
 h5 a:hover {
   color: white;
 }
+
+.video-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.video-bg video {
+  min-width: 100%;
+  min-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
