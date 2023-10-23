@@ -187,7 +187,7 @@ h5 a:hover {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999;
+  z-index: -1;
 }
 
 .video-bg video {
@@ -201,4 +201,11 @@ h5 a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.interaction-container,
+.response-container,
+.service-configuration {
+  z-index: 1;
+  position: relative;
 }
