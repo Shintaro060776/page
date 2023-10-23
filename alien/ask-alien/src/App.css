@@ -170,3 +170,13 @@ body {
 .service-configuration h2 {
   color: #ff4500;
 }
+
+h5 a {
+  color: hotpink;
+  transition: all 1s;
+  text-decoration: none;
+}
+
+h5 a:hover {
+  color: white;
+}
