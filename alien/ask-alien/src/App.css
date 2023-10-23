@@ -73,6 +73,8 @@ body {
   transform: translateY(-50%);
   width: 24px;
   transition: transform 0.3s ease;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 .alien-button:hover .alien-icon {
@@ -135,6 +137,9 @@ body {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
+  width: auto;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .interaction-container button:hover {
