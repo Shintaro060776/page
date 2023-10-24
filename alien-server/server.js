@@ -7,12 +7,12 @@ const PORT = 3001;
 app.use(express.json());
 app.use(cors());
 
-app.post('/ask-alien', async (req, res) => {
+app.post('/askalien', async (req, res) => {
     try {
         const lambdaRequestBody = {
             body: JSON.stringify(req.body)
         };
-        const response = await axios.post('https://b5qzd430c6.execute-api.ap-northeast-1.amazonaws.com/ask-alien', lambdaRequestBody);
+        const response = await axios.post('https://zqunvv49hc.execute-api.ap-northeast-1.amazonaws.com/$default/askalien', lambdaRequestBody);
         res.json(response.data);
     } catch (error) {
         console.error("Error when calling Lambda:", error.message);
