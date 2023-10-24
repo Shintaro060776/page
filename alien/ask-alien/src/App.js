@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import alienIcon from './alien-icon.png';
+import axios from 'axios';
 
 function App() {
   const [userInput, setUserInput] = useState('');
