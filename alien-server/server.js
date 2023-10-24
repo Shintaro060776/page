@@ -9,11 +9,11 @@ app.use(cors());
 
 app.post('/ask-alien', async (req, res) => {
     try {
-        console.log("Received request body:", req.body);
-
         const response = await axios.post('https://fb22ga018h.execute-api.ap-northeast-1.amazonaws.com/prd/ask-alien', req.body);
+        console.log("Received response from Lambda:", response.data);
         res.json(response.data);
     } catch (error) {
+        console.error("Error when calling Lambda:", error.message);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
