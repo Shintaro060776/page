@@ -9,7 +9,7 @@ app.use(cors());
 
 app.post('/ask-alien', async (req, res) => {
     try {
-        const response = await axios.post('https://fb22ga018h.execute-api.ap-northeast-1.amazonaws.com/prd/alien-speak', req.body);
+        const response = await axios.post('https://fb22ga018h.execute-api.ap-northeast-1.amazonaws.com/prd/ask-alien', req.body);
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
