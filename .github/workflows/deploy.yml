@@ -63,9 +63,6 @@ jobs:
           
           # Deploy the built Alien React app
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien/ask-alien/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien/
-          
-          # Deploy the built Alien-Server app
-          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien-server/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien-server/
 
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           rm -f deploy_key
