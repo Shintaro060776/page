@@ -14,8 +14,17 @@ function App() {
     target.style.height = target.scrollHeight + 'px';
   };
 
-  const handleSubmit = () => {
-    setAlienResponse('宇宙人の回答...')
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/ask-alien', { question: userInput });
+      if (response.data && response.data.answer) {
+        setAlienResponse(response.data.answer);
+      } else {
+        setAlienResponse('宇宙人からの回答がありません・・・');
+      }
+    } catch (error) {
+      setAlienResponse('エラーが発生しました');
+    }
   };
 
   return (
