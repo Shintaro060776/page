@@ -9,6 +9,8 @@ app.use(cors());
 
 app.post('/ask-alien', async (req, res) => {
     try {
+        console.log("Received request body:", req.body);
+
         const response = await axios.post('https://fb22ga018h.execute-api.ap-northeast-1.amazonaws.com/prd/ask-alien', req.body);
         res.json(response.data);
     } catch (error) {
@@ -17,5 +19,5 @@ app.post('/ask-alien', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('Server started on port ${PORT}');
+    console.log(`Server started on port ${PORT}`);
 });
