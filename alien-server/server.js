@@ -12,7 +12,7 @@ app.post('/askalien', async (req, res) => {
         const lambdaRequestBody = {
             body: JSON.stringify(req.body)
         };
-        const response = await axios.post('https://zqunvv49hc.execute-api.ap-northeast-1.amazonaws.com/$default/askalien', lambdaRequestBody);
+        const response = await axios.post('https://d7sh2cu0li.execute-api.ap-northeast-1.amazonaws.com/prd/askalien', lambdaRequestBody);
         res.json(response.data);
     } catch (error) {
         console.error("Error when calling Lambda:", error.message);
