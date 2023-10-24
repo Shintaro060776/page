@@ -51,7 +51,7 @@ function App() {
       </div>
       <div className='service-configuration'>
         <h2 style={{ color: 'hotpink' }}>このサービスの技術スタック</h2>
-        <img src='/system4.png' alt='システムの構成画像' />
+        <img src='system4.png' alt='システムの構成画像' />
       </div>
     </div>
   );
