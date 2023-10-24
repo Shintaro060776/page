@@ -17,7 +17,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/ask-alien', { question: userInput });
+      const response = await axios.post('http://localhost:3001/ask-alien', { question: userInput });
       if (response.data && response.data.answer) {
         setAlienResponse(response.data.answer);
       } else {
