@@ -43,11 +43,6 @@ jobs:
           cd alien-server
           npm install
 
-      - name: Build the Alien-Server app
-        run: |
-          cd alien-server
-          npm run build
-
       - name: Deploy to EC2
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
