@@ -60,6 +60,9 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .alien-button:hover {
@@ -72,13 +75,14 @@ body {
   top: 50%;
   transform: translateY(-50%);
   width: 24px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, width 0.3s ease;
   margin-left: 10px;
   vertical-align: middle;
 }
 
 .alien-button:hover .alien-icon {
-  transform: translateY(-50%) scale(1.2);
+  transform: scale(1.2);
+  width: 28px;
 }
 
 
