@@ -9,10 +9,8 @@ app.use(cors());
 
 app.post('/ask-alien', async (req, res) => {
     try {
-        const lambdaRequestBody = {
-            body: JSON.stringify({ question: req.body.question })
-        };
-        const response = await axios.post('https://r67d0rhvj9.execute-api.ap-northeast-1.amazonaws.com/prd/ask-alien', lambdaRequestBody);
+        const response = await axios.post('https://r67d0rhvj9.execute-api.ap-northeast-1.amazonaws.com/prd/ask-alien', req.body);
+        // const response = await axios.post('https://r67d0rhvj9.execute-api.ap-northeast-1.amazonaws.com/prd/ask-alien', lambdaRequestBody);
 
         if (response.data && response.data.answer) {
             res.json({ answer: response.data.answer });
