@@ -12,30 +12,40 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-      
+
       - name: Install dependencies for Blog
         run: |
           cd blog/blog-app
           npm install
-      
+
       - name: Build the Blog React app
         run: |
           cd blog/blog-app
           npm run build
-      
+
       - name: Install dependencies for Alien
         run: |
           cd alien/ask-alien
           npm install
-      
+
       - name: Build the Alien React app
         run: |
           cd alien/ask-alien
+          npm run build
+
+      - name: Install dependencies for Alien-Server
+        run: |
+          cd alien-server
+          npm install
+
+      - name: Build the Alien-Server app
+        run: |
+          cd alien-server
           npm run build
 
       - name: Deploy to EC2
@@ -52,12 +62,15 @@ jobs:
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo chmod 755 /usr/share/nginx/html/'
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo find /usr/share/nginx/html/ -type d -exec chmod 755 {} \;'
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo find /usr/share/nginx/html/ -type f -exec chmod 644 {} \;'
-          
+
           # Deploy the built Blog React app
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/blog/blog-app/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/blog/
           
           # Deploy the built Alien React app
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien/ask-alien/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien/
+          
+          # Deploy the built Alien-Server app
+          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien-server/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien-server/
 
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           rm -f deploy_key
