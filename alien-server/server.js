@@ -1,0 +1,21 @@
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const app = express();
+const PORT = 3001;
+
+app.use(express.json());
+app.use(cors());
+
+app.post('/ask-alien', async (req, res) => {
+    try {
+        const response = await axios.post('YOUR_API_GATEWAY_URL', req.body);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log('Server started on port ${PORT}');
+});
