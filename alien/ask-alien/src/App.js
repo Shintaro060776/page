@@ -65,7 +65,7 @@ function App() {
           Ask Alien
           <img src={alienIcon} alt="Alien Icon" className="alien-icon" />
         </button>
-        <h5><a href='http://18.177.70.187/'>トップページに戻る</a></h5>
+        <h5><a href='http://neilaeden.com'>トップページに戻る</a></h5>
       </div>
       <div className='response-container'>
         <p>{displayedText}</p>
