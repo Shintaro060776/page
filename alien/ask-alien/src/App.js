@@ -36,10 +36,10 @@ function App() {
       console.log(response.data);
       if (response.data && response.data.answer) {
         setAlienResponse(response.data.answer);
-        if (response.data.answer.length > 1000) {
-          setAlienResponse(response.data.answer.slice(0, 1000));
+        if (response.data.answer.length > 200) {
+          setAlienResponse(response.data.answer.slice(0, 200));
           setTimeout(() => {
-            setAlienResponse(response.data.answer.slice(1000));
+            setAlienResponse(response.data.answer.slice(200));
           }, 5000);
         } else {
           setAlienResponse(response.data.answer);
