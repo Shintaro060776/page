@@ -5,24 +5,24 @@ import axios from 'axios';
 
 function App() {
   const [userInput, setUserInput] = useState('');
-  const [alienResponse, setAlienResponse] = useState('');
+  const [alienResponseChunks, setAlienResponseChunks] = useState([]);
   const [displayedText, setDisplayedText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (displayedText.length < alienResponse.length) {
-      const timeoutId = setTimeout(() => {
-        setDisplayedText(alienResponse.slice(0, displayedText.length + 1));
-      }, 50);
-      return () => clearTimeout(timeoutId);
-    } else if (alienResponse.length > 0) {
-      setIsLoading(false);
+    if (alienResponseChunks.length > 0) {
+      const initialText = alienResponseChunks[0];
+      setDisplayedText(initialText);
+      for (let i = 1; i < alienResponseChunks.length; i++) {
+        setTimeout(() => {
+          setDisplayedText(prevText => prevText + alienResponseChunks[i]);
+        }, 5000 * i);
+      }
     }
-  }, [displayedText, alienResponse]);
+  }, [alienResponseChunks]);
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
-
     const target = event.target;
     target.style.height = 'auto';
     target.style.height = target.scrollHeight + 'px';
@@ -30,28 +30,26 @@ function App() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    setDisplayedText('');
     try {
       const response = await axios.post('http://18.177.70.187:3001/ask-alien', { question: userInput });
-      console.log(response.data);
       if (response.data && response.data.answer) {
-        setAlienResponse(response.data.answer);
-        if (response.data.answer.length > 200) {
-          setAlienResponse(response.data.answer.slice(0, 200));
-          setTimeout(() => {
-            setAlienResponse(response.data.answer.slice(200));
-          }, 5000);
-        } else {
-          setAlienResponse(response.data.answer);
+        const MAX_CHARACTERS = 200;
+        const responseChunks = [];
+
+        for (let i = 0; i < response.data.answer.length; i += MAX_CHARACTERS) {
+          responseChunks.push(response.data.answer.substring(i, i + MAX_CHARACTERS));
         }
+
+        setAlienResponseChunks(responseChunks);
       } else if (response.data && response.data.error) {
-        setAlienResponse(`エラーが発生しました: ${response.data.error}`);
+        setAlienResponseChunks([`エラーが発生しました: ${response.data.error}`]);
       } else {
-        setAlienResponse('宇宙人からの回答がありません・・・');
+        setAlienResponseChunks(['宇宙人からの回答がありません・・・']);
       }
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
-      setAlienResponse(`エラーが発生しました: ${error.message}`);
+      setAlienResponseChunks([`エラーが発生しました: ${error.message}`]);
       setIsLoading(false);
     }
   };
