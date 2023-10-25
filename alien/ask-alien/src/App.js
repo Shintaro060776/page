@@ -57,36 +57,36 @@ function App() {
       setDisplayedTextLength(errorMessage.length);
       setIsLoading(false);
     }
-  }
-};
+  };
 
-return (
-  <div className='App' style={{ filter: isLoading ? 'brightness(50%)' : 'none' }}>
-    {isLoading && <img src="loading.gif" alt="Loading..." className="loading-gif" />}
-    <div className="video-bg">
-      <video src="par.mp4" muted loop autoPlay></video>
+  return (
+    <div className='App' style={{ filter: isLoading ? 'brightness(50%)' : 'none' }}>
+      {isLoading && <img src="loading.gif" alt="Loading..." className="loading-gif" />}
+      <div className="video-bg">
+        <video src="par.mp4" muted loop autoPlay></video>
+      </div>
+      <div className='interaction-container'>
+        <textarea
+          value={userInput}
+          onChange={handleInputChange}
+          placeholder='質問を入力'
+          className='user-input'
+        />
+        <button className="alien-button" onClick={handleSubmit}>
+          Ask Alien
+          <img src={alienIcon} alt="Alien Icon" className="alien-icon" />
+        </button>
+        <h5><a href='http://18.177.70.187/'>トップページに戻る</a></h5>
+      </div>
+      <div className='response-container'>
+        <p>{alienResponse.slice(0, displayedTextLength)}</p>
+      </div>
+      <div className='service-configuration'>
+        <h2 style={{ color: 'hotpink' }}>このサービスの技術スタック</h2>
+        <img src='system4.png' alt='システムの構成画像' />
+      </div>
     </div>
-    <div className='interaction-container'>
-      <textarea
-        value={userInput}
-        onChange={handleInputChange}
-        placeholder='質問を入力'
-        className='user-input'
-      />
-      <button className="alien-button" onClick={handleSubmit}>
-        Ask Alien
-        <img src={alienIcon} alt="Alien Icon" className="alien-icon" />
-      </button>
-      <h5><a href='http://18.177.70.187/'>トップページに戻る</a></h5>
-    </div>
-    <div className='response-container'>
-      <p>{alienResponse.slice(0, displayedTextLength)}</p>
-    </div>
-    <div className='service-configuration'>
-      <h2 style={{ color: 'hotpink' }}>このサービスの技術スタック</h2>
-      <img src='system4.png' alt='システムの構成画像' />
-    </div>
-  </div>
-);
+  );
+}
 
 export default App;
