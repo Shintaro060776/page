@@ -17,21 +17,21 @@ function App() {
     target.style.height = target.scrollHeight + 'px';
   };
 
-  const typeText = (text) => {
-    setDisplayedTextLength(0);
-    setAlienResponse('');
-    const intervalId = setInterval(() => {
-      setDisplayedTextLength((prevLength) => {
-        if (prevLength < text.length) {
-          return prevLength + 1;
-        } else {
-          clearInterval(intervalId);
-          setIsLoading(false);
-          return prevLength;
-        }
-      });
-    }, 50);
-  };
+  // const typeText = (text) => {
+  //   setDisplayedTextLength(0);
+  //   setAlienResponse('');
+  //   const intervalId = setInterval(() => {
+  //     setDisplayedTextLength((prevLength) => {
+  //       if (prevLength < text.length) {
+  //         return prevLength + 1;
+  //       } else {
+  //         clearInterval(intervalId);
+  //         setIsLoading(false);
+  //         return prevLength;
+  //       }
+  //     });
+  //   }, 50);
+  // };
 
   const handleSubmit = async () => {
     setIsLoading(true);
