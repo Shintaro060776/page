@@ -13,18 +13,15 @@ function App() {
   useEffect(() => {
     let timer;
 
-    if (alienResponseChunks.length > 0 && currentChunkIndex < alienResponseChunks.length) {
+    if (alienResponseChunks.length > 0 && currentChunkIndex < alienResponseChunks.length - 1) {
       const currentChunk = alienResponseChunks[currentChunkIndex];
       setDisplayedText(prevText => prevText + currentChunk);
 
-      if (currentChunkIndex + 1 < alienResponseChunks.length) {
-        timer = setTimeout(() => {
-          setCurrentChunkIndex(prevIndex => prevIndex + 1);
-        }, 5000);
-      }
+      timer = setTimeout(() => {
+        setCurrentChunkIndex(prevIndex => prevIndex + 1);
+      }, 5000);
     }
 
-    // クリーンアップ関数でtimerをクリア
     return () => clearTimeout(timer);
   }, [currentChunkIndex, alienResponseChunks]);
 
