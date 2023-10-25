@@ -11,16 +11,21 @@ function App() {
   const [currentChunkIndex, setCurrentChunkIndex] = useState(0);
 
   useEffect(() => {
+    let timer;
+
     if (alienResponseChunks.length > 0 && currentChunkIndex < alienResponseChunks.length) {
       const currentChunk = alienResponseChunks[currentChunkIndex];
       setDisplayedText(prevText => prevText + currentChunk);
 
       if (currentChunkIndex + 1 < alienResponseChunks.length) {
-        setTimeout(() => {
+        timer = setTimeout(() => {
           setCurrentChunkIndex(prevIndex => prevIndex + 1);
         }, 5000);
       }
     }
+
+    // クリーンアップ関数でtimerをクリア
+    return () => clearTimeout(timer);
   }, [currentChunkIndex, alienResponseChunks]);
 
   const handleInputChange = (event) => {
@@ -32,7 +37,9 @@ function App() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
+    setDisplayedText('');
     setCurrentChunkIndex(0);
+
     try {
       const response = await axios.post('http://18.177.70.187:3001/ask-alien', { question: userInput });
       if (response.data && response.data.answer) {
