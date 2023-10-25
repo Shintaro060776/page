@@ -32,7 +32,7 @@ function App() {
     setIsLoading(true);
     setDisplayedText('');
     try {
-      const response = await axios.post('http://18.177.70.187:3002/ask-alien', { question: userInput });
+      const response = await axios.post('http://18.177.70.187:3003/ask-alien', { question: userInput });
       console.log(response.data);
       if (response.data && response.data.answer) {
         setAlienResponse(response.data.answer);
