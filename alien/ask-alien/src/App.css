@@ -161,6 +161,8 @@ body {
   border-radius: 4px;
   background-color: transparent;
   color: white;
+  overflow: auto;
+  max-height: 500px;
 }
 
 .service-configuration img {
