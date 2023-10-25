@@ -39,7 +39,10 @@ function App() {
       const response = await axios.post('http://18.177.70.187:3001/ask-alien', { question: userInput });
       console.log(response.data);
       if (response.data && response.data.answer) {
-        typeText(response.data.answer);
+        // typeText(response.data.answer);
+        setAlienResponse(response.data.answer);
+        setDisplayedTextLength(response.data.answer.length);
+        setIsLoading(false);
       } else if (response.data && response.data.error) {
         setAlienResponse(`エラーが発生しました: ${response.data.error}`);
         setDisplayedTextLength(response.data.error.length);
