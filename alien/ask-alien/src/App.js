@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import alienIcon from './alien-icon.png';
 import axios from 'axios';
@@ -6,8 +6,19 @@ import axios from 'axios';
 function App() {
   const [userInput, setUserInput] = useState('');
   const [alienResponse, setAlienResponse] = useState('');
-  const [displayedTextLength, setDisplayedTextLength] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (displayedText.length < alienResponse.length) {
+      const timeoutId = setTimeout(() => {
+        setDisplayedText(alienResponse.slice(0, displayedText.length + 1));
+      }, 50);
+      return () => clearTimeout(timeoutId);
+    } else if (alienResponse.length > 0) {
+      setIsLoading(false);
+    }
+  }, [displayedText, alienResponse]);
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
@@ -17,47 +28,22 @@ function App() {
     target.style.height = target.scrollHeight + 'px';
   };
 
-  // const typeText = (text) => {
-  //   setDisplayedTextLength(0);
-  //   setAlienResponse('');
-  //   const intervalId = setInterval(() => {
-  //     setDisplayedTextLength((prevLength) => {
-  //       if (prevLength < text.length) {
-  //         return prevLength + 1;
-  //       } else {
-  //         clearInterval(intervalId);
-  //         setIsLoading(false);
-  //         return prevLength;
-  //       }
-  //     });
-  //   }, 50);
-  // };
-
   const handleSubmit = async () => {
     setIsLoading(true);
+    setDisplayedText('');
     try {
       const response = await axios.post('http://18.177.70.187:3001/ask-alien', { question: userInput });
       console.log(response.data);
       if (response.data && response.data.answer) {
-        // typeText(response.data.answer);
         setAlienResponse(response.data.answer);
-        setDisplayedTextLength(response.data.answer.length);
-        setIsLoading(false);
       } else if (response.data && response.data.error) {
         setAlienResponse(`エラーが発生しました: ${response.data.error}`);
-        setDisplayedTextLength(response.data.error.length);
-        setIsLoading(false);
       } else {
-        const defaultMessage = '宇宙人からの回答がありません・・・';
-        setAlienResponse(defaultMessage);
-        setDisplayedTextLength(defaultMessage.length);
-        setIsLoading(false);
+        setAlienResponse('宇宙人からの回答がありません・・・');
       }
     } catch (error) {
       console.error(error);
-      const errorMessage = 'エラーが発生しました: ' + error.message;
-      setAlienResponse(errorMessage);
-      setDisplayedTextLength(errorMessage.length);
+      setAlienResponse(`エラーが発生しました: ${error.message}`);
       setIsLoading(false);
     }
   };
@@ -82,7 +68,7 @@ function App() {
         <h5><a href='http://18.177.70.187/'>トップページに戻る</a></h5>
       </div>
       <div className='response-container'>
-        <p>{alienResponse.slice(0, displayedTextLength)}</p>
+        <p>{displayedText}</p>
       </div>
       <div className='service-configuration'>
         <h2 style={{ color: 'hotpink' }}>このサービスの技術スタック</h2>
