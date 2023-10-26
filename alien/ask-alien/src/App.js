@@ -58,6 +58,7 @@ function App() {
 
   return (
     <div className='App' style={{ filter: isLoading ? 'brightness(50%)' : 'none' }}>
+      <header className="app-header">Welcome to Ask Alien</header>
       {isLoading && <img src="loading.gif" alt="Loading..." className="loading-gif" />}
       <div className="video-bg">
         <video src="par.mp4" muted loop autoPlay></video>
@@ -82,6 +83,7 @@ function App() {
         <h2 style={{ color: 'hotpink' }}>このサービスの技術スタック</h2>
         <img src='system4.png' alt='システムの構成画像' />
       </div>
+      <footer className="app-footer">Copyright © 2023 Ask Alien</footer>
     </div>
   );
 }
