@@ -38,6 +38,16 @@ jobs:
           cd alien/ask-alien
           npm run build
 
+      - name: Install dependencies for quantum
+        run: |
+          cd quantum/my-quantum-music-app
+          npm install
+  
+      - name: Build the quantum React app
+        run: |
+          cd quantum/my-quantum-music-app
+          npm run build
+
       - name: Install dependencies for Alien-Server
         run: |
           cd alien-server
@@ -63,8 +73,10 @@ jobs:
           
           # Deploy the built Alien React app
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien/ask-alien/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien/
-
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien-server/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien-server/
+
+          # Deploy the built quantum React app
+          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/quantum/my-quantum-music-app/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/quantum/
 
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           rm -f deploy_key
