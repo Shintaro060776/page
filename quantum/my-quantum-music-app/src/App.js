@@ -27,7 +27,6 @@ function App() {
           <p>&copy; 2023 Quantum Music</p>
         </footer>
 
-        {/* ルートをRoutesコンポーネントで囲みます */}
         <Routes>
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/playlist" element={<PlaylistPage />} />

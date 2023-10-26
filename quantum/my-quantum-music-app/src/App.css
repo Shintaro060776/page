@@ -50,6 +50,11 @@
 
 @media (max-width: 375px) {
   .App-main {
-    flex-direction: row;
+    flex-direction: column;
+  }
+
+  .feature {
+    max-width: 90%;
+    margin: 10px 5%;
   }
 }
