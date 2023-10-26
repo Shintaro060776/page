@@ -32,9 +32,9 @@ function App() {
         </main>
         <footer className="App-footer">
           <div className="social-links">
-            <a href="#"><img src="facebook.png" alt="Facebook" /></a>
-            <a href="#"><img src="twitter.png" alt="Twitter" /></a>
-            <a href="#"><img src="instagram.png" alt="Instagram" /></a>
+            <a href="http://neilaeden.com/"><img src="facebook.png" alt="Facebook" /></a>
+            <a href="http://neilaeden.com/"><img src="twitter.png" alt="Twitter" /></a>
+            <a href="http://neilaeden.com/"><img src="instagram.png" alt="Instagram" /></a>
           </div>
           <p>&copy; 2023 Quantum Music</p>
           <a href="http://neilaeden.com">Back to Top Page</a>
