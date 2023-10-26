@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Welcome to My Quantum Music App</h1>
       </header>
+      <main>
+        <section className="feature">
+          <h2>Explore Quantum Sounds</h2>
+          <p>Discover a new dimension of music with our quantum sound generator.</p>
+        </section>
+        <section className="feature">
+          <h2>Create Your Playlist</h2>
+          <p>Combine your favorite quantum sounds into a unique playlist.</p>
+        </section>
+        <section className="feature">
+          <h2>Share with Friends</h2>
+          <p>Share your quantum playlists with friends and explore theirs.</p>
+        </section>
+      </main>
+      <footer className="App-footer">
+        <p>&copy; 2023 Quantum Music</p>
+      </footer>
     </div>
   );
 }
