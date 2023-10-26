@@ -301,13 +301,17 @@ h5 a:hover {
 }
 
 .loading-gif {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  /* position: fixed; */
+  /* top: 50%; */
+  /* left: 50%; */
   transform: translate(-50%, -50%);
   width: 150px;
   height: 150px;
   z-index: 10;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 30px;
 }
 
 @media (max-width: 375px) {
