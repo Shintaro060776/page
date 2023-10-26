@@ -48,14 +48,19 @@ body::-webkit-scrollbar {
 }
 
 body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-header,
+.app-footer {
+  width: 100%;
 }
 
 body,
 html {
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 body {
