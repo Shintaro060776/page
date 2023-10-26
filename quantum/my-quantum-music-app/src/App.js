@@ -25,6 +25,7 @@ function App() {
         </main>
         <footer className="App-footer">
           <p>&copy; 2023 Quantum Music</p>
+          <a href="http://neilaeden.com">Back to Top Page</a>
         </footer>
 
         <Routes>
