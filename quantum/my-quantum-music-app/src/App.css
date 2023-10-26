@@ -55,7 +55,7 @@
 }
 
 .App-footer a:hover {
-  color: gray;
+  color: rgb(231, 9, 139);
 }
 
 @media (max-width: 375px) {
