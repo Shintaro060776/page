@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -27,27 +27,26 @@ function App() {
           <p>&copy; 2023 Quantum Music</p>
         </footer>
 
-        {/* ここにルートを追加してページのコンテンツを定義します */}
-        <Route path="/explore" component={ExplorePage} />
-        <Route path="/playlist" component={PlaylistPage} />
-        <Route path="/share" component={SharePage} />
+        {/* ルートをRoutesコンポーネントで囲みます */}
+        <Routes>
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/playlist" element={<PlaylistPage />} />
+          <Route path="/share" element={<SharePage />} />
+        </Routes>
       </div>
     </Router>
   );
 }
 
 function ExplorePage() {
-  // 量子音楽生成のページコンテンツをここに追加
   return <div>Explore Quantum Sounds Page</div>;
 }
 
 function PlaylistPage() {
-  // プレイリストのページコンテンツをここに追加
   return <div>Create Your Playlist Page</div>;
 }
 
 function SharePage() {
-  // シェアのページコンテンツをここに追加
   return <div>Share with Friends Page</div>;
 }
 
