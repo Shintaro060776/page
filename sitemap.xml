@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
+<url>
+  <loc>http://neilaeden.com/</loc>
+  <priority>1.0</priority>
+  <lastmod>2023-10-25T19:56:11+09:00</lastmod>
+</url>
+<url>
+  <loc>http://neilaeden.com/blog/</loc>
+  <priority>0.8</priority>
+  <lastmod>2023-10-26T02:28:41+09:00</lastmod>
+</url>
+<url>
+  <loc>http://neilaeden.com/sd/stablediffusion.html</loc>
+  <priority>0.8</priority>
+  <lastmod>2023-10-22T22:16:15+09:00</lastmod>
+</url>
+<url>
+  <loc>http://neilaeden.com/alien/</loc>
+  <priority>0.8</priority>
+  <lastmod>2023-10-26T02:29:27+09:00</lastmod>
+</url>
+<url>
+  <loc>http://neilaeden.com/cattoon/cartoon.html</loc>
+  <priority>0.8</priority>
+  <lastmod>2023-10-22T22:16:14+09:00</lastmod>
+</url>
+<url>
+  <loc>http://neilaeden.com/index.html</loc>
+  <priority>0.7</priority>
+  <lastmod>2023-10-25T19:56:11+09:00</lastmod>
+</url>
+
+</urlset>

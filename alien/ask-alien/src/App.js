@@ -13,7 +13,7 @@ function App() {
     if (displayedText.length < alienResponse.length) {
       const timeoutId = setTimeout(() => {
         setDisplayedText(alienResponse.slice(0, displayedText.length + 1));
-      }, 50);
+      }, 100);
       return () => clearTimeout(timeoutId);
     } else if (alienResponse.length > 0) {
       setIsLoading(false);
