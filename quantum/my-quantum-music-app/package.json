@@ -1,6 +1,7 @@
 {
   "name": "my-quantum-music-app",
   "version": "0.1.0",
+  "homepage": "/quantum",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
