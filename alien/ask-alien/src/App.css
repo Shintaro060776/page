@@ -38,11 +38,27 @@ textarea {
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
+  height: 100vh;
+  justify-content: space-between;
 }
 
 body {
   font-family: Consolas, monospace;
   margin: 0;
+}
+
+.app-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-footer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .app-header,
