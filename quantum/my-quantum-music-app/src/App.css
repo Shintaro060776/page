@@ -30,7 +30,7 @@
   text-decoration: none;
   color: white;
   background-color: #61dafb;
-  transition: background-color 0.3s;
+  transition: background-color 1s;
 }
 
 .feature:hover {
@@ -46,6 +46,16 @@
   padding: 10px;
   text-align: center;
   color: white;
+}
+
+.App-footer a {
+  color: white;
+  text-decoration: none;
+  transition: all 1s;
+}
+
+.App-footer a:hover {
+  color: gray;
 }
 
 @media (max-width: 375px) {
