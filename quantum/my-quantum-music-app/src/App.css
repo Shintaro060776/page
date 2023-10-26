@@ -9,7 +9,7 @@
 .App-header {
   background-color: #282c34;
   padding: 20px;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .App-main {
@@ -56,6 +56,43 @@
 
 .App-footer a:hover {
   color: rgb(231, 9, 139);
+}
+
+.header-menu {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+}
+
+.header-menu li {
+  margin: 0 10px;
+}
+
+.header-menu a {
+  color: white;
+  text-decoration: none;
+  transition: all 1s;
+}
+
+.header-menu a:hover {
+  color: #61dafb;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-links img {
+  width: 24px;
+  height: 24px;
+  transition: transform 1s;
+}
+
+.social-links img:hover {
+  transform: scale(1.2);
 }
 
 @media (max-width: 375px) {

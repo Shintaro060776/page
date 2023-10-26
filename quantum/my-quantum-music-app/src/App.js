@@ -8,6 +8,13 @@ function App() {
       <div className="App">
         <header className="App-header">
           <h1>Welcome to My Quantum Music App</h1>
+          <nav>
+            <ul className="header-menu">
+              <li><Link to="/explore">Explore</Link></li>
+              <li><Link to="/playlist">Playlist</Link></li>
+              <li><Link to="/share">Share</Link></li>
+            </ul>
+          </nav>
         </header>
         <main className="App-main">
           <Link to="/explore" className="feature">
@@ -24,6 +31,11 @@ function App() {
           </Link>
         </main>
         <footer className="App-footer">
+          <div className="social-links">
+            <a href="#"><img src="facebook.png" alt="Facebook" /></a>
+            <a href="#"><img src="twitter.png" alt="Twitter" /></a>
+            <a href="#"><img src="instagram.png" alt="Instagram" /></a>
+          </div>
           <p>&copy; 2023 Quantum Music</p>
           <a href="http://neilaeden.com">Back to Top Page</a>
         </footer>

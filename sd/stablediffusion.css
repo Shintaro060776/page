@@ -7,16 +7,59 @@ body {
     background-color: #333333;
     color: white;
     font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+    /* height: calc(100vh - 80px); */
     height: 100vh;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     flex-direction: column;
     overflow: auto;
     position: relative;
-    padding-top: 0;
+    padding-top: 120px;
+    padding-bottom: 90px;
 }
+
+header,
+footer {
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    color: white;
+    font-size: 2rem;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.9);
+    z-index: 1000;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer p {
+    color: white;
+    font-size: 0.8rem;
+}
+
 
 * {
     margin: 0;
@@ -32,10 +75,17 @@ body {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: -100;
+    z-index: -1;
     transform: translateX(-50%) translateY(-50%);
     background-size: cover;
     transition: 1s opacity;
+}
+
+.loader,
+.content,
+.image-generate-form,
+.generated-images-container {
+    z-index: 5;
 }
 
 .loader {
@@ -44,9 +94,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    /* 中央に配置 */
     justify-content: center;
-    /* 中央に配置 */
     margin: auto;
 }
 
@@ -208,6 +256,7 @@ h5 a:hover {
     animation: fadeInOut 1.5s infinite;
     color: rgb(2, 61, 58);
 }
+
 
 @keyframes fadeInOut {
     0% {
