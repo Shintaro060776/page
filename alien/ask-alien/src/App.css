@@ -120,7 +120,7 @@ body {
   position: relative;
   padding: 15px 25px;
   font-size: 18px;
-  background-color: #00FFFF;
+  background-color: #037474;
   color: white;
   border: none;
   border-radius: 4px;
@@ -133,7 +133,7 @@ body {
 }
 
 .alien-button:hover {
-  background-color: #610332;
+  background-color: #610331;
 }
 
 .alien-icon {
@@ -236,7 +236,6 @@ textarea.user-input:focus {
   max-width: 720px;
   margin-top: 20px;
   padding: 30px;
-  /* border: 1px solid #444; */
   border-radius: 4px;
   background-color: transparent;
   color: white;
@@ -328,9 +327,6 @@ h5 a:hover {
   width: 150px;
   height: 150px;
   z-index: 10;
-  /* position: absolute;
-  top: 20px;
-  left: 20px; */
   padding: 30px;
 }
 
