@@ -337,7 +337,7 @@ h5 a:hover {
 @media (max-width: 375px) {
   .interaction-container textarea.user-input {
     width: 70%;
-    height: 80px;
+    height: 60px;
   }
 
   .loading-gif {
