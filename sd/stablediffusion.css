@@ -16,7 +16,7 @@ body {
     flex-direction: column;
     overflow: auto;
     position: relative;
-    padding-top: 100px;
+    padding-top: 150px;
     padding-bottom: 90px;
 }
 
@@ -161,6 +161,7 @@ footer p {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    margin-top: 100px;
 }
 
 .image-generate-form {
@@ -238,6 +239,10 @@ h5 a:hover {
 
 .hidden {
     display: none;
+}
+
+#generating-message {
+    z-index: 10000;
 }
 
 #generating-message {
