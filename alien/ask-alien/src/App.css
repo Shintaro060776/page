@@ -302,8 +302,8 @@ h5 a:hover {
 }
 
 .loading-gif {
-  position: fixed;
-  top: 55%;
+  position: absolute;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 150px;
@@ -318,5 +318,9 @@ h5 a:hover {
 @media (max-width: 375px) {
   .interaction-container textarea.user-input {
     width: 90%;
+  }
+
+  .loading-gif {
+    top: 60%;
   }
 }
