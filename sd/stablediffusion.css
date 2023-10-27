@@ -194,11 +194,13 @@ button {
     color: #333;
     cursor: pointer;
     transition: background-color 1s, border-radius 1s;
+    background-color: #00FFFF;
 }
 
 button:hover {
-    background-color: #e4e002;
+    background-color: #610332;
     border-radius: 15px;
+    color: white;
 }
 
 h5 a {

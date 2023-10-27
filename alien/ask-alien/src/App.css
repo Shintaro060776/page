@@ -120,12 +120,12 @@ body {
   position: relative;
   padding: 15px 25px;
   font-size: 18px;
-  background-color: rgba(255, 69, 0, 0.5);
+  background-color: #00FFFF;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 1.5s ease;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -133,7 +133,7 @@ body {
 }
 
 .alien-button:hover {
-  background-color: rgba(255, 165, 0, 0.5);
+  background-color: #610332;
 }
 
 .alien-icon {
