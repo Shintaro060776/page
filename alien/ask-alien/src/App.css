@@ -84,6 +84,10 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-bottom: 3px solid #ff4500;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .app-footer {
@@ -195,6 +199,18 @@ body {
   overflow-y: hidden;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
+}
+
+textarea.user-input {
+  border: 2px solid #ff4500;
+  background-color: rgba(0, 0, 0, 0.85);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+textarea.user-input:focus {
+  box-shadow: 0px 0px 20px rgba(255, 69, 0, 0.6);
+  border: 2px solid rgba(255, 165, 0, 0.8);
 }
 
 .interaction-container button {
