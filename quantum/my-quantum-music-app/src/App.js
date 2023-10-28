@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
+import { useLocation } from 'react-router-dom';
 
 function App() {
   return (
@@ -52,6 +53,11 @@ function App() {
 
 function ExplorePage() {
   const [showModal, setShowModal] = React.useState(true);
+  const location = useLocation();
+
+  React.useEffect(() => {
+    setShowModal(true);
+  }, [location]);
 
   return (
     <>
