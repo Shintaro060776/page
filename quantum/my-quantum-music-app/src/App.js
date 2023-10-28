@@ -14,6 +14,7 @@ function App() {
               <li><Link to="/explore">Explore</Link></li>
               <li><Link to="/playlist">Playlist</Link></li>
               <li><Link to="/share">Share</Link></li>
+              <li><Link to="/design">Design</Link></li>
             </ul>
           </nav>
         </header>
@@ -45,6 +46,7 @@ function App() {
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/playlist" element={<PlaylistPage />} />
           <Route path="/share" element={<SharePage />} />
+          <Route path="/design" element={<Design />} />
         </Routes>
       </div>
     </Router>
@@ -65,16 +67,15 @@ function ExplorePage() {
 
       <div className={showModal ? 'explore-container' : 'hide'}>
         <div className='audio-spectrum'>
-          <audio id='audio' controls>
+          <video id='video' controls width="100%" height="200px">
             <source src='/quantum/effect.mp4' type="video/mp4" />
-          </audio>
+          </video>
         </div>
 
-        {/* クローズボタンをクリックしたときの処理を追加 */}
         <button className='close-button' onClick={() => setShowModal(false)}>✖</button>
         <button className='generate-button' onClick={() => generateSound()}>Generate Sound</button>
         <button className='play-button' onClick={() => playSound()}>Play Sound</button>
-        <button className='stop-button' onClick={() => stopSound()}>Stop Sound</button>
+        <button className='stop-button' onClick={() => stopSound()}>Clear Sound</button>
       </div>
     </>
   );
@@ -93,22 +94,22 @@ async function generateSound() {
     const data = await response.json();
     const musicUrl = data.url;
 
-    const audio = document.getElementById("audio");
-    audio.src = musicUrl;
+    const video = document.getElementById("video");
+    video.src = musicUrl;
   } catch (error) {
     console.error("There was a problem with the fetch operation", error.message);
   }
 }
 
 function playSound() {
-  const audio = document.getElementById("audio");
-  audio.play();
+  const video = document.getElementById("video");
+  video.play();
 }
 
 function stopSound() {
-  const audio = document.getElementById("audio");
-  audio.pause();
-  audio.currentTime = 0;
+  const video = document.getElementById("video");
+  video.pause();
+  video.currentTime = 0;
 }
 
 function PlaylistPage() {
@@ -117,6 +118,10 @@ function PlaylistPage() {
 
 function SharePage() {
   return <div>Share with Friends Page</div>;
+}
+
+function Design() {
+  return <div>Show whole Design</div>;
 }
 
 export default App;
