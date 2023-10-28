@@ -155,6 +155,10 @@
   background-color: #405a02;
 }
 
+.hide {
+  display: none;
+}
+
 @media (max-width: 375px) {
   .App-main {
     flex-direction: column;

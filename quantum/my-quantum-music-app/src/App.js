@@ -64,6 +64,7 @@ function ExplorePage() {
           </audio>
         </div>
 
+        {/* クローズボタンをクリックしたときの処理を追加 */}
         <button className='close-button' onClick={() => setShowModal(false)}>✖</button>
         <button className='generate-button' onClick={() => generateSound()}>Generate Sound</button>
         <button className='play-button' onClick={() => playSound()}>Play Sound</button>
