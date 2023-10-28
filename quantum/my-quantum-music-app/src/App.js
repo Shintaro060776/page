@@ -55,7 +55,7 @@ function ExplorePage() {
     <div className='explore-container'>
       <div className='audio-spectrum'>
         <audio id='audio' controls>
-          <source src='./effect.mp4' type="video/mp4" />
+          <source src='/quantum/effect.mp4' type="video/mp4" />
         </audio>
       </div>
 
