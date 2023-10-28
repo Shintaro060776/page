@@ -51,19 +51,25 @@ function App() {
 }
 
 function ExplorePage() {
-  return (
-    <div className='explore-container'>
-      <div className='audio-spectrum'>
-        <audio id='audio' controls>
-          <source src='/quantum/effect.mp4' type="video/mp4" />
-        </audio>
-      </div>
+  const [showModal, setShowModal] = React.useState(true);
 
-      <button className='close-button'>✖</button>
-      <button className='generate-button' onClick={() => generateSound()}>Generate Sound</button>
-      <button className='play-button' onClick={() => playSound()}>Play Sound</button>
-      <button className='stop-button' onClick={() => stopSound()}>Stop Sound</button>
-    </div>
+  return (
+    <>
+      {showModal && <div className='overlay'></div>}
+
+      <div className={showModal ? 'explore-container' : 'hide'}>
+        <div className='audio-spectrum'>
+          <audio id='audio' controls>
+            <source src='/quantum/effect.mp4' type="video/mp4" />
+          </audio>
+        </div>
+
+        <button className='close-button' onClick={() => setShowModal(false)}>✖</button>
+        <button className='generate-button' onClick={() => generateSound()}>Generate Sound</button>
+        <button className='play-button' onClick={() => playSound()}>Play Sound</button>
+        <button className='stop-button' onClick={() => stopSound()}>Stop Sound</button>
+      </div>
+    </>
   );
 }
 
