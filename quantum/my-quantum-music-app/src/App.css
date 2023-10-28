@@ -70,13 +70,13 @@
 }
 
 .header-menu a {
-  color: #610332;
+  color: #079cf3;
   text-decoration: none;
   transition: all 1s;
 }
 
 .header-menu a:hover {
-  color: #61dafb;
+  color: #eed709;
 }
 
 .social-links {
