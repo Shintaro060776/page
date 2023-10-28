@@ -7,7 +7,6 @@ body {
   font-family: 'Roboto Mono', monospace;
   margin: 0;
   padding: 0;
-  /* background-color: lightseagreen; */
 }
 
 .App {
@@ -48,12 +47,11 @@ body {
 .sec-title {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #333;
+  color: #61dafb;
   text-align: center;
   background-color: rgba(245, 245, 245, 0.2);
 }
 
-/* ブログ投稿カードのスタイル */
 .card {
   background-color: #ffffff;
   padding: 20px;
@@ -76,7 +74,6 @@ body {
   background-color: rgba(245, 245, 245, 0.2);
 }
 
-/* 投稿フォームのスタイル */
 form {
   margin-top: 40px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -108,7 +105,6 @@ form textarea {
 
 form textarea {
   height: 150px;
-  /* テキストエリアの高さを変更 */
   background-color: rgba(245, 245, 245, 0.2);
 }
 
@@ -151,7 +147,7 @@ form button:hover {
 }
 
 .edit-button {
-  background-color: darkred;
+  background-color: #610332;
   color: white;
   padding: 10px 15px;
   border: none;

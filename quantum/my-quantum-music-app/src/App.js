@@ -17,18 +17,18 @@ function App() {
           </nav>
         </header>
         <main className="App-main">
-          <Link to="/explore" className="feature">
+          <div className="feature">
             <h2>Explore Quantum Sounds</h2>
             <p>Discover a new dimension of music with our quantum sound generator.</p>
-          </Link>
-          <Link to="/playlist" className="feature">
+          </div>
+          <div className="feature">
             <h2>Create Your Playlist</h2>
             <p>Combine your favorite quantum sounds into a unique playlist.</p>
-          </Link>
-          <Link to="/share" className="feature">
+          </div>
+          <div className="feature">
             <h2>Share with Friends</h2>
             <p>Share your quantum playlists with friends and explore theirs.</p>
-          </Link>
+          </div>
         </main>
         <footer className="App-footer">
           <div className="social-links">
@@ -51,7 +51,51 @@ function App() {
 }
 
 function ExplorePage() {
-  return <div>Explore Quantum Sounds Page</div>;
+  return (
+    <div className='explore-container'>
+      <div className='audio-spectrum'>
+        <audio id='audio' controls>
+          <source src='/effect.mp4' type="video/mp4" />
+        </audio>
+      </div>
+
+      <button className='close-button'>✖</button>
+      <button className='generate-button' onClick={() => generateSound()}>Generate Sound</button>
+      <button className='play-button' onClick={() => playSound()}>Play Sound</button>
+      <button className='stop-button' onClick={() => stopSound()}>Stop Sound</button>
+    </div>
+  );
+}
+
+async function generateSound() {
+  try {
+    const response = await fetch("http://18.177.70.187:4000/generate", {
+      method: "POST",
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    const musicUrl = data.url;
+
+    const audio = document.getElementById("audio");
+    audio.src = musicUrl;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation", error.message);
+  }
+}
+
+function playSound() {
+  const audio = document.getElementById("audio");
+  audio.play();
+}
+
+function stopSound() {
+  const audio = document.getElementById("audio");
+  audio.pause();
+  audio.currentTime = 0;
 }
 
 function PlaylistPage() {
