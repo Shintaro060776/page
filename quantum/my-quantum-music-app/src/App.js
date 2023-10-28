@@ -67,7 +67,7 @@ function ExplorePage() {
 
       <div className={showModal ? 'explore-container' : 'hide'}>
         <div className='audio-spectrum'>
-          <video id='video' controls width="100%" height="200px">
+          <video id='video' controls width="100%" height="200px" playsInline>
             <source src='/quantum/effect.mp4' type="video/mp4" />
           </video>
         </div>
