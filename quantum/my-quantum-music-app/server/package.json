@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-braket": "^3.438.0",
+    "@aws-sdk/client-s3": "^3.438.0",
     "@tonejs/midi": "^2.0.28",
     "audiobuffer-to-wav": "^1.0.0",
     "aws-sdk": "^2.1483.0",
