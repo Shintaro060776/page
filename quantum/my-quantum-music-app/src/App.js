@@ -193,9 +193,9 @@ export function SharePage() {
   const [isOverlayVisible, setOverlayVisible] = useState(true);
   const location = useLocation();
   const currentUrl = window.location.origin + location.pathname;
-  const lineIcon = "/usr/share/nginx/html/quantum/line.png";
-  const instagramIcon = "/usr/share/nginx/html/quantum/instagram.png";
-  const twitterIcon = "/usr/share/nginx/html/quantum/twitter.png";
+  const lineIcon = "/quantum/line.png";
+  const instagramIcon = "/quantum/instagram.png";
+  const twitterIcon = "/quantum/twitter.png";
 
   React.useEffect(() => {
     if (location.pathname !== "/share") {
