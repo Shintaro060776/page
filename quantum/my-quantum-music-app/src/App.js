@@ -151,7 +151,7 @@ export function PlaylistPage() {
     <>
       {showModal && <div className='overlay'></div>}
 
-      <div className={showModal ? 'explore-container' : 'hide'}>
+      <div className={showModal ? 'playlist-container' : 'hide'}>
         {sounds.map(sound => (
           <div key={sound.id}>
             <video id={`video-${sound.id}`} controls width="100%" height="200px" playsInline>

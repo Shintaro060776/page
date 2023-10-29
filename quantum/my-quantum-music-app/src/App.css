@@ -110,6 +110,21 @@
   overflow-y: auto;
 }
 
+.playlist-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  max-height: 80vh;
+  overflow-y: auto;
+  width: 80%;
+  height: 80%;
+}
+
 .overlay {
   position: fixed;
   top: 0;
