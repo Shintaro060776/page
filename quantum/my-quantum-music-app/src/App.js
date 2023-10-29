@@ -286,7 +286,7 @@ function Design() {
       {isOverlayVisible && (
         <>
           <div className='overlay-system' onClick={() => setOverlayVisible(false)}></div>
-          <img src='/system5.png' alt='Design Image' className='design-image' />
+          <img src='/system5.png' alt='Design' className='design-image' />
           <button className='close-button-system' onClick={() => setOverlayVisible(false)}>×</button>
         </>
       )}
