@@ -65,6 +65,40 @@ function ExplorePage() {
     setShowModal(true);
   }, [location]);
 
+  async function generateSound() {
+    setStatus("processing");
+    try {
+      const response = await fetch("http://18.177.70.187:4000/generate", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      const musicUrl = data.url;
+
+      const video = document.getElementById("video");
+      video.src = musicUrl;
+      setStatus("done");
+    } catch (error) {
+      console.error("There was a problem with the fetch operation", error.message);
+      setStatus("error");
+    }
+  }
+
+  function playExploreSound() {
+    const video = document.getElementById("video");
+    video.play();
+  }
+
+  function stopExploreSound() {
+    const video = document.getElementById("video");
+    video.pause();
+    video.currentTime = 0;
+  }
+
   return (
     <>
       {showModal && <div className='overlay'></div>}
@@ -89,39 +123,39 @@ function ExplorePage() {
   );
 }
 
-async function generateSound() {
-  setStatus("processing");
-  try {
-    const response = await fetch("http://18.177.70.187:4000/generate", {
-      method: "POST",
-    });
+// async function generateSound() {
+//   setStatus("processing");
+//   try {
+//     const response = await fetch("http://18.177.70.187:4000/generate", {
+//       method: "POST",
+//     });
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok");
+//     }
 
-    const data = await response.json();
-    const musicUrl = data.url;
+//     const data = await response.json();
+//     const musicUrl = data.url;
 
-    const video = document.getElementById("video");
-    video.src = musicUrl;
-    setStatus("done");
-  } catch (error) {
-    console.error("There was a problem with the fetch operation", error.message);
-    setStatus("error");
-  }
-}
+//     const video = document.getElementById("video");
+//     video.src = musicUrl;
+//     setStatus("done");
+//   } catch (error) {
+//     console.error("There was a problem with the fetch operation", error.message);
+//     setStatus("error");
+//   }
+// }
 
-function playExploreSound() {
-  const video = document.getElementById("video");
-  video.play();
-}
+// function playExploreSound() {
+//   const video = document.getElementById("video");
+//   video.play();
+// }
 
-function stopExploreSound() {
-  const video = document.getElementById("video");
-  video.pause();
-  video.currentTime = 0;
-}
+// function stopExploreSound() {
+//   const video = document.getElementById("video");
+//   video.pause();
+//   video.currentTime = 0;
+// }
 
 export function PlaylistPage() {
   const [sounds, setSounds] = React.useState([]);
