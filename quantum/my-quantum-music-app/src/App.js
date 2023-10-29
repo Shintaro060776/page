@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
-const endpointUrl = 'http://neilaeden.com:3500/api/data';
+const endpointUrl = 'http://neilaeden.com/api/data';
 
 function App() {
   return (
@@ -68,7 +68,7 @@ function ExplorePage() {
   async function generateSound() {
     setStatus("processing");
     try {
-      const response = await fetch("http://neilaeden.com:3500/generate", {
+      const response = await fetch("http://neilaeden.com/generate", {
         method: "POST",
       });
 
