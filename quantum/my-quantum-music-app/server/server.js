@@ -9,7 +9,7 @@ const cors = require("cors");
 const app = express();
 const port = 3500;
 
-const DEVICE_ARN = 'arn:aws:braket:::device/quantum-simulator/amazon/sv1';
+const DEVICE_ARN = 'arn:aws:braket:us-west-1::device/qpu/rigetti/Aspen-M-3';
 const S3_OUTPUT_BUCKET = 'vhrthrtyergtcere';
 const S3_OUTPUT_DIRECTORY = '';
 
