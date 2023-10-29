@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
-const endpointUrl = 'http://18.177.70.187:4000/api/data';
+const endpointUrl = 'http://neilaeden.com:4000/api/data';
 
 function App() {
   return (
@@ -68,7 +68,7 @@ function ExplorePage() {
   async function generateSound() {
     setStatus("processing");
     try {
-      const response = await fetch("http://18.177.70.187:4000/generate", {
+      const response = await fetch("http://neilaeden.com:4000/generate", {
         method: "POST",
       });
 
