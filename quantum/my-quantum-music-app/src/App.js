@@ -126,6 +126,7 @@ function ExplorePage() {
 export function PlaylistPage() {
   const [sounds, setSounds] = React.useState([]);
   const [showModal, setShowModal] = React.useState(true);
+  const [errorDetail, setErrorDetail] = React.useState("");
 
   React.useEffect(() => {
     async function fetchData() {
@@ -134,6 +135,13 @@ export function PlaylistPage() {
         setSounds(response.data);
       } catch (error) {
         console.error("エラーが発生しました:", error);
+        if (error.response) {
+          setErrorDetail(`Status code: ${error.response.status}`);
+        } else if (error.request) {
+          setErrorDetail("No response from the server.");
+        } else {
+          setErrorDetail(error.message);
+        }
       }
     }
     fetchData();
@@ -155,7 +163,7 @@ export function PlaylistPage() {
             <button className='stop-button' onClick={() => stopSound(sound.id)}>Stop Sound</button>
           </div>
         ))}
-
+        {errorDetail && <div className="error-message">{errorDetail}</div>}
         <button className='close-button' onClick={() => setShowModal(false)}>✖</button>
       </div>
     </>
@@ -182,12 +190,18 @@ function downloadSound(id) {
 }
 
 export function SharePage() {
-  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  const [isOverlayVisible, setOverlayVisible] = useState(true);
   const location = useLocation();
   const currentUrl = window.location.origin + location.pathname;
   const lineIcon = "/quantum/line.png";
   const instagramIcon = "/quantum/instagram.png";
   const twitterIcon = "/quantum/twitter.png";
+
+  React.useEffect(() => {
+    if (location.pathname !== "/share") {
+      setOverlayVisible(false);
+    }
+  }, [location]);
 
   const shareToPlatform = (platform) => {
     let shareUrl = "";
@@ -212,7 +226,6 @@ export function SharePage() {
   return (
     <div>
       <h2>Share with Friends</h2>
-      <button onClick={() => setOverlayVisible(true)}>Shareリンク</button>
 
       {isOverlayVisible && (
         <div className="overlay-icon">
@@ -241,12 +254,19 @@ export function SharePage() {
 }
 
 export function Design() {
-  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  const [isOverlayVisible, setOverlayVisible] = useState(true);
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname === "/design") {
+      setOverlayVisible(true);
+    } else {
+      setOverlayVisible(false);
+    }
+  }, [location]);
 
   return (
     <div>
-      <button onClick={() => setOverlayVisible(true)}>Designリンク</button>
-
       {isOverlayVisible && (
         <div className="overlay-system">
           <button className="close-button-system" onClick={() => setOverlayVisible(false)}>×</button>
