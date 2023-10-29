@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
-const endpointUrl = 'https://18.177.70.187:4000/api/data';
+const endpointUrl = 'http://18.177.70.187:4000/api/data';
 
 function App() {
   return (
@@ -193,9 +193,9 @@ export function SharePage() {
   const [isOverlayVisible, setOverlayVisible] = useState(true);
   const location = useLocation();
   const currentUrl = window.location.origin + location.pathname;
-  const lineIcon = "/quantum/line.png";
-  const instagramIcon = "/quantum/instagram.png";
-  const twitterIcon = "/quantum/twitter.png";
+  const lineIcon = "/usr/share/nginx/html/quantum/line.png";
+  const instagramIcon = "/usr/share/nginx/html/quantum/instagram.png";
+  const twitterIcon = "/usr/share/nginx/html/quantum/twitter.png";
 
   React.useEffect(() => {
     if (location.pathname !== "/share") {
@@ -225,8 +225,6 @@ export function SharePage() {
 
   return (
     <div>
-      <h2>Share with Friends</h2>
-
       {isOverlayVisible && (
         <div className="overlay-icon">
           <button className="close-button-icon" onClick={() => setOverlayVisible(false)}>×</button>
