@@ -7,7 +7,7 @@ const toWav = require("audiobuffer-to-wav");
 const cors = require("cors");
 
 const app = express();
-const port = 4000;
+const port = 3500;
 
 const DEVICE_ARN = 'arn:aws:braket:::device/quantum-simulator/amazon/sv1';
 const S3_OUTPUT_BUCKET = 'vhrthrtyergtcere';
