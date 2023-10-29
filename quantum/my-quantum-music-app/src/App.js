@@ -70,6 +70,7 @@ function ExplorePage() {
     try {
       const response = await fetch("http://neilaeden.com/generate", {
         method: "POST",
+        timeout: 5000
       });
 
       if (!response.ok) {
@@ -85,6 +86,7 @@ function ExplorePage() {
     } catch (error) {
       console.error("There was a problem with the fetch operation", error.message);
       setStatus("error");
+      alert("音楽の生成に失敗しました。再試行してください。");
     }
   }
 
@@ -131,7 +133,9 @@ export function PlaylistPage() {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(endpointUrl);
+        const response = await axios.get(endpointUrl, {
+          timeout: 5000
+        });
         setSounds(response.data);
       } catch (error) {
         console.error("エラーが発生しました:", error);

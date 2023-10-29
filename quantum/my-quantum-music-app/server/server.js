@@ -52,7 +52,8 @@ async function getQuantumResults() {
         return await fetchResultFromS3(resultFileName);
     } catch (error) {
         console.error("Error generating music with AWS Braket:", error);
-        throw error;
+        console.error("Error in running Quantum Music Generator:", error);
+        throw new Error("音楽の生成に問題が発生しました。");
     }
 }
 
