@@ -48,12 +48,6 @@ jobs:
           cd quantum/my-quantum-music-app
           npm run build
 
-      - name: Install dependencies and build for quantum server
-        run: |
-          cd quantum/my-quantum-music-app/server
-          npm install
-          npm run build
-
       - name: Install dependencies for Alien-Server
         run: |
           cd alien-server
