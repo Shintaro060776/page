@@ -11,7 +11,7 @@ const port = 3500;
 
 const DEVICE_ARN = 'arn:aws:braket:us-west-1::device/qpu/rigetti/Aspen-M-3';
 const S3_OUTPUT_BUCKET = 'vhrthrtyergtcere';
-const S3_OUTPUT_DIRECTORY = '';
+const S3_OUTPUT_DIRECTORY = 'results/';
 
 let soundsData = [];
 
