@@ -82,8 +82,8 @@ function ExplorePage() {
 
         <button className='close-button' onClick={() => setShowModal(false)}>✖</button>
         <button className='generate-button' onClick={() => generateSound()}>Generate Sound</button>
-        <button className='play-button' onClick={() => playSound()}>Play Sound</button>
-        <button className='stop-button' onClick={() => stopSound()}>Clear Sound</button>
+        <button className='play-button' onClick={() => playExploreSound()}>Play Sound</button>
+        <button className='stop-button' onClick={() => stopExploreSound()}>Clear Sound</button>
       </div>
     </>
   );
@@ -112,12 +112,12 @@ async function generateSound() {
   }
 }
 
-function playSound() {
+function playExploreSound() {
   const video = document.getElementById("video");
   video.play();
 }
 
-function stopSound() {
+function stopExploreSound() {
   const video = document.getElementById("video");
   video.pause();
   video.currentTime = 0;
@@ -249,13 +249,13 @@ function Design() {
       <h2>System Design</h2>
       <button onClick={() => setOverlayVisible(true)}>Design Link</button>
 
-      {isOverlayVisible} && (
-      <>
-        <div className='overlay-system' onClick={() => setOverlayVisible(false)}></div>
-        <img src='/system5.png' alt='Design Image' className='design-image' />
-        <button className='close-button-system' onClick={() => setOverlayVisible(false)}>×</button>
-      </>
-      )
+      {isOverlayVisible && (
+        <>
+          <div className='overlay-system' onClick={() => setOverlayVisible(false)}></div>
+          <img src='/system5.png' alt='Design Image' className='design-image' />
+          <button className='close-button-system' onClick={() => setOverlayVisible(false)}>×</button>
+        </>
+      )}
     </div>
   );
 }
