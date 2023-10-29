@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
-const endpointUrl = 'https://your-server-url.com/api/data';
+const endpointUrl = 'https://18.177.70.187:4000/api/data';
 
 function App() {
   return (
@@ -123,40 +123,6 @@ function ExplorePage() {
   );
 }
 
-// async function generateSound() {
-//   setStatus("processing");
-//   try {
-//     const response = await fetch("http://18.177.70.187:4000/generate", {
-//       method: "POST",
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok");
-//     }
-
-//     const data = await response.json();
-//     const musicUrl = data.url;
-
-//     const video = document.getElementById("video");
-//     video.src = musicUrl;
-//     setStatus("done");
-//   } catch (error) {
-//     console.error("There was a problem with the fetch operation", error.message);
-//     setStatus("error");
-//   }
-// }
-
-// function playExploreSound() {
-//   const video = document.getElementById("video");
-//   video.play();
-// }
-
-// function stopExploreSound() {
-//   const video = document.getElementById("video");
-//   video.pause();
-//   video.currentTime = 0;
-// }
-
 export function PlaylistPage() {
   const [sounds, setSounds] = React.useState([]);
   const [showModal, setShowModal] = React.useState(true);
@@ -219,9 +185,9 @@ export function SharePage() {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
   const location = useLocation();
   const currentUrl = window.location.origin + location.pathname;
-  const lineIcon = "/line.png";
-  const instagramIcon = "/instagram.png";
-  const twitterIcon = "/twitter.png";
+  const lineIcon = "/quantum/line.png";
+  const instagramIcon = "/quantum/instagram.png";
+  const twitterIcon = "/quantum/twitter.png";
 
   const shareToPlatform = (platform) => {
     let shareUrl = "";
@@ -249,8 +215,7 @@ export function SharePage() {
       <button onClick={() => setOverlayVisible(true)}>Shareリンク</button>
 
       {isOverlayVisible && (
-        <>
-          <div className="overlay-icon" onClick={() => setOverlayVisible(false)}></div>
+        <div className="overlay-icon">
           <button className="close-button-icon" onClick={() => setOverlayVisible(false)}>×</button>
           <div className="icon-container">
             <img
@@ -269,26 +234,26 @@ export function SharePage() {
               onClick={() => shareToPlatform("Twitter")}
             />
           </div>
-        </>
+        </div>
       )}
     </div>
   );
 }
 
-function Design() {
+import React, { useState } from 'react';
+
+export function Design() {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
 
   return (
     <div>
-      <h2>System Design</h2>
-      <button onClick={() => setOverlayVisible(true)}>Design Link</button>
+      <button onClick={() => setOverlayVisible(true)}>Designリンク</button>
 
       {isOverlayVisible && (
-        <>
-          <div className='overlay-system' onClick={() => setOverlayVisible(false)}></div>
-          <img src='/system5.png' alt='Design' className='design-image' />
-          <button className='close-button-system' onClick={() => setOverlayVisible(false)}>×</button>
-        </>
+        <div className="overlay-system">
+          <button className="close-button-system" onClick={() => setOverlayVisible(false)}>×</button>
+          <img src='/quantum/system5.png' alt='Design' className='design-image' />
+        </div>
       )}
     </div>
   );
