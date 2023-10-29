@@ -76,7 +76,7 @@ async function createQuantumTask(resultFileName) {
         action: JSON.stringify(quantumCircuit),
         deviceArn: DEVICE_ARN,
         outputS3Bucket: S3_OUTPUT_BUCKET,
-        outputS3Directory: S3_OUTPUT_DIRECTORY,
+        outputS3KeyPrefix: S3_OUTPUT_DIRECTORY,
         shots: 1000
     }).promise();
 
