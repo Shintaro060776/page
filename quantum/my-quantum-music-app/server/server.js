@@ -13,6 +13,8 @@ const DEVICE_ARN = 'arn:aws:braket:::device/quantum-simulator/amazon/sv1';
 const S3_OUTPUT_BUCKET = 'vhrthrtyergtcere';
 const S3_OUTPUT_DIRECTORY = '';
 
+let soundsData = [];
+
 app.use(cors());
 
 AWS.config.update({
@@ -152,5 +154,11 @@ async function uploadMusicToS3(musicData) {
 
     await new AWS.S3().putObject(params).promise();
 
-    return `https://d1al6usgg5x7a.cloudfront.net/${params.Key}`;
+    const url = `https://d1al6usgg5x7a.cloudfront.net/${params.Key}`;
+    soundsData.push(url);
+    return url;
 }
+
+app.get("/api/data", (req, res) => {
+    res.json(soundsData);
+});

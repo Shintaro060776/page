@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css';
 import { useLocation } from 'react-router-dom';
+import './App.css';
+import axios from 'axios';
+
+const endpointUrl = 'https://your-server-url.com/api/data';
 
 function App() {
   return (
@@ -55,6 +58,7 @@ function App() {
 
 function ExplorePage() {
   const [showModal, setShowModal] = React.useState(true);
+  const [status, setStatus] = React.useState();
   const location = useLocation();
 
   React.useEffect(() => {
@@ -72,6 +76,10 @@ function ExplorePage() {
           </video>
         </div>
 
+        {status === "processing" && <p className='status-text processing'>Processing...</p>}
+        {status === "done" && <p className='status-text done'>Done</p>}
+        {status === "error" && <p className='status-text error'>Error</p>}
+
         <button className='close-button' onClick={() => setShowModal(false)}>✖</button>
         <button className='generate-button' onClick={() => generateSound()}>Generate Sound</button>
         <button className='play-button' onClick={() => playSound()}>Play Sound</button>
@@ -82,6 +90,7 @@ function ExplorePage() {
 }
 
 async function generateSound() {
+  setStatus("processing");
   try {
     const response = await fetch("http://18.177.70.187:4000/generate", {
       method: "POST",
@@ -96,8 +105,10 @@ async function generateSound() {
 
     const video = document.getElementById("video");
     video.src = musicUrl;
+    setStatus("done");
   } catch (error) {
     console.error("There was a problem with the fetch operation", error.message);
+    setStatus("error");
   }
 }
 
@@ -112,16 +123,141 @@ function stopSound() {
   video.currentTime = 0;
 }
 
-function PlaylistPage() {
-  return <div>Create Your Playlist Page</div>;
+export function PlaylistPage() {
+  const [sounds, setSounds] = React.useState([]);
+  const [showModal, setShowModal] = React.useState(true);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(endpointUrl);
+        setSounds(response.data);
+      } catch (error) {
+        console.error("エラーが発生しました:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      {showModal && <div className='overlay'></div>}
+
+      <div className={showModal ? 'explore-container' : 'hide'}>
+        {sounds.map(sound => (
+          <div key={sound.id}>
+            <video id={`video-${sound.id}`} controls width="100%" height="200px" playsInline>
+              <source src={sound.url} type="video/mp4" />
+            </video>
+
+            <button className='download-button' onClick={() => downloadSound(sound.id)}>Download</button>
+            <button className='play-button' onClick={() => playSound(sound.id)}>Play Sound</button>
+            <button className='stop-button' onClick={() => stopSound(sound.id)}>Stop Sound</button>
+          </div>
+        ))}
+
+        <button className='close-button' onClick={() => setShowModal(false)}>✖</button>
+      </div>
+    </>
+  );
 }
 
-function SharePage() {
-  return <div>Share with Friends Page</div>;
+function playSound(id) {
+  const video = document.getElementById(`video-${id}`);
+  video.play();
+}
+
+function stopSound(id) {
+  const video = document.getElementById(`video-${id}`);
+  video.pause();
+  video.currentTime = 0;
+}
+
+function downloadSound(id) {
+  const video = document.getElementById(`video-${id}`);
+  const a = document.createElement('a');
+  a.href = video.src;
+  a.download = `sound-${id}.mp4`;
+  a.click();
+}
+
+export function SharePage() {
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  const location = useLocation();
+  const currentUrl = window.location.origin + location.pathname;
+  const lineIcon = "/line.png";
+  const instagramIcon = "/instagram.png";
+  const twitterIcon = "/twitter.png";
+
+  const shareToPlatform = (platform) => {
+    let shareUrl = "";
+
+    switch (platform) {
+      case "LINE":
+        shareUrl = `https://line.me/R/msg/text/?${currentUrl}`;
+        break;
+      case "Twitter":
+        shareUrl = `https://twitter.com/share?url=${currentUrl}&Check%20out%20this%20page!`;
+        break;
+      case "Instagram":
+        alert("URL copied to clipboard");
+        navigator.clipboard.writeText(currentUrl);
+        return;
+      default:
+        break;
+    }
+    window.open(shareUrl, '_blank');
+  }
+
+  return (
+    <div>
+      <h2>Share with Friends</h2>
+      <button onClick={() => setOverlayVisible(true)}>Shareリンク</button>
+
+      {isOverlayVisible && (
+        <>
+          <div className="overlay-icon" onClick={() => setOverlayVisible(false)}></div>
+          <button className="close-button-icon" onClick={() => setOverlayVisible(false)}>×</button>
+          <div className="icon-container">
+            <img
+              src={lineIcon} alt="LINE"
+              className="icon"
+              onClick={() => shareToPlatform("LINE")}
+            />
+            <img
+              src={instagramIcon} alt="Instagram"
+              className="icon"
+              onClick={() => shareToPlatform("Instagram")}
+            />
+            <img
+              src={twitterIcon} alt="Twitter"
+              className="icon"
+              onClick={() => shareToPlatform("Twitter")}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 function Design() {
-  return <div>Show whole Design</div>;
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
+
+  return (
+    <div>
+      <h2>System Design</h2>
+      <button onClick={() => setOverlayVisible(true)}>Design Link</button>
+
+      {isOverlayVisible} && (
+      <>
+        <div className='overlay-system' onClick={() => setOverlayVisible(false)}></div>
+        <img src='/system5.png' alt='Design Image' className='design-image' />
+        <button className='close-button-system' onClick={() => setOverlayVisible(false)}>×</button>
+      </>
+      )
+    </div>
+  );
 }
 
 export default App;
