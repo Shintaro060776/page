@@ -240,8 +240,6 @@ export function SharePage() {
   );
 }
 
-import React, { useState } from 'react';
-
 export function Design() {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
 
