@@ -1,0 +1,333 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App-header {
+  background-color: #610332;
+  padding: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.App-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  max-width: 300px;
+  text-align: left;
+  text-decoration: none;
+  color: white;
+  background-color: #61dafb;
+  transition: background-color 1s;
+}
+
+.feature:hover {
+  background-color: #8fd3ff;
+}
+
+.feature h2 {
+  color: white;
+}
+
+.App-footer {
+  background-color: #610332;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.App-footer a {
+  color: white;
+  text-decoration: none;
+  transition: all 1s;
+}
+
+.App-footer a:hover {
+  color: rgb(231, 9, 139);
+}
+
+.header-menu {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+}
+
+.header-menu li {
+  margin: 0 10px;
+}
+
+.header-menu a {
+  color: #ecf2f5;
+  text-decoration: none;
+  transition: all 1s;
+  font-size: 1.3rem;
+
+}
+
+.header-menu a:hover {
+  color: #e6dc82;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-links img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s;
+}
+
+.social-links img:hover {
+  transform: scale(1.5);
+}
+
+.explore-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.playlist-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  max-height: 80vh;
+  overflow-y: auto;
+  width: 80%;
+  height: 80%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.audio-spectrum {
+  width: 100%;
+  height: 200px;
+  /* background: #f2f2f2; */
+  position: relative;
+}
+
+.audio-spectrum video {
+  max-width: 100%;
+  max-height: 150px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.download-button,
+.generate-button,
+.play-button,
+.stop-button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #a10505;
+  color: white;
+  transition: all 0.3s;
+}
+
+.download-button:hover,
+.generate-button:hover,
+.play-button:hover,
+.stop-button:hover {
+  background-color: #014d2d;
+}
+
+.hide {
+  display: none;
+}
+
+.status-text {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.status-text.processing {
+  animation: colorChange 5s infinite alternate;
+}
+
+@keyframes colorChange {
+  0% {
+    color: gray;
+  }
+
+  25% {
+    color: magenta;
+  }
+
+  50% {
+    color: yellow;
+  }
+
+  75% {
+    color: cyan;
+  }
+
+  100% {
+    color: blue;
+  }
+}
+
+.status-text.done {
+  color: blue;
+}
+
+.status-text.error {
+  color: red;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin-top: 70px;
+  animation: dropDown 1.5s forwards;
+  z-index: 1000;
+}
+
+@keyframes dropDown {
+  0% {
+    transform: translateY(-100vh);
+  }
+
+  80% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 1s;
+  z-index: 1000;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  z-index: 1000;
+}
+
+.overlay-icon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.close-button-icon {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(255, 10, 10);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.overlay-system {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.design-image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  max-height: 80%;
+  z-index: 1000;
+  border: 1px solid #ffffff;
+}
+
+.close-button-system {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(240, 8, 8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+@media (max-width: 375px) {
+  .App-main {
+    flex-direction: column;
+  }
+
+  .feature {
+    max-width: 90%;
+    margin: 10px 5%;
+  }
+
+  .explore-container {
+    width: 80%;
+    left: 5%;
+    transform: translate(0, -50%);
+  }
+}

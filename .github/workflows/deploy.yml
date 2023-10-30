@@ -38,6 +38,16 @@ jobs:
           cd alien/ask-alien
           npm run build
 
+      - name: Install dependencies for sagemaker
+        run: |
+          cd sagemaker/my-sagemaker-app
+          npm install
+  
+      - name: Build the sagemaker React app
+        run: |
+          cd sagemaker/my-sagemaker-app
+          npm run build
+
       - name: Install dependencies for quantum
         run: |
           cd quantum/my-quantum-music-app
@@ -51,6 +61,11 @@ jobs:
       - name: Install dependencies for Alien-Server
         run: |
           cd alien-server
+          npm install
+
+      - name: Install dependencies for sagemaker-Server
+        run: |
+          cd sagemaker-server
           npm install
 
       - name: Deploy to EC2
@@ -68,6 +83,7 @@ jobs:
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo find /usr/share/nginx/html/ -type d -exec chmod 755 {} \;'
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo find /usr/share/nginx/html/ -type f -exec chmod 644 {} \;'
           ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP "cd /usr/share/nginx/html/quantum/server && pm2 restart quantum"
+          ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP "cd /usr/share/nginx/html/sagemaker-server && pm2 restart sagemaker"
 
           # Deploy the built Blog React app
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/blog/blog-app/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/blog/
@@ -75,6 +91,10 @@ jobs:
           # Deploy the built Alien React app
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien/ask-alien/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien/
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/alien-server/ ec2-user@$SERVER_IP:/usr/share/nginx/html/alien-server/
+
+          # Deploy the built sagemaker React app
+          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/sagemaker/my-sagemaker-app/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/sagemaker/
+          rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/sagemaker-server/ ec2-user@$SERVER_IP:/usr/share/nginx/html/sagemaker-server/
 
           # Deploy the built quantum React app
           rsync -avz -e "ssh -i deploy_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/quantum/my-quantum-music-app/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/quantum/

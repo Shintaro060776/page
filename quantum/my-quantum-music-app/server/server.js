@@ -5,12 +5,13 @@ const { Synth, Transport, Pattern, start, Offline } = require("tone");
 const { AudioContext } = require("web-audio-api");
 const toWav = require("audiobuffer-to-wav");
 const cors = require("cors");
+const fs = require('fs');
 
 const app = express();
 const port = 3500;
 
 const DEVICE_ARN = 'arn:aws:braket:us-west-1::device/qpu/rigetti/Aspen-M-3';
-const S3_OUTPUT_BUCKET = 'vhrthrtyergtcere';
+const S3_OUTPUT_BUCKET = 'amazon-braket-20090317';
 const S3_OUTPUT_DIRECTORY = 'results/';
 
 let soundsData = [];
@@ -20,8 +21,15 @@ app.use(cors());
 AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION
+    region: 'us-west-1'
 });
+
+const LOG_FILE = '/home/ec2-user/.pm2/logs/quantum-error.log';
+
+function logErrorToFile(error) {
+    const errorMessage = `${new Date().toISOString()} - ${error}\n`;
+    fs.appendFileSync(LOG_FILE, errorMessage);
+}
 
 app.post("/generate", async (req, res) => {
     try {
@@ -51,8 +59,8 @@ async function getQuantumResults() {
 
         return await fetchResultFromS3(resultFileName);
     } catch (error) {
-        console.error("Error generating music with AWS Braket:", error);
-        console.error("Error in running Quantum Music Generator:", error);
+        logErrorToFile("Error generating music with AWS Braket: " + error);
+        logErrorToFile("Error in running Quantum Music Generator: " + error);
         throw new Error("音楽の生成に問題が発生しました。");
     }
 }
@@ -67,10 +75,18 @@ async function createQuantumTask(resultFileName) {
     const quantumCircuit = {
         qubits: 2,
         gates: [
-            { name: 'h', targets: [0] },
-            { name: 'cx', controls: [0], target: [1] }
+            { name: 'rz', targets: [0], angle: Math.PI / 2 },
+            { name: 'rx', targets: [0], angle: Math.PI / 2 },
+            { name: 'rz', targets: [0], angle: Math.PI / 2 },
+            { name: 'rz', targets: [1], angle: Math.PI / 2 },
+            { name: 'rx', targets: [1], angle: -Math.PI / 2 },
+            { name: 'cz', controls: [0], target: [1] },
+            { name: 'rx', targets: [1], angle: Math.PI / 2 },
+            { name: 'rz', targets: [1], angle: -Math.PI / 2 },
         ]
     };
+
+    console.log('Creating quantum task with circuit:', JSON.stringify(quantumCircuit, null, 2));
 
     const response = await new AWS.Braket().createQuantumTask({
         action: JSON.stringify(quantumCircuit),
@@ -80,6 +96,8 @@ async function createQuantumTask(resultFileName) {
         shots: 1000
     }).promise();
 
+    console.log('Received response for createQuantumTask:', JSON.stringify(response, null, 2));
+
     return response.quantumTaskArn;
 }
 
@@ -88,9 +106,13 @@ async function waitForTaskCompletion(taskId) {
     do {
         const response = await new AWS.Braket().getQuantumTask({ quantumTaskArn: taskId }).promise();
         taskStatus = response.status;
+
         if (['FAILED', 'CANCELLED'].includes(taskStatus)) {
-            throw new Error('Quantum task did not complete successfully.');
+            const errorMessage = 'Quantum task did not complete successfully. Task Status: ' + taskStatus;
+            logErrorToFile(errorMessage);
+            throw new Error(errorMessage);
         }
+
         await new Promise(resolve => setTimeout(resolve, 5000));
     } while (taskStatus !== 'COMPLETED');
 }
