@@ -55,7 +55,7 @@
 }
 
 .App-footer a:hover {
-  color: rgb(231, 9, 139);
+  color: rgb(96, 209, 243);
 }
 
 .header-menu {
@@ -167,7 +167,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #a10505;
+  background-color: #610332;
   color: white;
   transition: all 0.3s;
 }
@@ -176,7 +176,7 @@
 .generate-button:hover,
 .play-button:hover,
 .stop-button:hover {
-  background-color: #014d2d;
+  background-color: #0ce98d;
 }
 
 .hide {

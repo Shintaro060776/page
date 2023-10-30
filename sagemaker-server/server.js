@@ -93,6 +93,6 @@ async function uploadMusicToS3(musicData) {
     return url;
 }
 
-app.get("/api/sound", (req, res) => {
+app.get("/sound/sagemaker", (req, res) => {
     res.json(soundsData);
 });

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
-const endpointUrl = 'http://neilaeden.com/api/sound';
+const endpointUrl = 'http://neilaeden.com/sound/sagemaker';
 // 
 function App() {
   return (
