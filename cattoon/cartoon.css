@@ -9,6 +9,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    padding-bottom: 60px;
+    position: relative;
 }
 
 h4 {
@@ -41,10 +43,23 @@ h4 {
 
 .centered-elements {
     text-align: center;
+    margin-bottom: 100px;
 }
 
 .centered-elements h4 {
     display: none;
+    font-weight: 600;
+}
+
+.centered-elements a {
+    margin-bottom: 20%;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.centered-elements a:hover {
+    text-decoration: none;
+    color: rgb(4, 102, 102);
 }
 
 .action-area {
@@ -64,8 +79,8 @@ h4 {
 
 .button,
 .file-input {
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 15px 20px;
+    font-size: 18px;
     border: none;
     border-radius: 5px;
 }
@@ -75,12 +90,61 @@ h4 {
     color: #fff;
     cursor: pointer;
     transition: all 0.3s;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 15px;
 }
 
 .action-button:hover {
-    background-color: #2b8cf3;
+    background-color: #02533b;
 }
 
 .file-input {
     cursor: pointer;
+}
+
+.main-header,
+.main-footer {
+    text-align: center;
+    background-color: #610332;
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    color: white;
+}
+
+.main-header h1,
+.main-footer p {
+    margin: 0;
+    font-weight: 400;
+    font-weight: 600;
+}
+
+.button,
+.file-input {
+    display: inline-block;
+}
+
+.main-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.design-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.design-section h2 {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.design-section img {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
