@@ -7,6 +7,8 @@ const toWav = require("audiobuffer-to-wav");
 const cors = require("cors");
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const { rejects } = require("assert");
+const s3 = new AWS.S3()
 
 const app = express();
 const port = 7000;
@@ -32,12 +34,36 @@ function logErrorToFile(error) {
     fs.appendFileSync(LOG_FILE, errorMessage);
 }
 
+const sagemakerRuntime = new AWS.SageMakerRuntime();
+
 app.post("/aisound", async (req, res) => {
     try {
         const musicData = await generateMusicFromData(req.body.data);
-        const uploadedURL = await uploadMusicToS3(musicData);
-        res.json({ url: uploadedURL });
+
+        const audioBuffer = await generateMusicBufferFromData(req.body.data);
+        const wavBuffer = toWav(audioBuffer);
+        const uploadedURL = await uploadToS3(wavBuffer, "aisound_" + Date.now() + ".wav");
+
+        const payload = musicData;
+        const params = {
+            EndpointName: 'Your-SageMaker-Endpoint-Name',
+            Body: JSON.stringify(payload),
+            ContentType: 'application/json',
+        };
+
+        sagemakerRuntime.invokeEndpoint(params, function (err, data) {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error invoking SageMaker endpoint.');
+            } else {
+                const result = JSON.parse(data.Body.toString());
+                result.url = uploadedURL;
+                res.json(result);
+            }
+        });
+
     } catch (error) {
+        logErrorToFile(error);
         res.status(500).send(error.message);
     }
 });
@@ -91,6 +117,26 @@ async function uploadMusicToS3(musicData) {
     const url = `https://d1al6usgg5x7a.cloudfront.net/${params.Key}`;
     soundsData.push(url);
     return url;
+}
+
+async function uploadToS3(buffer, filename) {
+    const params = {
+        Bucket: S3_OUTPUT_BUCKET,
+        Key: filename,
+        Body: buffer,
+        ContentType: "audio/wav",
+        ACL: "public-read"
+    };
+
+    return new Promise((resolve, reject) => {
+        s3.upload(params, function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data.Location);
+            }
+        });
+    });
 }
 
 app.get("/sound/sagemaker", (req, res) => {

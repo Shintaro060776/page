@@ -1,49 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animation Style Conversion</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inconsolata&family=M+PLUS+Rounded+1c:wght@700&family=Poppins:wght@300&family=Raleway:ital,wght@1,300&family=Roboto&family=Roboto+Condensed&family=Roboto+Mono:ital,wght@0,600;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inconsolata&family=M+PLUS+Rounded+1c:wght@700&family=Noto+Sans+JP:wght@600&family=Poppins:wght@300&family=Raleway:ital,wght@1,300&family=Roboto&family=Roboto+Condensed&family=Roboto+Mono:ital,wght@0,600;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="cartoon.css">
 </head>
 
 <body>
     <div id="container">
-        <div id="leftSide">
+        <div class="side" id="leftSide">
             <h4>Uploadする画像</h4>
             <img id="uploadedImage" src="" alt="Uploaded Image">
         </div>
-
-        <div id="rightSide">
+        <div class="side" id="rightSide">
             <h4>Animation画像</h4>
             <img id="animatedImage" src="" alt="Animated Image">
         </div>
     </div>
 
-    <div id="processingMessage" class="centered-elements" style="display: none;">
+    <div id="processingMessage" class="centered-elements">
         <h4>Processing...</h4>
     </div>
 
-    <div class="centered-elements">
-        <div style="margin-top: 20px;">
-            <input type="file" id="fileInput" class="file-input">
-            <button onclick="convertToAnimation()" class="action-button">Animationに変換</button>
-        </div>
+    <div class="centered-elements action-area">
+        <input type="file" id="fileInput" class="file-input">
+        <button onclick="convertToAnimation()" class="action-button">Animationに変換</button>
+    </div>
 
-        <div style="margin-top: 20px;">
-            <a href="http://neilaeden.com">トップページに戻る</a>
-        </div>
+    <div class="centered-elements">
+        <a href="http://neilaeden.com" class="link">トップページに戻る</a>
     </div>
 
     <script>
@@ -84,7 +75,7 @@
                     method: 'POST',
                     mode: 'no-cors',
                     headers: {
-                        'APIKEY': '3db2614196984c1b84d78a608808cb28',
+                        'APIKEY': 'HLUBr4h9aSdgCKQIOVCPLkTc84prl9hwGbXuIzJDRnxyYN76KjVUiAPuo51As5JE',
                         'Content-Type': 'application/json'
                     },
                     body: dataToSend
