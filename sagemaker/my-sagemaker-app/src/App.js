@@ -272,7 +272,7 @@ export function Design() {
       {isOverlayVisible && (
         <div className="overlay-system">
           <button className="close-button-system" onClick={() => setOverlayVisible(false)}>×</button>
-          <img src='/sagemaker/system6.png' alt='Design' className='design-image' />
+          <img src='/sagemaker/system8.png' alt='Design' className='design-image' />
         </div>
       )}
     </div>

@@ -29,12 +29,13 @@
     </div>
 
     <div id="processingMessage" class="centered-elements">
-        <h4>Processing...</h4>
+        <h4 id="processingText">Processing...</h4>
     </div>
 
     <div class="centered-elements action-area">
         <input type="file" id="fileInput" class="file-input">
         <button onclick="convertToAnimation()" class="action-button">Animationに変換</button>
+        <button id="downloadButton" class="action-button" style="display: none;">画像をダウンロード</button>
     </div>
 
     <div class="centered-elements">
@@ -49,6 +50,24 @@
     <script>
         const fileInput = document.getElementById('fileInput');
         const uploadedImage = document.getElementById('uploadedImage');
+        const processingMessage = document.getElementById('processingMessage');
+        const processingText = document.getElementById('processingText');
+        const downloadButton = document.getElementById('downloadButton');
+        downloadButton.addEventListener('click', function () {
+            const link = document.createElement('a');
+            link.href = animatedImage.src;
+            link.download = 'animation_image.png';
+            link.click();
+        });
+
+        let colorIndex = 0;
+        const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+        function changeColor() {
+            processingText.style.color = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length;
+        }
+
+        let colorInterval;
 
         fileInput.addEventListener('change', function () {
             const file = fileInput.files[0];
@@ -67,10 +86,12 @@
 
         function convertToAnimation() {
             const animatedImage = document.getElementById('animatedImage');
-            const processingMessage = document.getElementById('processingMessage');
             const file = fileInput.files[0]
 
             processingMessage.style.display = 'block';
+            processingText.style.display = 'block';
+
+            colorInterval = setInterval(changeColor, 500);
 
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -82,7 +103,6 @@
 
                 fetch('https://lzeeniah1j.execute-api.ap-northeast-1.amazonaws.com/convert', {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
                         'APIKEY': 'HLUBr4h9aSdgCKQIOVCPLkTc84prl9hwGbXuIzJDRnxyYN76KjVUiAPuo51As5JE',
                         'Content-Type': 'application/json'
@@ -90,20 +110,26 @@
                     body: dataToSend
                 })
                     .then(response => {
+                        clearInterval(colorInterval);
                         if (!response.ok) {
-                            // エラーメッセージを取得してエラーをスロー
-                            return response.text().then(text => { throw new Error(text) });
+                            return response.json().then(data => { throw new Error(data.error) });
                         }
                         return response.json();
                     })
                     .then(data => {
-                        animatedImage.src = "data:image/png;base64," + data.base64Image;
-
+                        if (data && data.base64Image) {
+                            animatedImage.src = "data:image/png;base64," + data.base64Image;
+                            processingText.innerText = "Done";
+                            downloadButton.style.display = 'block';
+                        } else {
+                            console.error('base64ImageプロパティがAPIのレスポンスに存在しません');
+                        }
                         processingMessage.style.display = 'none';
                     })
                     .catch(error => {
+                        clearInterval(colorInterval);
                         console.error('Error:', error);
-                        // エラーメッセージをalertで表示
+                        processingText.innerText = "Error";
                         alert('エラーが発生しました: ' + error.message);
 
                         processingMessage.style.display = 'none';

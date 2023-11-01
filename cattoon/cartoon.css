@@ -3,6 +3,7 @@ html {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 body {
@@ -11,6 +12,7 @@ body {
     padding: 20px;
     padding-bottom: 60px;
     position: relative;
+    overflow-x: hidden;
 }
 
 h4 {
@@ -43,12 +45,13 @@ h4 {
 
 .centered-elements {
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 }
 
 .centered-elements h4 {
     display: none;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 24px;
 }
 
 .centered-elements a {
@@ -127,9 +130,8 @@ h4 {
 }
 
 .main-footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    max-width: 1200px;
 }
 
 .design-section {
@@ -147,4 +149,30 @@ h4 {
     height: auto;
     display: block;
     margin: 0 auto;
+}
+
+@keyframes changeColor {
+    0% {
+        color: #333;
+    }
+
+    25% {
+        color: #610332;
+    }
+
+    50% {
+        color: #02533b;
+    }
+
+    75% {
+        color: #0056b3;
+    }
+
+    100% {
+        color: #610332;
+    }
+}
+
+#processingMessage h4 {
+    animation: changeColor 3s infinite;
 }
