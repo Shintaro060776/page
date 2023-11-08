@@ -578,3 +578,76 @@ nav.is-active {
         display: flex;
     }
 }
+
+@media screen and (max-width: 752px) {
+
+    .wrapper,
+    #header,
+    .portofolio {
+        padding: 0 20px;
+    }
+
+    .card {
+        width: auto;
+        margin: 10px;
+    }
+
+    .box {
+        flex-direction: column;
+    }
+
+    .sec-title,
+    h5 {
+        font-size: 1.2rem;
+    }
+
+    .paragraph p {
+        font-size: 0.9rem;
+    }
+
+    .card .button {
+        padding: 10px 20px;
+    }
+
+    #news dl {
+        flex-direction: column;
+    }
+
+    #news dt,
+    #news dd {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    #news dt {
+        border-bottom: 1px solid #c8c8c8;
+    }
+
+    dl dt,
+    dl dd {
+        font-size: 0.9rem;
+    }
+
+    body {
+        font-size: 0.9rem;
+    }
+
+    h2.sec-title {
+        font-size: 1.8rem;
+    }
+
+    p,
+    li,
+    a {
+        font-size: 0.9rem;
+    }
+
+    #news dt {
+        border-bottom: none;
+    }
+
+    #news dd {
+        border-top: none;
+    }
+}

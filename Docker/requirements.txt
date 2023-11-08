@@ -1,7 +1,5 @@
-numpy>=1.18.5
-torch>=1.8.1
-librosa>=0.8.0
-tqdm>=4.46.0
-matplotlib>=3.2.1
-tensorflow>=2.3.0
-unidecode
+Pillow
+opencv-python-headless
+torch==1.8.1
+torchvision==0.9.1
+pandas
