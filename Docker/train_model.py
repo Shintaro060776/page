@@ -40,7 +40,6 @@ class CustomDataset(Dataset):
             label = class_labels[label_str]
             img_path = os.path.join(self.img_dir, img_name)
             image = Image.open(img_path).convert('RGB')
-        # Assuming label is already an integer. If not, convert it here.
             if self.transform:
                 image = self.transform(image)
             return image, label
@@ -49,14 +48,12 @@ class CustomDataset(Dataset):
             raise
 
 
-# Define a transform to normalize the data
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Resize((256, 256)),
     transforms.Normalize((0.5,), (0.5,))
 ])
 
-# Assuming folder structure is '/page/Docker/rendered_256x256/cat' and '/page/Docker/rendered_256x256/human'
 train_data = CustomDataset(
     annotations_file='foldername.csv',
     img_dir='rendered_256x256',
@@ -65,33 +62,27 @@ train_data = CustomDataset(
 
 train_loader = DataLoader(train_data, batch_size=4, shuffle=True)
 
-# Define your model (Example using a simple model, replace with your actual model architecture)
 model = torch.nn.Sequential(
     torch.nn.Flatten(),
     torch.nn.Linear(256*256*3, 512),
     torch.nn.ReLU(),
-    torch.nn.Linear(512, 15)  # Assuming two classes: cat and human
+    torch.nn.Linear(512, 15)
 )
 
-# Loss function and optimizer
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
 
-# Training loop
 num_epochs = 5
 for epoch in range(num_epochs):
     for i, data in enumerate(train_loader):
         try:
             inputs, labels = data
-            # Check the shape of inputs and labels
             print(
                 f"Batch {i}, inputs shape: {inputs.shape}, labels shape: {labels.shape}")
 
-            # Forward pass
             outputs = model(inputs)
             loss = criterion(outputs, labels)
 
-            # Backward and optimize
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -99,10 +90,8 @@ for epoch in range(num_epochs):
             print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item()}')
         except Exception as e:
             print(f"Error in batch {i}: {e}")
-            # エラーがあればそれ以上実行しない
             break
 
-# Save the model
 model_save_path = '/page/Docker/model.pth'
 os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
 torch.save(model.state_dict(), model_save_path)

@@ -1,0 +1,214 @@
+.App {
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: aqua;
+}
+
+#drawing {
+  margin-top: 20px;
+}
+
+canvas {
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #cc0b5b;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #770544;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.drawing-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 400px;
+  background-color: rgb(229, 236, 236);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.design-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+}
+
+.design-container img {
+  width: 100%;
+  max-width: 1500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.intro {
+  color: #333;
+  padding: 20px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+.intro h1 {
+  font-size: 5rem;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  font-size: 1rem;
+}
+
+.intro h1,
+.intro p {
+  margin: 0;
+  padding: 80px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .intro h1 {
+    font-size: 2.5rem;
+  }
+
+  .intro p {
+    font-size: 0.8rem;
+  }
+
+  .design-container {
+    width: 80%;
+  }
+
+}
+
+.App-header {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: linear-gradient(120deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+.intro h1,
+.intro p {
+  margin: 0;
+  width: 100%;
+}
+
+.design-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.drawing-form {
+  max-width: 90%;
+}
+
+@media (max-width: 768px) {
+  .drawing-form {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .design-container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .drawing-form {
+    width: 95%;
+    max-width: 300px;
+  }
+
+  .design-container {
+    width: 80%;
+  }
+}
