@@ -39,14 +39,21 @@ nav ul li a:hover {
   margin-top: 20px;
 }
 
-canvas {
+.canvas-container {
+  width: 100%;
   margin-bottom: 20px;
+}
+
+canvas {
+  background-color: aqua;
+  width: 100%;
 }
 
 .buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
+  margin-top: 20px;
 }
 
 button {
@@ -88,14 +95,17 @@ button:hover {
   width: 50%;
   max-width: 400px;
   background-color: rgb(229, 236, 236);
-  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 20;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 20px auto;
   transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .form-content {
@@ -179,6 +189,14 @@ button:hover {
 .intro p {
   margin: 0;
   width: 100%;
+}
+
+.intro p a {
+  text-decoration: none;
+}
+
+.intro p a:hover {
+  color: aqua;
 }
 
 .design-container img {

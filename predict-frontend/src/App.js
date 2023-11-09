@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -6,6 +6,28 @@ function App() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showDesign, setShowDesign] = useState(false);
+
+  const resizeCanvas = () => {
+    if (canvasRef.current) {
+      const canvas = canvasRef.current;
+      const container = canvas.parentNode;
+      if (container) {
+        // Set the canvas size to be the container size minus the height of the buttons
+        const buttonsHeight = 60; // Adjust as needed based on your button size
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight - buttonsHeight;
+      }
+    }
+  };
+
+  useEffect(() => {
+    // This code runs after the component is mounted
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // This will clean up the event listener when the component unmounts
+    return () => window.removeEventListener('resize', resizeCanvas);
+  }, []);
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
@@ -115,35 +137,41 @@ function App() {
       <main>
         {showForm && (
           <div className='drawing-form'>
-            <form>
-              <div className="form-content">
-                <canvas
-                  ref={canvasRef}
-                  onMouseDown={startDrawing}
-                  onMouseUp={stopDrawing}
-                  onMouseMove={draw}
-                  width="800"
-                  height="600"
-                />
-                <div className="buttons">
-                  <button type="button" onClick={sendDrawingForAnimation}>Animation</button>
-                  <button type="button" onClick={clearCanvas}>Clear</button>
+            <div className='canvas-container'>
+              <form>
+                <div className="form-content">
+                  <canvas
+                    ref={canvasRef}
+                    onMouseDown={startDrawing}
+                    onMouseUp={stopDrawing}
+                    onMouseMove={draw}
+                    width="800"
+                    height="600"
+                  />
+                  <div className="buttons">
+                    <button type="button" onClick={sendDrawingForAnimation}>Animation</button>
+                    <button type="button" onClick={clearCanvas}>Clear</button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        )}
-        {showDesign && (
-          <div className='design-container'>
-            <img src="system9.png" alt="Design" />
-          </div>
-        )}
-      </main>
+        )
+        }
+        {
+          showDesign && (
+            <div className='design-container'>
+              <img src="system9.png" alt="Design" />
+            </div>
+          )
+        }
+      </main >
       <section className='intro'>
         <h1>Discover connection between Human and AI</h1>
         <p>This service is gonna give new oppotunity to draw cat image and make it move/animate. Therefore I want you to explore this service a lot</p>
+        <p><a href='http://neilaeden.com'>Back to Top Page</a></p>
       </section>
-    </div>
+    </div >
   );
 }
 
