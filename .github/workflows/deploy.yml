@@ -46,6 +46,7 @@ jobs:
       - name: Build the predict-frontend app
         run: |
           cd predict-frontend
+          npm install
           npm run build
   
       - name: Install dependencies for predict-backend
