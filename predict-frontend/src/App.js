@@ -110,7 +110,7 @@ function App() {
     const imageData = canvas.toDataURL('image/png');
 
     try {
-      const response = await fetch('http://localhost:8000/api/upload', {
+      const response = await fetch('http://neilaeden.com/api/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
