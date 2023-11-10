@@ -12,8 +12,7 @@ function App() {
       const canvas = canvasRef.current;
       const container = canvas.parentNode;
       if (container) {
-        // Set the canvas size to be the container size minus the height of the buttons
-        const buttonsHeight = 60; // Adjust as needed based on your button size
+        const buttonsHeight = 60;
         canvas.width = container.offsetWidth;
         canvas.height = container.offsetHeight - buttonsHeight;
       }
@@ -21,13 +20,33 @@ function App() {
   };
 
   useEffect(() => {
-    // This code runs after the component is mounted
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // This will clean up the event listener when the component unmounts
     return () => window.removeEventListener('resize', resizeCanvas);
   }, []);
+
+  const getTouchPos = (canvasDom, touchEvent) => {
+    const rect = canvasDom.getBoundingClientRect();
+    return {
+      x: touchEvent.touches[0].clientX - rect.left,
+      y: touchEvent.touches[0].clientY - rect.top
+    };
+  }
+
+  const startDrawingTouch = (event) => {
+    const touch = getTouchPos(canvasRef.current, event);
+    startDrawing({ nativeEvent: { offsetX: touch.x, offsetY: touch.y } });
+  };
+
+  const drawTouch = (event) => {
+    const touch = getTouchPos(canvasRef.current, event);
+    draw({ nativeEvent: { offsetX: touch.x, offsetY: touch.y } });
+  };
+
+  const stopDrawingTouch = () => {
+    stopDrawing();
+  };
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
@@ -91,7 +110,7 @@ function App() {
     const imageData = canvas.toDataURL('image/png');
 
     try {
-      const response = await fetch('/api/upload', {
+      const response = await fetch('http://localhost:8000/api/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -145,6 +164,9 @@ function App() {
                     onMouseDown={startDrawing}
                     onMouseUp={stopDrawing}
                     onMouseMove={draw}
+                    onTouchStart={startDrawingTouch}
+                    onTouchMove={drawTouch}
+                    onTouchEnd={stopDrawingTouch}
                     width="800"
                     height="600"
                   />
