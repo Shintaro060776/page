@@ -108,14 +108,17 @@ function App() {
   const sendDrawingForAnimation = async () => {
     const canvas = canvasRef.current;
     const imageData = canvas.toDataURL('image/png');
+    const formData = new FormData();
+    formData.append('image', imageData);
 
     try {
       const response = await fetch('http://neilaeden.com/api/upload', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ image: imageData })
+        // headers: {
+        //   'Content-Type': 'application/json'
+        // },
+        // body: JSON.stringify({ image: imageData })
+        body: formData
       });
 
       const data = await response.json();
