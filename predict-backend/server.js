@@ -1,38 +1,27 @@
 const express = require('express');
 const axios = require('axios');
-const multer = require('multer');
-const upload = multer({ dest: 'upload/' });
-const fs = require('fs');
-
 const app = express();
+
+app.use(express.json({ limit: '50mb' }));
+
 const API_GATEWAY_URL = 'https://4n5nhyipoc.execute-api.ap-northeast-1.amazonaws.com/prd/predict';
 
-app.post('/api/upload', upload.single('image'), async (req, res) => {
-    const file = req.file;
-    console.log("Received file:", file);
+app.post('/api/upload', async (req, res) => {
+    const base64Image = req.body.image;
+    if (!base64Image) {
+        return res.status(400).send({ message: 'No image data provided' });
+    }
 
-    const imageBuffer = fs.readFileSync(file.path);
-    const base64Image = imageBuffer.toString('base64');
-    console.log("Base64 Encoded Image:", base64Image);
-
-    const requestData = {
-        image: base64Image
-    };
-    console.log("Sending Request Data:", requestData);
-
+    const requestData = { image: base64Image };
     try {
         const lambdaResponse = await axios.post(API_GATEWAY_URL, requestData, {
             headers: { 'Content-Type': 'application/json' }
         });
-        console.log("Received Response:", lambdaResponse.data);
-
         res.send({ prediction: lambdaResponse.data });
     } catch (error) {
         console.error('Error calling Lambda function:', error);
-        res.status(500).send('Error processing image');
+        res.status(500).send({ message: 'Error processing image' });
     }
-
-    fs.unlinkSync(file.path);
 });
 
 const port = 8000;
