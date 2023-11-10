@@ -7,6 +7,17 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [showDesign, setShowDesign] = useState(false);
 
+  const [typedText, setTypedText] = useState('');
+  const fullText = "Discover connection between Human and AI";
+
+  useEffect(() => {
+    if (typedText.length < fullText.length) {
+      setTimeout(() => {
+        setTypedText(fullText.substring(0, typedText.length + 1));
+      }, 150);
+    }
+  }, [typedText, fullText]);
+
   const resizeCanvas = () => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
@@ -190,7 +201,7 @@ function App() {
         }
       </main >
       <section className='intro'>
-        <h1>Discover connection between Human and AI</h1>
+        <h1>{typedText}<span className="cursor">|</span></h1>
         <p>This service is gonna give new oppotunity to draw cat image and make it move/animate. Therefore I want you to explore this service a lot</p>
         <p><a href='http://neilaeden.com'>Back to Top Page</a></p>
       </section>
