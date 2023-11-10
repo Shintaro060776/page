@@ -9,28 +9,29 @@ const API_GATEWAY_URL = 'https://4n5nhyipoc.execute-api.ap-northeast-1.amazonaws
 
 app.post('/api/upload', upload.single('image'), async (req, res) => {
     const file = req.file;
+    console.log("Received file:", file);
+
     const imageBuffer = fs.readFileSync(file.path);
+    const base64Image = imageBuffer.toString('base64');
+    console.log("Base64 Encoded Image:", base64Image);
+
+    const requestData = {
+        image: base64Image
+    };
+    console.log("Sending Request Data:", requestData);
 
     try {
-        const lambdaResponse = await axios({
-            method: 'post',
-            url: API_GATEWAY_URL,
-            data: {
-                image: imageBuffer.toString('base64')
-            },
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        const lambdaResponse = await axios.post(API_GATEWAY_URL, requestData, {
+            headers: { 'Content-Type': 'application/json' }
         });
+        console.log("Received Response:", lambdaResponse.data);
 
-        const predictResult = lambdaResponse.data;
-        res.send({
-            prediction: predictionResult
-        });
+        res.send({ prediction: lambdaResponse.data });
     } catch (error) {
         console.error('Error calling Lambda function:', error);
         res.status(500).send('Error processing image');
     }
+
     fs.unlinkSync(file.path);
 });
 
