@@ -116,12 +116,30 @@ function App() {
     }, 500);
   };
 
+  const resizeImage = (imageDataURL, width, height) => {
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = width;
+      canvas.height = height;
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL());
+      };
+      img.onerror = reject;
+      img.src = imageDataURL;
+    });
+  };
+
   const sendDrawingForAnimation = async () => {
     const canvas = canvasRef.current;
     const imageDataURL = canvas.toDataURL('image/png');
-    const base64Image = imageDataURL.split(',')[1];
 
     try {
+      const resizedImageDataURL = await resizeImage(imageDataURL, 256, 256);
+      const base64Image = resizedImageDataURL.split(',')[1];
+
       const response = await fetch('http://neilaeden.com/api/upload', {
         method: 'POST',
         headers: {
