@@ -95,7 +95,29 @@ function App() {
       animateMouth();
     } else {
       console.log('No valid label found for animation');
+      animateEyes();
     }
+  };
+
+  const animateEyes = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let eyePosition = 0;
+
+    const drawEyes = () => {
+      ctx.beginPath();
+      ctx.ellipse(370 + eyePosition, 300, 15, 20, 0, 0, 2 * Math.PI);
+      ctx.ellipse(430 + eyePosition, 300, 15, 20, 0, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      eyePosition = (eyePosition + 5) % 60;
+    };
+
+    setInterval(() => {
+      ctx.clearRect(310, 280, 180, 40);
+      drawEyes();
+    }, 200);
   };
 
   const animateMouth = (canvas) => {
