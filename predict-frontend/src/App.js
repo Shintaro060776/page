@@ -8,7 +8,7 @@ function App() {
   const [showDesign, setShowDesign] = useState(false);
 
   const [typedText, setTypedText] = useState('');
-  const fullText = "Discover connection between Human and AI";
+  const fullText = "Discover connection between Human and AI and Nuko-sama(Cat)🐱🐈‍⬛";
 
   useEffect(() => {
     if (typedText.length < fullText.length) {
@@ -148,6 +148,11 @@ function App() {
     setShowDesign(true);
   }
 
+  const specialTextStyle = {
+    color: 'purple',
+    fontWeight: 'bold'
+  };
+
   return (
     <div className='App'>
       <header className='App-header'>
@@ -183,8 +188,8 @@ function App() {
                     height="600"
                   />
                   <div className="buttons">
-                    <button type="button" onClick={sendDrawingForAnimation}>Animation</button>
-                    <button type="button" onClick={clearCanvas}>Clear</button>
+                    <button type="button" onClick={sendDrawingForAnimation}>😸Animation</button>
+                    <button type="button" onClick={clearCanvas}>😻Clear</button>
                   </div>
                 </div>
               </form>
@@ -202,7 +207,8 @@ function App() {
       </main >
       <section className='intro'>
         <h1>{typedText}<span className="cursor">|</span></h1>
-        <p>This service is gonna give new oppotunity to draw cat image and make it move/animate. Therefore I want you to explore this service a lot</p>
+        <p>This service is gonna give new oppotunity to draw cat image and make it move/animate. Therefore I want you to explore this service a lot.</p>
+        <p style={specialTextStyle}>Actually server for machine-learning is really expensive. Therefore I usually stop this server. If you wanna use this service, please let me know.</p>
         <p><a href='http://neilaeden.com'>Back to Top Page</a></p>
       </section>
     </div >

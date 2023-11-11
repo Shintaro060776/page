@@ -48,7 +48,7 @@ nav ul li a:hover {
 }
 
 canvas {
-  background-color: aqua;
+  background-color: rgb(174, 243, 243);
   width: 100%;
 }
 
@@ -77,7 +77,7 @@ button {
 }
 
 button:hover {
-  background-color: #770544;
+  background-color: #f052a9;
 }
 
 .overlay {
@@ -97,7 +97,7 @@ button:hover {
   transform: translate(-50%, -50%);
   width: 50%;
   max-width: 400px;
-  background-color: rgb(229, 236, 236);
+  background-color: #610332;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 20;
   border-radius: 8px;
