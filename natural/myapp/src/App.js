@@ -43,6 +43,7 @@ function App() {
       <header className="App-header">
         <span className='App-title'>Joke GPT</span>
         <a href='#design' onClick={handleDesignLinkClick} className="Design-link">Design</a>
+        <a href='http://neilaeden.com'>BackToTopPage</a>
       </header>
       <div className="Joke-output">
         {displayedJoke}
