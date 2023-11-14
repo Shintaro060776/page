@@ -54,6 +54,17 @@ jobs:
           cd predict-backend
           npm install
 
+      - name: Build the natural app
+        run: |
+          cd natural
+          npm install
+          npm run build
+    
+      - name: Install dependencies for natural-backend
+        run: |
+          cd natural_backend
+          npm install
+
       # - name: Install dependencies for quantum
       #   run: |
       #     cd quantum/my-quantum-music-app
@@ -93,6 +104,10 @@ jobs:
           # Deploy the built predict React app
           rsync -avz -e "ssh -i deploy_key -o ServerAliveInterval=60 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/predict-frontend/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/predict-frontend/
           rsync -avz -e "ssh -i deploy_key -o ServerAliveInterval=60 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/predict-backend/ ec2-user@$SERVER_IP:/usr/share/nginx/html/predict-backend/
+
+          # Deploy the built natural React app
+          rsync -avz -e "ssh -i deploy_key -o ServerAliveInterval=60 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/natural/build/ ec2-user@$SERVER_IP:/usr/share/nginx/html/natural/
+          rsync -avz -e "ssh -i deploy_key -o ServerAliveInterval=60 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no" /home/runner/work/page/page/natural_backend/ ec2-user@$SERVER_IP:/usr/share/nginx/html/natural_backend/
 
           ssh -i deploy_key -o ServerAliveInterval=60 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GSSAPIAuthentication=no ec2-user@$SERVER_IP 'sudo systemctl restart nginx'
           rm -f deploy_key
