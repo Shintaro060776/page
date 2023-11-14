@@ -11,22 +11,29 @@ function App() {
   const handleGenerateJoke = async () => {
     try {
       setIsTyping(true);
-      const response = await axios.post('http://neilaeden.com/api/generate-joke', { topic: inputValue });
-      setDisplayedJoke('');
+      const response = await axios.post('http://neilaeden.com/api/generate-joke', { prompt: inputValue });
 
-      let index = 0;
-      const typeWriter = () => {
-        if (index < response.data.joke.length) {
-          setDisplayedJoke((prev) => prev + response.data.joke[index]);
-          index++;
-          setTimeout(typeWriter, 60);
-        } else {
-          setIsTyping(false);
-        }
-      };
-      typeWriter();
+      if (response.data && response.data.joke) {
+        setDisplayedJoke('');
+
+        let index = 0;
+        const typeWriter = () => {
+          if (index < response.data.joke.length) {
+            setDisplayedJoke((prev) => prev + response.data.joke[index]);
+            index++;
+            setTimeout(typeWriter, 60);
+          } else {
+            setIsTyping(false);
+          }
+        };
+        typeWriter();
+      } else {
+        console.error('Joke data is not available in the response');
+        setIsTyping(false);
+      }
     } catch (error) {
       console.error('Error fetching joke:', error);
+      setIsTyping(false);
     }
   };
 
