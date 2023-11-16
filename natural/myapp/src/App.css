@@ -176,7 +176,7 @@ header {
   padding: 20px;
   text-align: center;
   color: white;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   opacity: 1;
   visibility: visible;
   transition: opacity 2s ease-in-out, visibility 2s ease-in-out;

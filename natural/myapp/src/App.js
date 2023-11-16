@@ -16,7 +16,7 @@ function App() {
     setWelcomeMessageVisible(true);
     let jokeText = '';
     let index = 0;
-    const welcomeText = 'Enjoy Joke GPT. I want you to explore this service and laugh at generated text from AI.';
+    const welcomeText = 'Enjoy Joke GPT. I want you to explore this service and laugh at generated text from AI. Server for machine-learning is expensive, hence i usually stop this. Please let me know if you wanna use it';
 
     function typeWriter(text) {
       if (index < text.length) {
