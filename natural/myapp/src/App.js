@@ -19,7 +19,7 @@ function App() {
       if (response.data && response.data.joke) {
         setDisplayedJoke('');
 
-        const jokeText = response.data.joke;
+        const jokeText = response.data.joke.split('');
         let index = 0;
         const typeWriter = () => {
           if (index < jokeText.length) {
