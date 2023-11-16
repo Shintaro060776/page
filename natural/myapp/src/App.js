@@ -14,16 +14,13 @@ function App() {
       setIsTyping(true);
       const response = await axios.post('http://neilaeden.com/api/generate-joke', { prompt: inputValue });
 
-      console.log(response.data);
-
       if (response.data && response.data.joke) {
-        setDisplayedJoke('');
-
-        const jokeText = response.data.joke.split('');
+        let jokeText = '';
         let index = 0;
         const typeWriter = () => {
-          if (index < jokeText.length) {
-            setDisplayedJoke((prev) => prev + jokeText[index]);
+          if (index < response.data.joke.length) {
+            jokeText += response.data.joke[index];
+            setDisplayedJoke(jokeText);
             index++;
             setTimeout(typeWriter, 60);
           } else {
