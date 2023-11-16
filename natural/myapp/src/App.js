@@ -7,6 +7,7 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [showImage, setShowImage] = useState(false);
   const [displayedJoke, setDisplayedJoke] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleGenerateJoke = async () => {
     try {
@@ -33,6 +34,7 @@ function App() {
       }
     } catch (error) {
       console.error('Error fetching joke:', error);
+      setErrorMessage(error.response?.data?.error || 'An unexpected error occurred');
       setIsTyping(false);
     }
   };
@@ -55,6 +57,7 @@ function App() {
       <div className="Joke-output">
         {displayedJoke}
         {isTyping && <span className='caret'></span>}
+        {errorMessage && <div className='Error-message'>{errorMessage}</div>}
       </div>
       <input
         type="text"

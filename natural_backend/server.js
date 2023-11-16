@@ -20,11 +20,11 @@ app.post('/api/generate-joke', async (req, res) => {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        if (lambdaResponse.data && lambdaResponse.data.joke) {
-            res.send({ joke: lambdaResponse.data.joke });
-        } else {
+        if (!lambdaResponse.data || !lambdaResponse.data.joke) {
             throw new Error('Incomplete response data from Lambda');
         }
+
+        res.send({ joke: lambdaResponse.data.joke });
     } catch (error) {
         console.error('Error calling API Gateway:', error.message);
         const status = error.response?.status || 500;

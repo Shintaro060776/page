@@ -7,8 +7,7 @@ from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pad_sequence
 from torch.optim import Adam
 from collections import Counter
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelBinarizer
+import tarfile
 
 
 class JokesDataset(Dataset):
@@ -42,11 +41,11 @@ if __name__ == '__main__':
 
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--batch-size', type=int, default=64)
-    parser.add_argument('--vocabulary-size', type=int, default=10000)
+    parser.add_argument('--vocabulary-size', type=int, default=5041)
     parser.add_argument('--data-dir', type=str,
-                        default=os.environ['SM_CHANNEL_TRAIN'])
+                        default=os.environ.get('SM_CHANNEL_TRAIN', '.'))
     parser.add_argument('--model-dir', type=str,
-                        default=os.environ['SM_MODEL_DIR'])
+                        default=os.environ.get('SM_MODEL_DIR', '.'))
 
     args = parser.parse_known_args()[0]
 
@@ -91,5 +90,10 @@ if __name__ == '__main__':
             optimizer.step()
         print(f'Epoch {epoch+1}/{args.epochs} Loss: {loss.item()}')
 
-    torch.save(model.state_dict(), os.path.join(
-        args.model_dir, 'model.pth'))
+    model_save_path = os.path.join(args.model_dir, 'model.pth')
+    archive_path = os.path.join(args.model_dir, 'model.tar.gz')
+
+    torch.save(model.state_dict(), model_save_path)
+
+    with tarfile.open(archive_path, mode='w:gz') as archive:
+        archive.add(model_save_path, arcname='model.pth')

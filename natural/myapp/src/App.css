@@ -100,6 +100,7 @@ header {
   padding: 10px;
   /* border: 2px solid #ff0037; */
   border-radius: 4px;
+  font-size: 16px;
 }
 
 .Generate-joke-button {
