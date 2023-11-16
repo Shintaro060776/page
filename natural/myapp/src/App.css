@@ -171,6 +171,22 @@ header {
   padding: 0;
 }
 
+.Welcome-message {
+  margin-top: 20px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 2s ease-in-out, visibility 2s ease-in-out;
+}
+
+.Welcome-message.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
 @keyframes blink {
 
   0%,

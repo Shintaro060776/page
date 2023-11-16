@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -8,6 +8,36 @@ function App() {
   const [showImage, setShowImage] = useState(false);
   const [displayedJoke, setDisplayedJoke] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [welcomeMessage, setWelcomeMessage] = useState('');
+  const [welcomeMessageVisible, setWelcomeMessageVisible] = useState(false);
+  const [messageVisible, setMessageVisible] = useState(true);
+
+  useEffect(() => {
+    setWelcomeMessageVisible(true);
+    let jokeText = '';
+    let index = 0;
+    const welcomeText = 'Enjoy Joke GPT. I want you to explore this service and laugh at generated text from AI.';
+
+    function typeWriter(text) {
+      if (index < text.length) {
+        jokeText += text.charAt(index);
+        setWelcomeMessage(jokeText);
+        index++;
+        setTimeout(() => typeWriter(text), 150);
+      } else {
+        setTimeout(() => {
+          setMessageVisible(false);
+        }, 5000);
+      }
+    }
+
+    typeWriter(welcomeText);
+
+    return () => {
+      clearTimeout();
+    };
+  }, []);
+
 
   const handleGenerateJoke = async () => {
     try {
@@ -59,6 +89,11 @@ function App() {
         {isTyping && <span className='caret'></span>}
         {errorMessage && <div className='Error-message'>{errorMessage}</div>}
       </div>
+      {welcomeMessageVisible && (
+        <div className={`Welcome-message ${messageVisible ? 'visible' : 'hidden'}`}>
+          {welcomeMessage}
+        </div>
+      )}
       <input
         type="text"
         value={inputValue}
