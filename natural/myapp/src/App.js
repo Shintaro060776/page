@@ -33,7 +33,7 @@ function App() {
         setIsTyping(false);
       }
     } catch (error) {
-      console.error('Error fetching joke:', error);
+      console.error('Error fetching joke:', error.response?.data?.error, error.message);
       setErrorMessage(error.response?.data?.error || 'An unexpected error occurred');
       setIsTyping(false);
     }

@@ -26,7 +26,7 @@ app.post('/api/generate-joke', async (req, res) => {
 
         res.send({ joke: lambdaResponse.data.joke });
     } catch (error) {
-        console.error('Error calling API Gateway:', error.message);
+        console.error('Error calling API Gateway:', error.response?.status, error.response?.data, error.message);
         const status = error.response?.status || 500;
         const message = error.response?.data?.error || 'Error generating joke';
         res.status(status).send({ error: message });

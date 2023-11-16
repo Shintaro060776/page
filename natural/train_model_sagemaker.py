@@ -8,6 +8,14 @@ from torch.nn.utils.rnn import pad_sequence
 from torch.optim import Adam
 from collections import Counter
 import tarfile
+import re
+
+
+def preprocess_text(text):
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9\s]", '', text)
+    text = re.sub(r"\s+", ' ', text)
+    return text.strip()
 
 
 class JokesDataset(Dataset):
@@ -41,7 +49,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--batch-size', type=int, default=64)
-    parser.add_argument('--vocabulary-size', type=int, default=5041)
+    parser.add_argument('--vocabulary-size', type=int, default=5042)
     parser.add_argument('--data-dir', type=str,
                         default=os.environ.get('SM_CHANNEL_TRAIN', '.'))
     parser.add_argument('--model-dir', type=str,
@@ -50,17 +58,17 @@ if __name__ == '__main__':
     args = parser.parse_known_args()[0]
 
     df = pd.read_csv(os.path.join(args.data_dir, 'normalized_jokes.csv'))
-    jokes = df['Normalized Joke'].tolist()
+    jokes = df['Normalized Joke'].apply(preprocess_text).tolist()
 
     token_counts = Counter(word for joke in jokes for word in joke.split())
     vocab = {word: i + 1 for i,
              (word, _) in enumerate(token_counts.most_common(args.vocabulary_size - 1))}
     vocab['<PAD>'] = 0
+    vocab['<END>'] = len(vocab)
 
-    encoded_jokes = [[vocab[word] for word in joke.split() if word in vocab]
-                     for joke in jokes]
-
-    filtered_encoded_jokes = [seq for seq in encoded_jokes if len(seq) >= 2]
+    encoded_jokes = [[vocab[word] for word in joke.split(
+    ) if word in vocab] + [vocab['<END>']] for joke in jokes]
+    filtered_encoded_jokes = [seq for seq in encoded_jokes if len(seq) >= 3]
 
     if not filtered_encoded_jokes:
         raise ValueError(

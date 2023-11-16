@@ -31,14 +31,14 @@ def lambda_handler(event, context):
         )
 
         result = json.loads(response['Body'].read().decode())
+        logger.info(f"SageMaker response data: {result}")
 
-        if 'joke' not in result:
-            raise ValueError(
-                "Expected field 'joke' is missing in the response")
+        joke = result.get('joke', '')
+        filtered_joke = joke.replace('<UNK>', '').strip()
 
         return {
             'statusCode': 200,
-            'body': json.dumps(result)
+            'body': json.dumps({'joke': filtered_joke})
         }
     except Exception as e:
         logger.error(f"Error during processing: {str(e)}", exc_info=True)
