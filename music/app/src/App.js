@@ -46,7 +46,7 @@ function App() {
         <img
           src="system11.png"
           alt="SystemImage"
-          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}
+          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, width: '90%', height: 'auto' }}
         />
       )}
       <motion.div
