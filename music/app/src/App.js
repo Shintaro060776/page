@@ -38,8 +38,8 @@ function App() {
   };
 
   return (
-    <div className="App" onClick={hideImage} style={{ backgroundColor: '#222', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ position: 'absolute', top: 0, right: 0, padding: '20px' }}>
+    <div className="App" onClick={hideImage} style={{ backgroundColor: '#222', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflowX: 'hidden' }}>
+      <div style={{ position: 'absolute', top: 0, right: 0, padding: '20px', marginBottom: '30px' }}>
         <RoundButton text="System" onClick={(e) => { e.stopPropagation(); handleShowSystemImage(); }} />
       </div>
       {showImage && (
@@ -58,16 +58,16 @@ function App() {
           borderRadius: '20px',
           boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
           padding: '40px',
-          width: '80%',
-          maxWidth: '800px',
-          minHeight: '400px',
-          height: 'auto',
+          width: '60%',
+          maxWidth: '700px',
+          minHeight: '350px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'space-between',
           position: 'relative',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          margin: '0 10px',
         }}
       >
         <TransparentTextArea value={lyrics} onChange={handleInputChange} style={{ backgroundColor: 'transparent' }} />
