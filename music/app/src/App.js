@@ -38,7 +38,7 @@ function App() {
   };
 
   return (
-    <div className="App" onClick={hideImage} style={{ backgroundColor: '#222', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflowX: 'hidden' }}>
+    <div className="App" onClick={hideImage} style={{ backgroundColor: '#222', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflowX: 'hidden', position: 'relative' }}>
       <div style={{ position: 'absolute', top: 0, right: 0, padding: '20px', marginBottom: '30px' }}>
         <RoundButton text="System" onClick={(e) => { e.stopPropagation(); handleShowSystemImage(); }} />
       </div>
@@ -61,6 +61,7 @@ function App() {
           width: '60%',
           maxWidth: '700px',
           minHeight: '350px',
+          height: 'auto',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -68,14 +69,15 @@ function App() {
           position: 'relative',
           overflow: 'hidden',
           margin: '0 10px',
+          marginTop: '70px',
         }}
       >
-        <TransparentTextArea value={lyrics} onChange={handleInputChange} style={{ backgroundColor: 'transparent' }} />
+        <TransparentTextArea value={lyrics} onChange={handleInputChange} style={{ backgroundColor: 'transparent', color: 'white', padding: '10px', overflowY: 'auto', minHeight: '100px', maxHeight: '300ox', resize: 'vertical', fontSize: '8px' }} />
         <textarea
           value={userInput}
           onChange={handleInputChange}
           placeholder='歌詞のイメージを入力してください'
-          style={{ width: '100%', padding: '10px', margin: '20px 0', marginTop: '300px', borderRadius: '10px', border: '1px solid #ddd', outline: 'none' }}
+          style={{ width: '100%', padding: '10px', margin: '20px 0', marginTop: '300px', borderRadius: '10px', border: '1px solid #ddd', outline: 'none', fontSize: '16px' }}
         />
         <RoundButton
           text="Generate Lyrics"
