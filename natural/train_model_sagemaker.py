@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
     token_counts = Counter(word for joke in jokes for word in joke.split())
     vocab = {word: i + 1 for i,
-             (word, _) in enumerate(token_counts.most_common(args.vocabulary_size - 1))}
+             (word, _) in enumerate(token_counts.most_common(args.vocabulary_size))}
     vocab['<PAD>'] = 0
     vocab['<END>'] = len(vocab)
 
