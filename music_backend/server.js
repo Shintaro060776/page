@@ -24,7 +24,7 @@ const invokeLambda = async (data) => {
     }
 };
 
-app.post('generate-lyrics', async (req, res) => {
+app.post('/generate-lyrics', async (req, res) => {
     try {
         const requestData = req.body;
         const lambdaResponse = await invokeLambda(requestData);
