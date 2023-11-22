@@ -21,7 +21,13 @@ function App() {
       setLyrics(response.data.lyrics);
     } catch (error) {
       console.error('Error generating lyrics:', error);
-      alert('歌詞の生成に失敗しました');
+      if (error.response) {
+        alert(`Error: ${error.response.status} ${error.response.data}`);
+      } else if (error.request) {
+        alert("Error: No response from the server. Please try again later");
+      } else {
+        alert("An unknown error occurred. please try again");
+      }
     }
   };
 

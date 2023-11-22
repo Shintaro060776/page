@@ -30,7 +30,12 @@ app.post('/generate-lyrics', async (req, res) => {
         const lambdaResponse = await invokeLambda(requestData);
         res.json(lambdaResponse);
     } catch (error) {
-        res.status(500).send('Internal Server Error');
+        console.error(`Error processing request:`, error);
+        if (error.response) {
+            res.status(error.response.status).send(error.response.data);
+        } else {
+            res.status(500).send('Internal server error');
+        }
     }
 });
 
