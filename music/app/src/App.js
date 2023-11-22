@@ -17,9 +17,7 @@ function App() {
 
   const handleGenerateLyrics = async () => {
     try {
-      const response = await axios.post('http://neilaeden.com/generate-lyrics', {
-        text: userInput
-      });
+      const response = await axios.post('http://neilaeden.com/generate-lyrics', { text: userInput });
       setLyrics(response.data.lyrics);
     } catch (error) {
       console.error('Error generating lyrics:', error);
@@ -38,60 +36,17 @@ function App() {
   };
 
   return (
-    <div className="App" onClick={hideImage} style={{ backgroundColor: '#222', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflowX: 'hidden', position: 'relative' }}>
-      <div style={{ position: 'absolute', top: 0, right: 0, padding: '20px', marginBottom: '30px' }}>
+    <div className="App" onClick={hideImage}>
+      <div className="SystemButton">
         <RoundButton text="System" onClick={(e) => { e.stopPropagation(); handleShowSystemImage(); }} />
       </div>
-      {showImage && (
-        <img
-          src="system11.png"
-          alt="SystemImage"
-          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, width: '90%', height: 'auto' }}
-        />
-      )}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 300 }}
-        style={{
-          perspective: 1000,
-          backgroundColor: 'gray',
-          borderRadius: '20px',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-          padding: '40px',
-          width: '60%',
-          maxWidth: '700px',
-          minHeight: '350px',
-          height: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          position: 'relative',
-          overflow: 'hidden',
-          margin: '0 10px',
-          marginTop: '70px',
-        }}
-      >
-        <TransparentTextArea value={lyrics} onChange={handleInputChange} style={{ backgroundColor: 'transparent', color: 'white', padding: '10px', overflowY: 'auto', minHeight: '100px', maxHeight: '300ox', resize: 'vertical', fontSize: '8px' }} />
-        <textarea
-          value={userInput}
-          onChange={handleInputChange}
-          placeholder='歌詞のイメージを入力してください'
-          style={{ width: '100%', padding: '10px', margin: '20px 0', marginTop: '300px', borderRadius: '10px', border: '1px solid #ddd', outline: 'none', fontSize: '16px' }}
-        />
-        <RoundButton
-          text="Generate Lyrics"
-          onClick={handleGenerateLyrics}
-          style={{
-            margin: '20px 0',
-            backgroundColor: '#4CAF50',
-            color: 'white',
-            border: 'none',
-            cursor: 'pointer'
-          }}
-        />
+      {showImage && <img src="system11.png" alt="SystemImage" className="SystemImage" />}
+      <motion.div className="LyricsCard" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
+        <TransparentTextArea value={lyrics} onChange={handleInputChange} className="TransparentTextArea" />
+        <textarea value={userInput} onChange={handleInputChange} placeholder='歌詞のイメージを入力してください' className="UserInputTextArea" />
+        <RoundButton text="Generate Lyrics" onClick={handleGenerateLyrics} className="GenerateButton" />
       </motion.div>
-      <div style={{ marginTop: '20px' }}>
+      <div className="BackLinkContainer">
         <BackLink href="http://neilaeden.com" text="Back to Top Page" />
       </div>
     </div>

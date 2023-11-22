@@ -1,3 +1,86 @@
+.App {
+  background-color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.SystemButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.SystemImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 90%;
+  height: auto;
+}
+
+.LyricsCard {
+  perspective: 1000;
+  background-color: gray;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 60%;
+  max-width: 700px;
+  min-height: 350px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  margin: 0 10px;
+  margin-top: 70px;
+}
+
+.TransparentTextArea {
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+  overflow-y: auto;
+  min-height: 100px;
+  max-height: 300px;
+  resize: vertical;
+  font-size: 8px;
+}
+
+.UserInputTextArea {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  margin-top: 300px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 16px;
+}
+
+.GenerateButton {
+  margin: 20px 0;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.BackLinkContainer {
+  margin-top: 20px;
+}
+
 @media (max-width: 768px) {
   .App {
     padding: 10px;
