@@ -18,7 +18,8 @@ function App() {
   const handleGenerateLyrics = async () => {
     try {
       const response = await axios.post('http://neilaeden.com/generate-lyrics', { text: userInput });
-      setLyrics(response.data.result.lyrics);
+      const responseBody = JSON.parse(response.data.result);
+      setLyrics(responseBody.lyrics);
     } catch (error) {
       console.error('Error generating lyrics:', error);
       if (error.response) {
