@@ -110,14 +110,14 @@ def save_vocab_data(model_dir, vocab_size, vocab_dict, vocab_list):
     if model_dir is None:
         model_dir = os.environ.get('SM_MODEL_DIR', '.')
 
-    with open(os.path.join(model_dir, 'vocab_size.json'), 'w') as f:
+    with open(os.path.join(model_dir, 'vocab_size.json'), 'w', encoding='utf-8') as f:
         json.dump(vocab_size, f)
 
-    with open(os.path.join(model_dir, 'vocab_dict.json'), 'w') as f:
-        json.dump(vocab_dict, f)
+    with open(os.path.join(model_dir, 'vocab_dict.json'), 'w', encoding='utf-8') as f:
+        json.dump(vocab_dict, f, ensure_ascii=False)
 
-    with open(os.path.join(model_dir, 'vocab_list.json'), 'w') as f:
-        json.dump(vocab_list, f)
+    with open(os.path.join(model_dir, 'vocab_list.json'), 'w', encoding='utf-8') as f:
+        json.dump(vocab_list, f, ensure_ascii=False)
 
 
 def load_vocab_data(model_dir):

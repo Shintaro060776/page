@@ -1,9 +1,7 @@
-FROM python:3.8
+FROM python:3.8-slim
 
-WORKDIR /workspace
+RUN pip install boto3 torch numpy
 
-RUN pip install --no-cache-dir torch torchvision torchaudio numpy pandas scikit-learn
+COPY inference.py /opt/ml/model/code/
 
-COPY . /workspace
-
-CMD ["python", "train.py"]
+ENTRYPOINT ["python", "/opt/ml/model/code/inference.py"]
