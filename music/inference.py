@@ -29,11 +29,6 @@ class LSTMNet(nn.Module):
         return out
 
 
-# def download_from_s3(bucket, key, local_path):
-#     s3 = boto3.client('s3')
-#     s3.download_file(bucket, key, local_path)
-
-
 def model_fn(model_dir):
     logger.info("Model directory: {}".format(model_dir))
     try:
@@ -84,8 +79,22 @@ def predict_fn(input_data, model_tuple):
         with torch.no_grad():
             output = model(input_tensor)
 
-        lyrics = convert_output_to_lyrics(output, vocab_list)
-        return lyrics 
+            output = output.squeeze()
+            _, top_idx = output.topk(3)  
+            chosen_idx = top_idx[torch.randint(3, (1,))] 
+            generated_indices = [chosen_idx.item()]
+
+            for _ in range(20):
+                input_tensor = torch.tensor([[generated_indices[-1]]], dtype=torch.long)
+                output = model(input_tensor)
+                output = output.squeeze()
+                _, top_idx = output.topk(3)
+                chosen_idx = top_idx[torch.randint(3, (1,))]
+                generated_indices.append(chosen_idx.item())
+
+            lyrics = ' '.join([vocab_list.get(str(idx), "<unk>") for idx in generated_indices])
+            return lyrics
+        
     except Exception as e:
         logger.error(f"Error during prediction: {e}, Input: {input_data}")
         raise RuntimeError(f"Error during prediction: {e}")

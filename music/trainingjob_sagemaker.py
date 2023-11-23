@@ -17,13 +17,13 @@ pytorch_estimator = PyTorch(
     framework_version='1.8.0',
     py_version='py3',
     hyperparameters={
-        'epochs': 10,
+        'epochs': 20, 
         'batch_size': 32,
         'embedding_dim': 128,
         'hidden_dim': 256,
         'num_layers': 2,
-        'seq_length': 5,
-        'lr': 0.001
+        'seq_length': 10, 
+        'lr': 0.0005
     }
 )
 
