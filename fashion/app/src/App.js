@@ -15,7 +15,8 @@ function App() {
       const endpoint = "http://neilaeden.com/fashion";
 
       const response = await axios.post(endpoint);
-      setImageUrl(response.data.imageUrl);
+      const base64Image = response.data.image;
+      setImageUrl(`data:image/png;base64,${base64Image}`);
     } catch (error) {
       console.error('Error fetching image:', error);
     }
