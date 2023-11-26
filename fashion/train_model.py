@@ -58,10 +58,8 @@ class Generator(nn.Module):
             nn.BatchNorm2d(64),
             nn.ReLU(True),
             nn.ConvTranspose2d(64, 3, (4, 5), (2, 2), (1, 1), bias=False),
-            # nn.ConvTranspose2d(64, 3, 4, 2, 1, bias=False),
             nn.Tanh(),
-            # nn.AdaptiveAvgPool2d((533, 400))
-            nn.AdaptiveAvgPool2d((256, 256))
+            nn.AdaptiveAvgPool2d((533, 400))
         )
 
     def forward(self, x):
@@ -89,10 +87,7 @@ class Discriminator(nn.Module):
             nn.Flatten()
         )
 
-        final_output_size = 13 * 13 * 1
-
-        # self.linear = nn.Linear(660, 1)
-        self.linear = nn.Linear(final_output_size, 1)
+        self.linear = nn.Linear(660, 1)
         self.output = nn.Sigmoid()
 
     def forward(self, x):

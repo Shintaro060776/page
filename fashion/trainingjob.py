@@ -19,7 +19,7 @@ estimator = PyTorch(entry_point='train_model.py',
                     hyperparameters={
                         'batch_size': 64,
                         'learning_rate': 0.0002,
-                        'epochs': 50,
+                        'epochs': 1,
                         'nz': 100,
                         'data_dir': s3_input_data
                     })
