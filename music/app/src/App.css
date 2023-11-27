@@ -81,6 +81,14 @@
   margin-top: 20px;
 }
 
+.Footer {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 50px;
+}
+
 @media (max-width: 768px) {
   .App {
     padding: 10px;

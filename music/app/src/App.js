@@ -78,6 +78,9 @@ function App() {
       <div className="BackLinkContainer">
         <BackLink href="http://neilaeden.com" text="Back to Top Page" />
       </div>
+      <div className="Footer">
+        <p>&copy; 2022 Lyrics Gen All rights reserved.</p>
+      </div>
     </div>
   );
 }
