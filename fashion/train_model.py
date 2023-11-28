@@ -13,6 +13,15 @@ import boto3
 import io
 
 
+def weights_init(m):
+    classname = m.__class__.__name__
+    if classname.find('Conv') != -1:
+        nn.init.normal_(m.weight.data, 0.0, 0.02)
+    elif classname.find('BatchNorm') != -1:
+        nn.init.normal_(m.weight.data, 1.0, 0.02)
+        nn.init.constant_(m.bias.data, 0)
+
+
 class S3CustomDataset(Dataset):
     def __init__(self, bucket, prefix, transform=None):
         self.s3_client = boto3.client('s3')
@@ -45,7 +54,7 @@ class Generator(nn.Module):
     def __init__(self, nz):
         super(Generator, self).__init__()
         self.main = nn.Sequential(
-            nn.ConvTranspose2d(args.nz, 512, 4, 1, 0, bias=False),
+            nn.ConvTranspose2d(nz, 512, 4, 1, 0, bias=False),
             nn.BatchNorm2d(512),
             nn.ReLU(True),
             nn.ConvTranspose2d(512, 256, 4, 2, 1, bias=False),
@@ -92,10 +101,7 @@ class Discriminator(nn.Module):
 
     def forward(self, x):
         x = self.main(x)
-        print("Discriminator flattened output shape:", x.shape)
-        x = x.view(x.size(0), -1)
-        x = self.linear(x)
-        print("Discriminator final output shape:", x.shape)
+        x = self.linear(x.view(x.size(0), -1))
         return self.output(x)
 
 
@@ -117,18 +123,28 @@ def train(args):
         train_dataset, batch_size=args.batch_size, shuffle=True)
 
     netG = Generator(args.nz).to(device)
+    netG.apply(weights_init)
     netD = Discriminator().to(device)
-    criterion = nn.BCELoss()
-    optimizerD = optim.Adam(netD.parameters(), lr=args.learning_rate)
-    optimizerG = optim.Adam(netG.parameters(), lr=args.learning_rate)
+    netD.apply(weights_init)
+
+    criterion = nn.BCEWithLogitsLoss()
 
     fixed_noise = torch.randn(64, args.nz, 1, 1, device=device)
+
+    optimizerD = optim.Adam(netD.parameters(), lr=0.0002, betas=(0.5, 0.999))
+    optimizerG = optim.Adam(netG.parameters(), lr=0.0002, betas=(0.5, 0.999))
+
+    schedulerD = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizerD, patience=5, factor=0.1)
+    schedulerG = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizerG, patience=5, factor=0.1)
 
     for epoch in range(args.epochs):
         for i, images in enumerate(train_loader):
             images = images.to(device)
             print(f"Processing epoch {epoch+1}, batch {i+1}")
             print("Batch loaded")
+
             try:
                 print(f"Batch {i}, Image shape: {images.shape}")
 
@@ -141,12 +157,13 @@ def train(args):
                 d_loss_real.backward()
 
                 print("Starting discriminator training")
-                noise = torch.randn(images.size(0), args.nz, 1, 1)
+                noise = torch.randn(images.size(
+                    0), args.nz, 1, 1, device=device)
                 fake_images = netG(noise)
                 fake_labels = torch.zeros(images.size(0), 1).to(device)
                 outputs = netD(fake_images.detach()).view(-1, 1)
                 print("Output shape (fake):", outputs.shape)
-                print("Target shape (fake:)", fake_labels.shape)
+                print("Target shape (fake):", fake_labels.shape)
                 d_loss_fake = criterion(outputs, fake_labels)
                 d_loss_fake.backward()
                 optimizerD.step()
@@ -159,6 +176,9 @@ def train(args):
                 optimizerG.step()
 
                 output_dir = '/opt/ml/model/fashion/sample'
+
+                schedulerD.step(d_loss_real.item() + d_loss_fake.item())
+                schedulerG.step(g_loss.item())
 
                 print(
                     f'Epoch [{epoch+1}/{args.epochs}], Step [{i+1}/{len(train_loader)}], d_loss: {d_loss_real.item() + d_loss_fake.item()}, g_loss: {g_loss.item()}')
@@ -189,7 +209,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--learning_rate', type=float, default=0.0002)
-    parser.add_argument('--epochs', type=int, default=50)
+    parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--nz', type=int, default=100)
     parser.add_argument('--model_dir', type=str, default='/opt/ml/model')
     parser.add_argument('--data_dir', type=str, default='/opt/ml/input/data')
