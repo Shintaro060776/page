@@ -27,8 +27,7 @@ class Generator(nn.Module):
             nn.ReLU(True),
             nn.ConvTranspose2d(64, 3, (4, 5), (2, 2), (1, 1), bias=False),
             nn.Tanh(),
-            # nn.AdaptiveAvgPool2d((533, 400))
-            nn.AdaptiveAvgPool2d((256, 256))
+            nn.AdaptiveAvgPool2d((533, 400))
         )
 
     def forward(self, x):

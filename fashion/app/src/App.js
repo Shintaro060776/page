@@ -45,7 +45,7 @@ function App() {
         <a href="http://neilaeden.com" className="BackToTopLink">Back To Top Page</a>
       </main>
       <footer className="App-footer">
-        <p>© 2023 Fashion Generator</p>
+        <p>© 2022 Fashion Generator</p>
       </footer>
     </div>
   );
