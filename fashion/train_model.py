@@ -56,19 +56,19 @@ class Generator(nn.Module):
         self.main = nn.Sequential(
             nn.ConvTranspose2d(nz, 512, 4, 1, 0, bias=False),
             nn.BatchNorm2d(512),
-            nn.ReLU(True),
+            nn.LeakyReLU(0.2, inplace=True),
             nn.ConvTranspose2d(512, 256, 4, 2, 1, bias=False),
             nn.BatchNorm2d(256),
-            nn.ReLU(True),
+            nn.LeakyReLU(0.2, inplace=True),
             nn.ConvTranspose2d(256, 128, 4, 2, 1, bias=False),
             nn.BatchNorm2d(128),
-            nn.ReLU(True),
+            nn.LeakyReLU(0.2, inplace=True),
             nn.ConvTranspose2d(128, 64, 4, 2, 1, bias=False),
             nn.BatchNorm2d(64),
-            nn.ReLU(True),
+            nn.LeakyReLU(0.2, inplace=True),
             nn.ConvTranspose2d(64, 3, (4, 5), (2, 2), (1, 1), bias=False),
             nn.Tanh(),
-            nn.AdaptiveAvgPool2d((533, 400))
+            nn.AdaptiveAvgPool2d((256, 256))
         )
 
     def forward(self, x):
@@ -89,14 +89,12 @@ class Discriminator(nn.Module):
             nn.Conv2d(128, 256, 4, 2, 1, bias=False),
             nn.BatchNorm2d(256),
             nn.LeakyReLU(0.2, inplace=True),
-            nn.Conv2d(256, 512, 4, 2, 1, bias=False),
+            nn.Conv2d(256, 512, 4, 2, 0, bias=False),
             nn.BatchNorm2d(512),
-            nn.LeakyReLU(0.2, inplace=True),
-            nn.Conv2d(512, 1, 4, 1, 0, bias=False),
-            nn.Flatten()
+            nn.LeakyReLU(0.2, inplace=True)
         )
 
-        self.linear = nn.Linear(660, 1)
+        self.linear = nn.Linear(512 * 15 * 15, 1)
         self.output = nn.Sigmoid()
 
     def forward(self, x):
@@ -109,9 +107,10 @@ def train(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     transform = transforms.Compose([
-        transforms.Resize((533, 400)),
+        transforms.Resize((256, 256)),
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+        # transforms.Normalize((0.5, ), (0.5, ))
     ])
 
     bucket, prefix = args.data_dir.replace('s3://', '').split('/', 1)
@@ -187,7 +186,7 @@ def train(args):
                     os.makedirs(output_dir, exist_ok=True)
                     save_path = os.path.join(
                         output_dir, f'fake_images-{epoch+1}.png')
-                    save_image(fake_images, save_path, nrow=8, normalize=True)
+                    save_image(fake_images, save_path, nrow=8, normalize=False)
 
             except Exception as e:
                 print(
